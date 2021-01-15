@@ -1,0 +1,109 @@
+body {
+    background-color: black;
+}
+
+#background-image{
+    background-image: url('../img/background.jpg');
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 700px;
+    width: 100%;
+    opacity: 0.4;
+    z-index: -10;
+    position: absolute;
+}
+
+#container-banner{
+    margin: 0 auto;
+}
+
+.logo{
+    height: 200px;
+}
+
+#form-busca {
+    min-width: 50%;
+    max-width: 100%;
+}
+
+#form-busca input{
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+#form-busca ::placeholder {
+    color: black;
+}
+
+.botao-cor-especial {
+    color: white;
+    background-color: #ab7325;
+}
+
+.active a{
+    background-color: red;
+}
+
+.texto-cor-especial,
+#nav-estilos a {
+    color: #ab7325;
+}
+
+#nav-estilos,
+#estilos {
+    background-color: black!important;
+    color: white!important;
+}
+
+@media (max-width: 575px) {
+    #nav-estilos li {
+        width: 100vw;
+        background-color: black!important;
+        z-index: 100;
+    }
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: #ab7325;
+    color: black!important;
+}
+
+.carrossel-imagem {
+    height: 405px;
+    object-position: center;
+    object-fit: cover;   
+}
+
+.imagem-promocao {
+    height: 135px;
+    width: 100%;
+    object-position: center;
+    object-fit: cover; 
+    overflow: hidden;
+    z-index: 10;
+}
+
+@media (max-width: 575px) {
+    .carrossel-imagem {
+        height: 300px; 
+    }
+
+    .imagem-promocao {
+        height: 110px;
+        width: 100%;
+        padding-top: 20px;
+    }
+}
+
+.titulo {
+    color: #ab7325;
+}
+
+footer {
+    color: #6c757d;
+}
+
+.footer-container {
+    max-width: 1000px;
+}
+
