@@ -16,4 +16,34 @@ public class Banda implements Serializable {
     @OneToMany(mappedBy = "banda")
     private Set<Disco> discos = new HashSet<>();
 
+    public Banda(){
+    }
+
+    public Banda(String nome) {
+        this.nome = nome;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Set<Disco> getDiscos() {
+        return discos;
+    }
+
+    public void setDiscos(Set<Disco> discos) {
+        this.discos = discos;
+    }
 }

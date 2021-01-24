@@ -33,7 +33,7 @@
                         <input class="form-control me-2" type="search" placeholder="Pesquisar..." aria-label="Search">
                         <button class="btn botao-cor-especial" type="submit"><i class="fas fa-search"></i></button>
                     </form>
-                    <ul class="nav">
+                    <ul class="nav" id="entrar-e-carrinho-link">
                         <li class="nav-item">
                             <a class="nav-link texto-cor-especial" href="#">ENTRAR</a>
                         </li>
@@ -149,126 +149,23 @@
         <section id="destaques" class="bg-light p-3 mt-5 rounded">
             <h2 class="titulo pb-3">Destaques</h2>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 g-4">
-                <div class="col p-2">
-                    <div class="card">
-                        <img src="./img/capa-de-album.jpg" class="card-img-top"
-                             alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional
-                                content. This content is a little bit longer.</p>
-                        </div>
+                <c:forEach items="${discos}" var="disco">
+                    <div class="col p-3 capa-card-link">
+                        <a href="#" class="">
+                            <div class="card border-light">
+                                <img src="${disco.capa}" class="card-img-top"
+                                     alt="...">
+                                <div class="card-body pb-1">
+                                    <h5 class="card-title">${disco.titulo}</h5>
+                                    <p class="card-text">${disco.banda.nome}</p>
+                                </div>
+                                <div class="card-footer border-light pt-0 pb-0">
+                                    <small class="text-muted">R$ ${disco.preco}</small>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </div>
-                <div class="col p-2">
-                    <div class="card">
-                        <img src="./img/capa-de-album.jpg" class="card-img-top"
-                             alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional
-                                content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col p-2">
-                    <div class="card">
-                        <img src="./img/capa-de-album.jpg" class="card-img-top"
-                             alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional
-                                content.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col p-2">
-                    <div class="card">
-                        <img src="./img/capa-de-album.jpg" class="card-img-top"
-                             alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional
-                                content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col p-2">
-                    <div class="card">
-                        <img src="./img/capa-de-album.jpg" class="card-img-top"
-                             alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional
-                                content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col p-2">
-                    <div class="card">
-                        <img src="./img/capa-de-album.jpg" class="card-img-top"
-                             alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional
-                                content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col p-2">
-                    <div class="card">
-                        <img src="./img/capa-de-album.jpg" class="card-img-top"
-                             alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional
-                                content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col p-2">
-                    <div class="card">
-                        <img src="./img/capa-de-album.jpg" class="card-img-top"
-                             alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional
-                                content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col p-2">
-                    <div class="card">
-                        <img src="./img/capa-de-album.jpg" class="card-img-top"
-                             alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional
-                                content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col p-2">
-                    <div class="card">
-                        <img src="./img/capa-de-album.jpg" class="card-img-top"
-                             alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional
-                                content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </section>
     </main>
