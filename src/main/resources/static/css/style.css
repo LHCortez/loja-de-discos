@@ -2,7 +2,7 @@ body {
     background-color: black;
 }
 
-#background-image{
+#background-image {
     background-image: url('../img/background.jpg');
     background-position: center bottom;
     background-repeat: no-repeat;
@@ -14,11 +14,11 @@ body {
     position: absolute;
 }
 
-#container-banner{
+#container-banner {
     margin: 0 auto;
 }
 
-.logo{
+.logo {
     height: 200px;
 }
 
@@ -27,7 +27,7 @@ body {
     max-width: 100%;
 }
 
-#form-busca input{
+#form-busca input {
     background-color: rgba(255, 255, 255, 0.7);
 }
 
@@ -40,7 +40,7 @@ body {
     background-color: #ab7325;
 }
 
-.active a{
+.active a {
     background-color: red;
 }
 
@@ -51,41 +51,41 @@ body {
 
 #nav-estilos,
 #estilos {
-    background-color: black!important;
-    color: white!important;
+    background-color: black !important;
+    color: white !important;
 }
 
 @media (max-width: 575px) {
     #nav-estilos li {
         width: 100vw;
-        background-color: black!important;
+        background-color: black !important;
         z-index: 100;
     }
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     background-color: #ab7325;
-    color: black!important;
+    color: black !important;
 }
 
 .carrossel-imagem {
     height: 405px;
     object-position: center;
-    object-fit: cover;   
+    object-fit: cover;
 }
 
 .imagem-promocao {
     height: 135px;
     width: 100%;
     object-position: center;
-    object-fit: cover; 
+    object-fit: cover;
     overflow: hidden;
     z-index: 10;
 }
 
 @media (max-width: 575px) {
     .carrossel-imagem {
-        height: 300px; 
+        height: 300px;
     }
 
     .imagem-promocao {
