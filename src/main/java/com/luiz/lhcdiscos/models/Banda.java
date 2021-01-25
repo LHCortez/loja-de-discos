@@ -14,7 +14,9 @@ public class Banda implements Serializable {
     private Integer id;
     private String nome;
     @OneToMany(mappedBy = "banda")
-    private Set<Disco> discos = new HashSet<>();
+    private Set<Album> albums = new HashSet<>();
+    @OneToMany(mappedBy = "banda")
+    private Set<Camiseta> camisetas = new HashSet<>();
 
     public Banda(){
     }
@@ -39,11 +41,19 @@ public class Banda implements Serializable {
         this.nome = nome;
     }
 
-    public Set<Disco> getDiscos() {
-        return discos;
+    public Set<Album> getDiscos() {
+        return albums;
     }
 
-    public void setDiscos(Set<Disco> discos) {
-        this.discos = discos;
+    public void setDiscos(Set<Album> albums) {
+        this.albums = albums;
+    }
+
+    public Set<Camiseta> gettShirts() {
+        return camisetas;
+    }
+
+    public void settShirts(Set<Camiseta> camisetas) {
+        this.camisetas = camisetas;
     }
 }

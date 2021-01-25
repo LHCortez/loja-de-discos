@@ -22,13 +22,13 @@
 <div id="background-image"></div>
 <div class="container-xl">
 
-    <%@ include file="/WEB-INF/view/cabecalho.jsp"%>
+    <%@ include file="/WEB-INF/view/header.jsp"%>
 
     <main>
         <jsp:doBody />
     </main>
 
-    <%@ include file="/WEB-INF/view/rodape.jsp"%>
+    <%@ include file="/WEB-INF/view/footer.jsp"%>
 
 </div>
 </body>

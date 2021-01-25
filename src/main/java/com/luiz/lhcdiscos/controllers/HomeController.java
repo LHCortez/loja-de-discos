@@ -1,7 +1,7 @@
 package com.luiz.lhcdiscos.controllers;
 
-import com.luiz.lhcdiscos.models.Disco;
-import com.luiz.lhcdiscos.services.DiscoService;
+import com.luiz.lhcdiscos.models.Album;
+import com.luiz.lhcdiscos.services.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,14 +13,14 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    private DiscoService discoService;
+    private AlbumService albumService;
 
     @RequestMapping("/")
     public ModelAndView home() {
         System.out.println("Home Controller");
-        List<Disco> discos = discoService.buscarLancamentoMaisRecente();
+        List<Album> albums = albumService.buscarLancamentoMaisRecente();
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("discos", discos);
+        modelAndView.addObject("albums", albums);
         return modelAndView;
     }
 

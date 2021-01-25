@@ -112,15 +112,34 @@ a {
 }
 
 .titulo {
-    color: #ab7325;
-}
-.capa-card-link a {
+    /*color: #ab7325;*/
     color: black;
 }
 
-.capa-card-link:hover,
-.capa-card-link:active {
+.capa-card div {
+    background-color: transparent;
+    border: none;
+}
+
+.capa-card a {
+    color: black;
+}
+
+.capa-card:hover,
+.capa-card:active {
     opacity: 0.8;
+}
+
+#busca-avancada {
+    background-color: rgba(0,0,0,0.5);
+}
+
+.titulo-busca {
+    color: whitesmoke;
+}
+
+#resultado {
+    background-color: whitesmoke;
 }
 
 footer {

@@ -3,35 +3,30 @@ package com.luiz.lhcdiscos.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Entity
-public class Disco implements Serializable {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String titulo;
+
+    private String nome;
     private String descricao;
     private BigDecimal preco;
     private String capa;
-    private LocalDate lancamento;
-    @ManyToOne
-    @JoinColumn(name = "banda_id")
-    private Banda banda;
 
-    public Disco(){
+    public Produto(){
     }
 
-    public Disco(String titulo, String descricao, BigDecimal preco, String capa, LocalDate lancamento, Banda banda) {
-        this.titulo = titulo;
+    public Produto(String nome, String descricao, BigDecimal preco, String capa) {
+        this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.capa = capa;
-        this.lancamento = lancamento;
-        this.banda = banda;
     }
 
     public Integer getId() {
@@ -42,12 +37,12 @@ public class Disco implements Serializable {
         this.id = id;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getNome() {
+        return nome;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getDescricao() {
@@ -74,19 +69,9 @@ public class Disco implements Serializable {
         this.capa = capa;
     }
 
-    public LocalDate getLancamento() {
-        return lancamento;
-    }
+    public abstract Banda getBanda();
 
-    public void setLancamento(LocalDate lancamento) {
-        this.lancamento = lancamento;
-    }
-
-    public Banda getBanda() {
-        return banda;
-    }
-
-    public void setBanda(Banda banda) {
-        this.banda = banda;
+    public String getTipoProduto(){
+        return this.getClass().getSimpleName();
     }
 }

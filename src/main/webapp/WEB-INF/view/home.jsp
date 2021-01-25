@@ -68,18 +68,18 @@
     <section id="destaques" class="bg-light p-3 mt-5 rounded">
         <h2 class="titulo pb-3">Destaques</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 g-4">
-            <c:forEach items="${discos}" var="disco">
-                <div class="col p-3 capa-card-link">
+            <c:forEach items="${albums}" var="album">
+                <div class="col p-3 capa-card">
                     <a href="#" class="">
-                        <div class="card border-light">
-                            <img src="${disco.capa}" class="card-img-top"
+                        <div class="card">
+                            <img src="${album.capa}" class="card-img-top"
                                  alt="...">
                             <div class="card-body pb-1">
-                                <h5 class="card-title">${disco.titulo}</h5>
-                                <p class="card-text">${disco.banda.nome}</p>
+                                <h5 class="card-title">${album.nome}</h5>
+                                <p class="card-text">${album.banda.nome}</p>
                             </div>
                             <div class="card-footer border-light pt-0 pb-0">
-                                <small class="text-muted">R$ ${disco.preco}</small>
+                                <small class="text-muted">R$ ${album.preco}</small>
                             </div>
                         </div>
                     </a>
