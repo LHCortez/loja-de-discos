@@ -18,7 +18,7 @@
                             <img src="https://www.loudmagazine.net/wp-content/uploads/2019/03/darkthrone.jpg"
                                  class="d-block w-100 carrossel-imagem" alt="...">
                             <div class="carousel-caption d-none d-md-block">
-                                <h5>First slide label</h5>
+                                <h5>ÇÇÇ First slide label</h5>
                                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                             </div>
                         </div>
@@ -68,18 +68,18 @@
     <section id="destaques" class="bg-light p-3 mt-5 rounded">
         <h2 class="titulo pb-3">Destaques</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 g-4">
-            <c:forEach items="${albums}" var="album">
+            <c:forEach items="${produtos}" var="produto">
                 <div class="col p-3 capa-card">
                     <a href="#" class="">
                         <div class="card">
-                            <img src="${album.capa}" class="card-img-top"
+                            <img src="${pageContext.request.contextPath}${produto.capa}" class="card-img-top"
                                  alt="...">
                             <div class="card-body pb-1">
-                                <h5 class="card-title">${album.nome}</h5>
-                                <p class="card-text">${album.banda.nome}</p>
+                                <h5 class="card-title">${produto.nome}</h5>
+                                <p class="card-text">${produto.banda.nome}</p>
                             </div>
                             <div class="card-footer border-light pt-0 pb-0">
-                                <small class="text-muted">R$ ${album.preco}</small>
+                                <small class="text-muted">R$ ${produto.preco}</small>
                             </div>
                         </div>
                     </a>

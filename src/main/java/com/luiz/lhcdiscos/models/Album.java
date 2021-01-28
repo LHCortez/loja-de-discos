@@ -1,5 +1,7 @@
 package com.luiz.lhcdiscos.models;
 
+import com.luiz.lhcdiscos.models.enums.AlbumFormato;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -7,20 +9,19 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-public abstract class Album extends Produto {
+public class Album extends Produto {
 
     private LocalDate lancamento;
-    @ManyToOne
-    @JoinColumn(name = "banda_id")
-    private Banda banda;
+    private AlbumFormato formato;
 
     public Album(){
     }
 
-    public Album(String nome, String descricao, BigDecimal preco, String capa, LocalDate lancamento, Banda banda) {
-        super(nome, descricao, preco, capa);
+    public Album(String nome, String descricao, BigDecimal preco, String capa,
+                 LocalDate lancamento, Banda banda, AlbumFormato formato) {
+        super(nome, descricao, preco, capa, banda);
         this.lancamento = lancamento;
-        this.banda = banda;
+        this.formato = formato;
     }
 
     public LocalDate getLancamento() {
@@ -31,12 +32,12 @@ public abstract class Album extends Produto {
         this.lancamento = lancamento;
     }
 
-    public Banda getBanda() {
-        return banda;
+    public AlbumFormato getFormato() {
+        return formato;
     }
 
-    public void setBanda(Banda banda) {
-        this.banda = banda;
+    public void setFormato(AlbumFormato formato) {
+        this.formato = formato;
     }
 
 }

@@ -1,5 +1,7 @@
 package com.luiz.lhcdiscos.models;
 
+import com.luiz.lhcdiscos.models.enums.Genero;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -14,9 +16,9 @@ public class Banda implements Serializable {
     private Integer id;
     private String nome;
     @OneToMany(mappedBy = "banda")
-    private Set<Album> albums = new HashSet<>();
-    @OneToMany(mappedBy = "banda")
-    private Set<Camiseta> camisetas = new HashSet<>();
+    private Set<Produto> produtos = new HashSet<>();
+
+    private Genero genero;
 
     public Banda(){
     }
@@ -41,19 +43,19 @@ public class Banda implements Serializable {
         this.nome = nome;
     }
 
-    public Set<Album> getDiscos() {
-        return albums;
+    public Set<Produto> getProdutos() {
+        return produtos;
     }
 
-    public void setDiscos(Set<Album> albums) {
-        this.albums = albums;
+    public void setProdutos(Set<Produto> albums) {
+        this.produtos = albums;
     }
 
-    public Set<Camiseta> gettShirts() {
-        return camisetas;
+    public Genero getGenero() {
+        return genero;
     }
 
-    public void settShirts(Set<Camiseta> camisetas) {
-        this.camisetas = camisetas;
+    public void setGenero(Genero genero) {
+        this.genero = genero;
     }
 }

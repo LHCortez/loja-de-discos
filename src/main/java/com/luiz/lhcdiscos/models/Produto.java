@@ -3,6 +3,7 @@ package com.luiz.lhcdiscos.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -13,20 +14,25 @@ public abstract class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String nome;
     private String descricao;
     private BigDecimal preco;
     private String capa;
 
+    @ManyToOne
+    @JoinColumn(name = "banda_id")
+    private Banda banda;
+
+
     public Produto(){
     }
 
-    public Produto(String nome, String descricao, BigDecimal preco, String capa) {
+    public Produto(String nome, String descricao, BigDecimal preco, String capa, Banda banda) {
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.capa = capa;
+        this.banda = banda;
     }
 
     public Integer getId() {
@@ -69,9 +75,17 @@ public abstract class Produto implements Serializable {
         this.capa = capa;
     }
 
-    public abstract Banda getBanda();
-
     public String getTipoProduto(){
         return this.getClass().getSimpleName();
     }
+
+    public Banda getBanda() {
+        return banda;
+    }
+
+    public void setBanda(Banda banda) {
+        this.banda = banda;
+    }
+
+
 }

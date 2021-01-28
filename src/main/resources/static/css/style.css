@@ -134,6 +134,23 @@ a {
     background-color: rgba(0,0,0,0.5);
 }
 
+#busca-avancada li {
+    background-color: transparent;
+    border-color: #ab7325;
+    color: white;
+    padding-left: 0;
+}
+
+#busca-avancada a {
+    padding: 10px 40px 10px 15px;
+    color: white;
+}
+
+#busca-avancada a:hover,
+#busca-avancada a:active{
+    color: #ab7325;
+}
+
 .titulo-busca {
     color: whitesmoke;
 }

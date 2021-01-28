@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.models;
 
-import com.luiz.lhcdiscos.models.enums.TShirtSize;
+import com.luiz.lhcdiscos.models.enums.CamisetaSize;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -8,37 +8,23 @@ import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
 @Entity
-public class Camiseta extends Produto {
+public class Camiseta extends Produto{
 
-
-    private TShirtSize size;
-    @ManyToOne
-    @JoinColumn(name="banda_id")
-    private Banda banda;
+    CamisetaSize size;
 
     public Camiseta() {
     }
 
-    public Camiseta(String nome, String descricao, BigDecimal preco, String capa, TShirtSize size, Banda banda) {
-        super(nome, descricao, preco, capa);
+    public Camiseta(String nome, String descricao, BigDecimal preco, String capa, Banda banda, CamisetaSize size) {
+        super(nome, descricao, preco, capa, banda);
         this.size = size;
-        this.banda = banda;
     }
 
-    public TShirtSize getSize() {
+    public CamisetaSize getSize() {
         return size;
     }
 
-    public void setSize(TShirtSize size) {
+    public void setSize(CamisetaSize size) {
         this.size = size;
-    }
-
-    @Override
-    public Banda getBanda() {
-        return banda;
-    }
-
-    public void setBanda(Banda banda) {
-        this.banda = banda;
     }
 }
