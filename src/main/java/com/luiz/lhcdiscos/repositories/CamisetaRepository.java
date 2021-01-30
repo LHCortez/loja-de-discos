@@ -1,6 +1,5 @@
 package com.luiz.lhcdiscos.repositories;
 
-import com.luiz.lhcdiscos.models.Album;
 import com.luiz.lhcdiscos.models.Camiseta;
 import org.springframework.stereotype.Repository;
 

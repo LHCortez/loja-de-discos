@@ -11,4 +11,5 @@ public interface AlbumRepository extends ProdutoRepository<Album> {
     List<Album> findTop20ByOrderByLancamentoDesc();
 
     List<Album> findAlbumsByFormato(AlbumFormato formato);
+
 }

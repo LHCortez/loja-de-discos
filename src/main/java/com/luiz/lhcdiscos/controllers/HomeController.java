@@ -1,14 +1,11 @@
 package com.luiz.lhcdiscos.controllers;
 
-import com.luiz.lhcdiscos.models.Album;
-import com.luiz.lhcdiscos.models.Produto;
 import com.luiz.lhcdiscos.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @Controller
 public class HomeController {
@@ -18,10 +15,22 @@ public class HomeController {
 
     @RequestMapping("/")
     public ModelAndView home() {
-        System.out.println("Home Controller");
-        List<Album> produtos = produtoService.buscarLancamentosMaisRecente();
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("produtos", produtos);
+        modelAndView.addObject("produtos", produtoService.searchAll());
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/camiseta", method = RequestMethod.GET)
+    public ModelAndView camiseta() {
+        ModelAndView modelAndView = new ModelAndView("home");
+        modelAndView.addObject("produtos", produtoService.searchAllCamiseta());
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/disco", method = RequestMethod.GET)
+    public ModelAndView disco() {
+        ModelAndView modelAndView = new ModelAndView("home");
+        modelAndView.addObject("produtos", produtoService.searchAllAlbum());
         return modelAndView;
     }
 

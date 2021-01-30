@@ -35,6 +35,14 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
+    public List<Camiseta> searchAllCamiseta() {
+        return camisetaRepository.findAll();
+    }
+
+    public List<Album> searchAllAlbum() {
+        return albumRepository.findAll();
+    }
+
     public List<Produto> buscarPorGenero(Genero genero) {
         return produtoRepository.findProdutoByGenero(genero);
     }
@@ -64,6 +72,10 @@ public class ProdutoService {
 
     private List<Album> buscarPorFormato(AlbumFormato formato) {
         return albumRepository.findAlbumsByFormato(formato);
+    }
+
+    public List<Produto> buscarPorString(String buscaString) {
+        return produtoRepository.searchProduto(buscaString);
     }
 
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -37,17 +38,27 @@ public class BuscaController {
         return categorias;
     }
 
-    @RequestMapping("/search")
+    @RequestMapping(value="/search", method = RequestMethod.GET, params = {})
     public ModelAndView busca() {
+        System.out.println("BuscaString");
         ModelAndView modelAndView = new ModelAndView("search");
-        modelAndView.addObject("produtos", produtoService.searchAll());
         modelAndView.addObject("categorias", getCategorias());
         modelAndView.addObject("generos", Genero.getGeneros());
+        modelAndView.addObject("produtos", produtoService.searchAll());
         return modelAndView;
     }
 
+    @RequestMapping(value="/search", method = RequestMethod.GET, params = "s")
+    public ModelAndView buscaString(@RequestParam String s){
+        System.out.println("BuscaString");
+        ModelAndView modelAndView = new ModelAndView("search");
+        modelAndView.addObject("categorias", getCategorias());
+        modelAndView.addObject("generos", Genero.getGeneros());
+        modelAndView.addObject("produtos", produtoService.buscarPorString(s));
+        return modelAndView;
+    }
 
-    @RequestMapping(value="/search/cat/{categoriaString}", method= RequestMethod.GET)
+    @RequestMapping(value="/search/cat/{categoriaString}", method = RequestMethod.GET)
     public ModelAndView buscarPorCategoriaOuGenero(@PathVariable String categoriaString) {
         ModelAndView modelAndView = new ModelAndView("search");
         List<String> categorias = getCategorias();
@@ -61,6 +72,8 @@ public class BuscaController {
         }
         return modelAndView;
     }
+
+
 
 
 }

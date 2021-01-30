@@ -3,7 +3,6 @@ package com.luiz.lhcdiscos.models.enums;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public enum AlbumFormato {
     VINIL(1, "Vinil"),
