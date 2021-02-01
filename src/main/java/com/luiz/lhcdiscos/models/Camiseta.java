@@ -6,17 +6,19 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
-public class Camiseta extends Produto{
+public class Camiseta extends Produto {
 
     CamisetaSize size;
 
     public Camiseta() {
     }
 
-    public Camiseta(String nome, String descricao, BigDecimal preco, String capa, Banda banda, CamisetaSize size) {
-        super(nome, descricao, preco, capa, banda);
+    public Camiseta(String nome, String descricao, BigDecimal preco, String capa, Banda banda,
+                    CamisetaSize size, LocalDate lancamento) {
+        super(nome, descricao, preco, capa, banda, lancamento);
         this.size = size;
     }
 
@@ -27,4 +29,10 @@ public class Camiseta extends Produto{
     public void setSize(CamisetaSize size) {
         this.size = size;
     }
+
+    @Override
+    public String getTipo() {
+        return "Camiseta";
+    }
+
 }

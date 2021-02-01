@@ -168,14 +168,12 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         album10.setLancamento(LocalDate.of(1984, 9, 9));
 
         Banda banda11 = new Banda("Mercyful Fate");
-        banda11.setGenero(Genero.HEAVYMETAL);
         Album album11 = new Album();
-        banda11.getProdutos().add(album11);
-        album11.setBanda(banda11);
-        album11.setNome("Don't Break the Oath");
+        banda10.getProdutos().add(album11);
+        album11.setBanda(banda10);
+        album11.setNome("asdfasdfsdf");
         album11.setFormato(AlbumFormato.VINIL);
-        album11.setDescricao("Don't Break the Oath é o segundo álbum da banda dinamarquesa de heavy metal Mercyful Fate, " +
-                "lançado em 1984.");
+        album11.setDescricao("sdfasfsdfsdfa.");
         album11.setPreco(BigDecimal.TEN);
         album11.setCapa("/img/capa-dontbreaktheoath.jpg");
         album11.setLancamento(LocalDate.of(1984, 9, 9));

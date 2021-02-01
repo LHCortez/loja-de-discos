@@ -1,6 +1,7 @@
 package com.luiz.lhcdiscos.services;
 
 import com.luiz.lhcdiscos.models.Album;
+import com.luiz.lhcdiscos.models.Banda;
 import com.luiz.lhcdiscos.models.Produto;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.models.enums.Genero;
@@ -9,6 +10,7 @@ import com.luiz.lhcdiscos.repositories.CamisetaRepository;
 import com.luiz.lhcdiscos.repositories.ProdutoRepository;
 import com.luiz.lhcdiscos.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.luiz.lhcdiscos.models.Camiseta;
 
@@ -47,6 +49,10 @@ public class ProdutoService {
         return produtoRepository.findProdutoByGenero(genero);
     }
 
+    public List<Produto> buscarPorGenero(Genero genero, Pageable pageable) {
+        return produtoRepository.findProdutoByGenero(genero, pageable);
+    }
+
     public List<Album> buscarLancamentosMaisRecente(){
         return albumRepository.findTop20ByOrderByLancamentoDesc();
     }
@@ -78,4 +84,7 @@ public class ProdutoService {
         return produtoRepository.searchProduto(buscaString);
     }
 
+    public List<Produto> searchProdutosByBanda(Banda banda, Pageable pageable) {
+        return produtoRepository.searchProdutoByBanda(banda, pageable);
+    }
 }

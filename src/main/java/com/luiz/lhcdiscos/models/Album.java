@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Entity
 public class Album extends Produto {
 
-    private LocalDate lancamento;
+
     private AlbumFormato formato;
 
     public Album(){
@@ -17,17 +17,8 @@ public class Album extends Produto {
 
     public Album(String nome, String descricao, BigDecimal preco, String capa,
                  LocalDate lancamento, Banda banda, AlbumFormato formato) {
-        super(nome, descricao, preco, capa, banda);
-        this.lancamento = lancamento;
+        super(nome, descricao, preco, capa, banda, lancamento);
         this.formato = formato;
-    }
-
-    public LocalDate getLancamento() {
-        return lancamento;
-    }
-
-    public void setLancamento(LocalDate lancamento) {
-        this.lancamento = lancamento;
     }
 
     public AlbumFormato getFormato() {
@@ -36,6 +27,11 @@ public class Album extends Produto {
 
     public void setFormato(AlbumFormato formato) {
         this.formato = formato;
+    }
+
+    @Override
+    public String getTipo() {
+        return this.getFormato().getDescricao();
     }
 
 }

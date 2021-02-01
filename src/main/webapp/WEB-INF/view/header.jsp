@@ -3,7 +3,7 @@
 <header>
     <section id="banner">
         <nav class="navbar navbar-light">
-            <div id="container-banner" class="container d-flex justify-content-center justify-content-lg-between">
+            <div id="container-banner" class="container-xl d-flex justify-content-center justify-content-lg-between">
                 <!-- Logo gerado em: https://www.brandcrowd.com/maker/logo/barbarian-devil-esports-clan-19187#popup-colorpalette -->
                 <a class="navbar-brand"><img class="logo" src="${pageContext.request.contextPath}/img/logo-transparent.png" alt=""></a>
                 <form action="${pageContext.request.contextPath}/search" method="get" id="form-busca" class="d-flex">
@@ -30,7 +30,7 @@
         <nav class="collapse navbar-collapse nav-fill" id="nav-estilos">
             <ul class="nav nav-pills w-100">
                 <li class="nav-item">
-                    <a class="nav-link rounded-0 active" aria-current="page" href="#">HOME</a>
+                    <a class="nav-link rounded-0 active" aria-current="page" href="${s:mvcUrl('HC#home').build()}">HOME</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link rounded-0" href="#">PROMOÇÕES</a>

@@ -29,12 +29,12 @@
                 <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
                     <c:forEach items="${produtos}" var="produto">
                         <div class="col p-4 capa-card">
-                            <a href="#" class="">
+                            <a href="${s:mvcUrl('DC#detalhe').arg(0, produto.id).build()}" class="">
                                 <div class="card">
                                     <img src="${pageContext.request.contextPath}${produto.capa}" class="card-img-top"
                                          alt="...">
                                     <div class="card-body pb-1">
-                                        <h5 class="card-title">${produto.nome} - ${produto.tipoProduto}</h5>
+                                        <h5 class="card-title">${produto.nome} - ${produto.tipo}</h5>
                                         <p class="card-text">${produto.banda.nome}</p>
                                     </div>
                                     <div class="card-footer border-light pt-0 pb-0">

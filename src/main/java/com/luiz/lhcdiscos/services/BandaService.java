@@ -1,6 +1,7 @@
 package com.luiz.lhcdiscos.services;
 
 import com.luiz.lhcdiscos.models.Banda;
+import com.luiz.lhcdiscos.models.Produto;
 import com.luiz.lhcdiscos.models.enums.Genero;
 import com.luiz.lhcdiscos.repositories.BandaRepository;
 import com.luiz.lhcdiscos.services.exceptions.ObjectNotFoundException;
@@ -30,6 +31,5 @@ public class BandaService {
     public List<Banda> buscarPorGenero(Genero genero){
         return bandaRepository.findBandaByGenero(genero);
     }
-
 
 }

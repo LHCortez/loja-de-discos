@@ -1,5 +1,5 @@
 <footer id="footer" class="footer mt-auto py-3">
-    <div class="container">
+    <div class="container-xl">
         <div class="row">
             <div class="col-sm text-start">
                 <h5 class="texto-cor-especial">ÇÇÇOne of three columns</h5>
