@@ -5,10 +5,10 @@ import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 public class Album extends Produto {
-
 
     private AlbumFormato formato;
 

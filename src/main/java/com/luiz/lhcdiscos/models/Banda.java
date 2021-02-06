@@ -5,6 +5,7 @@ import com.luiz.lhcdiscos.models.enums.Genero;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -57,5 +58,18 @@ public class Banda implements Serializable {
 
     public void setGenero(Genero genero) {
         this.genero = genero;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Banda banda = (Banda) o;
+        return Objects.equals(nome, banda.nome) && genero == banda.genero;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, genero);
     }
 }

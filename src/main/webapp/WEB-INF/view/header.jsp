@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<jsp:useBean id="carrinhoCompras" scope="session" class="com.luiz.lhcdiscos.models.CarrinhoCompras"/>
 
 <header>
     <section id="banner">
@@ -15,7 +16,9 @@
                         <a class="nav-link texto-cor-especial" href="#">ENTRAR</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link texto-cor-especial" href="#">CARRINHO (0)</a>
+                        <a class="nav-link texto-cor-especial" href="${s:mvcUrl('CC#carrinho').build()}">
+                            CARRINHO (${carrinhoCompras.quantidadeTotal})
+                        </a>
                     </li>
                 </ul>
             </div>

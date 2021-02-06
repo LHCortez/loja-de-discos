@@ -2,6 +2,10 @@ body {
     background-color: black;
 }
 
+.pagina-container {
+    max-width: 1140px;
+}
+
 #background-image {
     background-image: url('../img/background.jpg');
     background-position: center bottom;
@@ -220,6 +224,74 @@ a {
         text-align: center;
     }
 
+}
+
+.carrinho-imagem {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: contain;
+}
+
+@media only screen and (max-width: 800px) {
+
+    /* Force table to not be like tables anymore */
+    #carrinho table,
+    #carrinho thead,
+    #carrinho tbody,
+    #carrinho th,
+    #carrinho td,
+    #carrinho tr {
+        display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    #carrinho thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    #carrinho tr { border: 1px solid #ccc; }
+
+    #carrinho td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align:left;
+    }
+
+    #carrinho td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align:left;
+        font-weight: bold;
+    }
+
+    /* Label the data */
+    #carrinho td:before { content: attr(data-title); }
+
+    #carrinho tfoot td {
+        width: 100vw;
+        padding-left: unset;
+        display: table-cell;
+    }
+
+    #carrinho .preco {
+        text-align: center!important;
+    }
+
+    #carrinho tfoot .preco {
+        text-align: left!important;
+    }
 }
 
 footer {

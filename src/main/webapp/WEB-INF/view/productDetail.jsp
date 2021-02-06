@@ -6,7 +6,7 @@
 
     <section id="produto-detalhe" class="my-3">
 
-        <div class="container-xl">
+        <div class="container">
             <div class="row gap-2">
                 <div class="col-md-10 col-xs-12 bg-light rounded p-4">
                     <div class="row">
@@ -19,10 +19,13 @@
                             <p class="text-muted mb-0">Lançamento: ${produto.lancamento}</p>
                             <p class="text-muted mb-0">Gênero: ${produto.banda.genero.descricao}</p>
                             <h2 class="texto-cor-especial fs-1 my-3">R$ ${produto.preco}</h2>
-                                <button class="btn btn-dark w-100 botao-adicionar-carrinho mt-2 mb-4 fs-5" type="button">
+                            <form action="${s:mvcUrl('CC#add').arg(0, produto.id).build()}" method="post">
+                                <button class="btn btn-dark w-100 botao-adicionar-carrinho mt-2 mb-4 fs-5"
+                                        type="submit">
                                     <i class="fas fa-cart-plus"></i>
-                                     Adicionar ao carrinho
+                                    Adicionar ao carrinho
                                 </button>
+                            </form>
                             <p>${produto.descricao}</p>
                         </div>
                     </div>

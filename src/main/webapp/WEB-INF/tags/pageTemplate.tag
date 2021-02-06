@@ -20,7 +20,7 @@
 <body>
 
 <div id="background-image"></div>
-<div class="container-xl">
+<div class="container pagina-container">
 
     <%@ include file="/WEB-INF/view/header.jsp"%>
 

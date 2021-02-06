@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
+@RequestMapping("/search")
 public class BuscaController {
 
     @Autowired
@@ -38,7 +39,7 @@ public class BuscaController {
         return categorias;
     }
 
-    @RequestMapping(value="/search", method = RequestMethod.GET, params = {})
+    @RequestMapping(method = RequestMethod.GET, params = {})
     public ModelAndView busca() {
         System.out.println("BuscaString");
         ModelAndView modelAndView = new ModelAndView("search");
@@ -48,7 +49,7 @@ public class BuscaController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/search", method = RequestMethod.GET, params = "s")
+    @RequestMapping(method = RequestMethod.GET, params = "s")
     public ModelAndView buscaString(@RequestParam String s){
         System.out.println("BuscaString");
         ModelAndView modelAndView = new ModelAndView("search");
@@ -58,7 +59,7 @@ public class BuscaController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/search/cat/{categoriaString}", method = RequestMethod.GET)
+    @RequestMapping(value="/cat/{categoriaString}", method = RequestMethod.GET)
     public ModelAndView buscarPorCategoriaOuGenero(@PathVariable String categoriaString) {
         ModelAndView modelAndView = new ModelAndView("search");
         List<String> categorias = getCategorias();
