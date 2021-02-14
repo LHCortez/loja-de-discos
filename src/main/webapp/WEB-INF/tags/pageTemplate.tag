@@ -31,6 +31,9 @@
     <%@ include file="/WEB-INF/view/footer.jsp"%>
 
 </div>
+
+
+
 </body>
 
 </html>

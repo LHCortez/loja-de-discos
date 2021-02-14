@@ -1,13 +1,12 @@
 package com.luiz.lhcdiscos;
 
-import com.luiz.lhcdiscos.models.Album;
-import com.luiz.lhcdiscos.models.Banda;
-import com.luiz.lhcdiscos.models.Camiseta;
+import com.luiz.lhcdiscos.models.*;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.models.enums.CamisetaSize;
 import com.luiz.lhcdiscos.models.enums.Genero;
 import com.luiz.lhcdiscos.repositories.BandaRepository;
 import com.luiz.lhcdiscos.repositories.ProdutoRepository;
+import com.luiz.lhcdiscos.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,6 +24,8 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
     private ProdutoRepository produtoRepository;
     @Autowired
     private BandaRepository bandaRepository;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(LhcdiscosApplication.class, args);
@@ -198,5 +199,16 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         tshirt1.setCapa("/img/capa-evangelicis.jpg");
        bandaRepository.save(banda12);
        produtoRepository.save(tshirt1);
+
+        Usuario usuario = new Usuario();
+        usuario.setNome("Admin");
+        usuario.setEmail("admin@casadocodigo.com.br");
+        usuario.setSenha("$2a$10$lt7pS7Kxxe5JfP.vjLNSyOXP11eHgh7RoPxo5fvvbMCZkCUss2DGu");
+        Role role = new Role("ROLE_ADMIN");
+
+        usuario.addRoles(role);
+        usuarioRepository.save(usuario);
+
+
     }
 }

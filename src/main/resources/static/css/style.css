@@ -1,5 +1,10 @@
 body {
     background-color: black;
+    overflow: auto!important;
+}
+
+.modal-open {
+    padding-right: 0 !important
 }
 
 .pagina-container {
@@ -39,7 +44,7 @@ body {
     color: black;
 }
 
-.botao-cor-especial {
+.botao-busca {
     color: white;
     background-color: #ab7325;
 }
@@ -54,6 +59,15 @@ a {
     color: #ab7325;
 }
 
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 400px;
+    }
+
+    .modal-content {
+        padding: 1rem;
+    }
+}
 
 .texto-cor-especial,
 #nav-estilos a {
@@ -83,10 +97,10 @@ a {
     }
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    background-color: #ab7325;
-    color: black !important;
-}
+/*.nav-pills .nav-link.active, .nav-pills .show > .nav-link {*/
+/*    background-color: #ab7325;*/
+/*    color: black !important;*/
+/*}*/
 
 .carrossel-imagem {
     height: 405px;
@@ -292,6 +306,31 @@ a {
     #carrinho tfoot .preco {
         text-align: left!important;
     }
+}
+
+#cria-conta-form {
+    max-width: 600px;
+}
+
+#login-form {
+    /*width: 600px;*/
+   width: 100%;
+}
+#login-form-container {
+    max-width: 400px;
+    width: 100%;
+}
+
+.botao-destaque {
+    color: white;
+    background-color: #ab7325;
+    width: 200px;
+}
+
+.botao-destaque:hover,
+.botao-destaque:active {
+    opacity: 0.9;
+    color: white;
 }
 
 footer {

@@ -88,7 +88,7 @@
                     </table>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end p-4">
-                        <button class="btn btn-danger col-md-3 " type="button">Finalizar compra</button>
+                        <button class="btn col-md-3 botao-destaque p-2" type="button">Finalizar compra</button>
                     </div>
 
                 </div>
