@@ -39,23 +39,25 @@
 <%--                           name="senhConfirmation">--%>
 <%--                </div>--%>
 <%--            </div>--%>
-<%--            <fieldset class="row mb-3">--%>
-<%--                <legend class="col-form-label col-sm-4 pt-0">Tipo de conta</legend>--%>
-<%--                <div class="col-sm-8">--%>
-<%--                    <div class="form-check">--%>
-<%--                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>--%>
-<%--                        <label class="form-check-label" for="gridRadios1">--%>
-<%--                            Cliente--%>
-<%--                        </label>--%>
-<%--                    </div>--%>
-<%--                    <div class="form-check">--%>
-<%--                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">--%>
-<%--                        <label class="form-check-label" for="gridRadios2">--%>
-<%--                            Administrador--%>
-<%--                        </label>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </fieldset>--%>
+            <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-4 pt-0">Tipo de conta</legend>
+                <div class="col-sm-8">
+                    <div class="form-check">
+                        <form:radiobutton path="roleNome" class="form-check-input"  name="gridRadios" id="gridRadios1"
+                                          value="ROLE_USER" />
+                        <label class="form-check-label" for="gridRadios1">
+                            Cliente
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <form:radiobutton path="roleNome" class="form-check-input" name="gridRadios" id="gridRadios2"
+                                          value="ROLE_ADMIN"/>
+                        <label class="form-check-label" for="gridRadios2">
+                            Administrador
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
             <button type="submit" class="btn botao-destaque p-2">Cadastrar</button>
         </form:form>
 

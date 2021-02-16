@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.controllers;
 
-import com.luiz.lhcdiscos.models.Usuario;
+import com.luiz.lhcdiscos.dto.NovoUsuarioDTO;
 import com.luiz.lhcdiscos.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,19 +20,18 @@ public class UsuarioController {
     UsuarioService usuarioService;
 
     @RequestMapping(value="/create", method = RequestMethod.GET)
-    public ModelAndView createUserForm(Usuario usuario) {
+    public ModelAndView createUserForm(@ModelAttribute("usuario") NovoUsuarioDTO usuario) {
         return new ModelAndView("createUser");
     }
 
     @RequestMapping(value="/create", method = RequestMethod.POST)
-    public ModelAndView doCreateUser(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult result,
-                                     String senhaConfirmation) {
+    public ModelAndView doCreateUser(@ModelAttribute("usuario") @Valid NovoUsuarioDTO usuario, BindingResult result) {
         if (result.hasErrors()) {
-            System.out.println("LJDFGÇDJFGÇLSDJG ÇLDS JGÇLKSDJFGÇLS DJFGÇLS JDFÇLG SJDGÇFL");
             return createUserForm(usuario);
         }
+
         usuarioService.save(usuario);
-        return new ModelAndView("redirect:/login");
+        return new ModelAndView("redirect:/user/login");
     }
 
     @RequestMapping(value="/login", method = RequestMethod.GET)

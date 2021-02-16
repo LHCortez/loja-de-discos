@@ -4,6 +4,7 @@ import com.luiz.lhcdiscos.models.*;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.models.enums.CamisetaSize;
 import com.luiz.lhcdiscos.models.enums.Genero;
+import com.luiz.lhcdiscos.models.enums.Role;
 import com.luiz.lhcdiscos.repositories.BandaRepository;
 import com.luiz.lhcdiscos.repositories.ProdutoRepository;
 import com.luiz.lhcdiscos.repositories.UsuarioRepository;
@@ -204,9 +205,9 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         usuario.setNome("Admin");
         usuario.setEmail("admin@casadocodigo.com.br");
         usuario.setSenha("$2a$10$lt7pS7Kxxe5JfP.vjLNSyOXP11eHgh7RoPxo5fvvbMCZkCUss2DGu");
-        Role role = new Role("ROLE_ADMIN");
 
-        usuario.addRoles(role);
+
+        usuario.addRoles(Role.ROLE_ADMIN, Role.ROLE_USER);
         usuarioRepository.save(usuario);
 
 

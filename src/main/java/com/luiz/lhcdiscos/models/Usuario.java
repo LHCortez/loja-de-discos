@@ -1,10 +1,11 @@
 package com.luiz.lhcdiscos.models;
 
+import com.luiz.lhcdiscos.models.enums.Role;
+
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.EnumSet;
 import java.util.Set;
 
 @Entity
@@ -15,26 +16,14 @@ public class Usuario {
     @Column(name = "usuario_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotBlank(message = "Preencha seu nome")
-    @NotEmpty(message = "Preencha seu nome")
     private String nome;
-    @Email(message = "Preencha um endereço de e-mail válido")
-    @NotEmpty(message = "Preencha seu nome")
-    @NotBlank(message = "Preencha seu e-mail")
+    @Column(unique = true)
     private String email;
-    @Size(min = 6, max = 15, message = "Sua senha deve ter entre 6 e 15 caracteres")
-    @NotBlank(message = "Preencha sua senha")
-    @NotEmpty(message = "Preencha seu nome")
     private String senha;
     private boolean enabled = true;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "usuarios_roles",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new HashSet<>();
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<Role> roles = EnumSet.noneOf(Role.class);
 
     public Integer getId() {
         return id;
@@ -82,5 +71,11 @@ public class Usuario {
 
     public void addRoles(Role... role) {
         roles.addAll(Arrays.asList(role));
+    }
+
+    @PrePersist
+    @PreUpdate
+    private void prepare(){
+        this.email = this.email == null ? null : email.toLowerCase();
     }
 }

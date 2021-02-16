@@ -1,5 +1,6 @@
 package com.luiz.lhcdiscos.models;
 
+import com.luiz.lhcdiscos.models.enums.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,7 +24,7 @@ public class UserDetailsImpl implements UserDetails {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
         for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getNome()));
+            authorities.add(new SimpleGrantedAuthority(role.name()));
         }
 
         return authorities;
