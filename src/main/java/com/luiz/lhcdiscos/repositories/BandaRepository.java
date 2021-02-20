@@ -12,5 +12,7 @@ public interface BandaRepository extends JpaRepository<Banda, Integer> {
 
     List<Banda> findBandaByGenero(Genero genero);
 
+    boolean existsByNomeIgnoreCase(String email);
+
 }
 

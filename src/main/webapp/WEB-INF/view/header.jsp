@@ -7,7 +7,7 @@
         <nav class="navbar navbar-light">
             <div id="container-banner" class="container-xl d-flex justify-content-center justify-content-lg-between">
                 <!-- Logo gerado em: https://www.brandcrowd.com/maker/logo/barbarian-devil-esports-clan-19187#popup-colorpalette -->
-                <a class="navbar-brand"><img class="logo" src="${pageContext.request.contextPath}/img/logo-transparent.png" alt=""></a>
+                <a class="navbar-brand" href="${s:mvcUrl('HC#home').build()}"><img class="logo" src="${pageContext.request.contextPath}/img/logo-transparent.png" alt=""></a>
 
                 <form action="${pageContext.request.contextPath}/search" method="get" id="form-busca" class="d-flex">
                     <input name="s" class="form-control me-2" type="search" placeholder="Pesquisar..." aria-label="Search">

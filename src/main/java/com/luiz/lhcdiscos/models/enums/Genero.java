@@ -32,17 +32,19 @@ public enum Genero {
         return descricao;
     }
 
-    public static Genero toEnum(Integer cod) {
-        if (cod == null) return null;
-        Optional<Genero> genero =
-                Arrays.stream(Genero.values()).filter(x -> x.getCod() == cod).findFirst();
-        return genero.orElseThrow(() -> new IllegalArgumentException("Id inválido: " + cod));
-    }
-
     public static List<String> getGeneros(){
         List<String> generos = new ArrayList<>();
         Arrays.stream(Genero.values()).forEach(x -> generos.add(x.getDescricao()));
         return generos;
     }
 
+    public static Genero enumOfDescricao(String descricao) {
+        Optional<Genero> genero = Arrays.stream(Genero.values()).filter(x -> x.getDescricao().equals(descricao)).findAny();
+        return genero.orElseThrow(() -> new IllegalArgumentException("Gênero inválido: " + genero));
+    }
+
+    @Override
+    public String toString() {
+        return getDescricao();
+    }
 }

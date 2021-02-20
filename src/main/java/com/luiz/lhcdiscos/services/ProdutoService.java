@@ -64,6 +64,14 @@ public class ProdutoService {
         return buscarPorSubclasse(categoria);
     }
 
+    public List<Produto> buscarPorString(String buscaString) {
+        return produtoRepository.searchProduto(buscaString);
+    }
+
+    public List<Produto> searchProdutosByBanda(Banda banda, Pageable pageable) {
+        return produtoRepository.searchProdutoByBanda(banda, pageable);
+    }
+
     private List<Produto> buscarPorSubclasse(String nomeSubclasse) {
         String nome = "com.luiz.lhcdiscos.models.".concat(nomeSubclasse);
         System.out.println(nome);
@@ -80,11 +88,5 @@ public class ProdutoService {
         return albumRepository.findAlbumsByFormato(formato);
     }
 
-    public List<Produto> buscarPorString(String buscaString) {
-        return produtoRepository.searchProduto(buscaString);
-    }
 
-    public List<Produto> searchProdutosByBanda(Banda banda, Pageable pageable) {
-        return produtoRepository.searchProdutoByBanda(banda, pageable);
-    }
 }

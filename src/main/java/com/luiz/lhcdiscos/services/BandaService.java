@@ -1,7 +1,10 @@
 package com.luiz.lhcdiscos.services;
 
+import com.luiz.lhcdiscos.dto.NovaBandaDTO;
+import com.luiz.lhcdiscos.dto.NovoUsuarioDTO;
 import com.luiz.lhcdiscos.models.Banda;
 import com.luiz.lhcdiscos.models.Produto;
+import com.luiz.lhcdiscos.models.Usuario;
 import com.luiz.lhcdiscos.models.enums.Genero;
 import com.luiz.lhcdiscos.repositories.BandaRepository;
 import com.luiz.lhcdiscos.services.exceptions.ObjectNotFoundException;
@@ -30,6 +33,13 @@ public class BandaService {
 
     public List<Banda> buscarPorGenero(Genero genero){
         return bandaRepository.findBandaByGenero(genero);
+    }
+
+    public void save (NovaBandaDTO bandaDTO) {
+        Banda banda = new Banda();
+        banda.setNome(bandaDTO.getNome());
+        banda.setGenero(Genero.enumOfDescricao(bandaDTO.getGenero()));
+        bandaRepository.save(banda);
     }
 
 }

@@ -31,6 +31,10 @@ body {
     height: 200px;
 }
 
+.logo-crud {
+    height: 100px;
+}
+
 #form-busca {
     min-width: 50%;
     max-width: 100%;
@@ -340,4 +344,36 @@ footer {
 .footer-container {
     max-width: 1000px;
 }
+
+.crud-tabs {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+.crud-tabs-link {
+    border-bottom: 1px solid black!important;
+}
+
+.crud-tabs-link.active {
+    border-left: 1px solid black!important;
+    border-right: 1px solid black!important;
+    border-top: 1px solid black!important;
+    border-bottom: 1px solid transparent!important;
+}
+
+.crud-tab-content {
+    border: 1px solid #000;
+    border-radius: 0 .25rem .25rem .25rem;
+}
+
+.crud-tabela tbody tr {
+    background-color: #f2f3ff;
+}
+
+
+
+
+
+
+
+
 

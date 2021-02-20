@@ -15,6 +15,7 @@ public class Banda implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(unique = true)
     private String nome;
     @OneToMany(mappedBy = "banda")
     private Set<Produto> produtos = new HashSet<>();

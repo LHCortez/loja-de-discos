@@ -76,7 +76,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         album3.setCapa("/img/capa-1755.jpg");
         album3.setLancamento(LocalDate.of(2017, 11, 3));
 
-        Banda banda4 = new Banda("Mercyful Fate");
+        Banda banda4 = new Banda("Mercfddayful Fate");
         banda4.setGenero(Genero.HEAVYMETAL);
         Album album4 = new Album();
         banda4.getProdutos().add(album4);
@@ -91,7 +91,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
 
 //        TODO: Mudar a partir daqui ----------------------
 
-        Banda banda5 = new Banda("Mercyful Fate");
+        Banda banda5 = new Banda("Mercgagdyful Fate");
         banda5.setGenero(Genero.HEAVYMETAL);
         Album album5 = new Album();
         banda5.getProdutos().add(album5);
@@ -117,7 +117,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         album6.setCapa("/img/capa-dontbreaktheoath.jpg");
         album6.setLancamento(LocalDate.of(1984, 9, 9));
 
-        Banda banda7 = new Banda("Mercyful Fate");
+        Banda banda7 = new Banda("Mercyful Fafgdgate");
         banda7.setGenero(Genero.HEAVYMETAL);
         Album album7 = new Album();
         banda7.getProdutos().add(album7);
@@ -130,7 +130,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         album7.setCapa("/img/capa-dontbreaktheoath.jpg");
         album7.setLancamento(LocalDate.of(1984, 9, 9));
 
-        Banda banda8 = new Banda("Mercyful Fate");
+        Banda banda8 = new Banda("Meagfgrcyful Fate");
         banda8.setGenero(Genero.HEAVYMETAL);
         Album album8 = new Album();
         banda8.getProdutos().add(album8);
@@ -143,7 +143,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         album8.setCapa("/img/capa-dontbreaktheoath.jpg");
         album8.setLancamento(LocalDate.of(1984, 9, 9));
 
-        Banda banda9 = new Banda("Mercyful Fate");
+        Banda banda9 = new Banda("Mercyful Faafgfte");
         banda9.setGenero(Genero.HEAVYMETAL);
         Album album9 = new Album();
         banda9.getProdutos().add(album9);
@@ -156,7 +156,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         album9.setCapa("/img/capa-dontbreaktheoath.jpg");
         album9.setLancamento(LocalDate.of(1984, 9, 9));
 
-        Banda banda10 = new Banda("Mercyful Fate");
+        Banda banda10 = new Banda("Meagfrcyful Fate");
         banda10.setGenero(Genero.HEAVYMETAL);
         Album album10 = new Album();
         banda10.getProdutos().add(album10);
@@ -169,7 +169,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         album10.setCapa("/img/capa-dontbreaktheoath.jpg");
         album10.setLancamento(LocalDate.of(1984, 9, 9));
 
-        Banda banda11 = new Banda("Mercyful Fate");
+        Banda banda11 = new Banda("Mercyfuagagl Fate");
         Album album11 = new Album();
         banda10.getProdutos().add(album11);
         album11.setBanda(banda10);
