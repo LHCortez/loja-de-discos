@@ -1,7 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <tags:crudTemplate>
 
@@ -30,7 +31,16 @@
                         <td>${banda.nome}</td>
                         <td>${banda.genero.descricao}</td>
                         <td class="text-center"><i class="fas fa-edit"></i></td>
-                        <td class="text-center"><i class="fas fa-trash"></i></td>
+                        <td class="text-center">
+                            <form:form action="${s:mvcUrl('CC#deleteBand').arg(0, banda.id).build()}" method="POST">
+                                <input name="id"  type="hidden" alt="Excluir" title="Excluir" />
+                                <button class="btn" type="submit" onclick="if (!confirm(
+                                    'Deletar a banda irá também deletar todos os álbuns associados a ela.' +
+                                         ' Tem certeza de que quer deletar?'
+                                         )) { return false }"><i class="fas fa-trash"></i>
+                                </button>
+                            </form:form>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

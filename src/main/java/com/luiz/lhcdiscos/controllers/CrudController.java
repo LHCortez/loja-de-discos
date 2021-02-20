@@ -1,6 +1,7 @@
 package com.luiz.lhcdiscos.controllers;
 
 import com.luiz.lhcdiscos.dto.NovaBandaDTO;
+import com.luiz.lhcdiscos.models.Banda;
 import com.luiz.lhcdiscos.models.enums.Genero;
 import com.luiz.lhcdiscos.services.BandaService;
 import com.luiz.lhcdiscos.services.ProdutoService;
@@ -10,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -54,6 +56,15 @@ public class CrudController {
         bandaService.save(banda);
         return new ModelAndView("redirect:/crud/list/band");
     }
+
+    @RequestMapping(value="/delete/band", method = RequestMethod.POST)
+    public ModelAndView deleteBand(@RequestParam Integer id) {
+        bandaService.deleteById(id);
+        ModelAndView modelAndView = new ModelAndView("redirect:/crud/list/band");
+//        TODO: IMPLEMENTAR!
+        return modelAndView;
+    }
+
 
 
 

@@ -17,7 +17,7 @@ public class Banda implements Serializable {
     private Integer id;
     @Column(unique = true)
     private String nome;
-    @OneToMany(mappedBy = "banda")
+    @OneToMany(mappedBy = "banda", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Produto> produtos = new HashSet<>();
 
     private Genero genero;

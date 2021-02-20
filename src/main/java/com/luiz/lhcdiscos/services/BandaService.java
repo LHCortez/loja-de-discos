@@ -11,10 +11,12 @@ import com.luiz.lhcdiscos.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class BandaService {
 
     @Autowired
@@ -41,5 +43,13 @@ public class BandaService {
         banda.setGenero(Genero.enumOfDescricao(bandaDTO.getGenero()));
         bandaRepository.save(banda);
     }
+
+    public void deleteById(Integer id) {
+        System.out.println("fjaldjfalçjdflasjflçsdjfçlas jlçasdj çlafd " + id);
+        bandaRepository.deleteById(id);
+    }
+
+
+
 
 }
