@@ -21,7 +21,7 @@
     <div class="tab-content crud-tab-content py-4 px-sm-4" id="myTabContent">
 
         <div class="tab-pane fade show active table-responsive" id="albuns" role="tabpanel" aria-labelledby="home-tab">
-            <table class="table table-hover crud-tabela">
+            <table class="table table-hover table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Título</th>

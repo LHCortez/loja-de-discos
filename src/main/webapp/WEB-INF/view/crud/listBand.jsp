@@ -16,7 +16,7 @@
     <div class="tab-content crud-tab-content py-4 px-sm-4" id="myTabContent">
 
         <div class="tab-pane fade show active table-responsive" id="bandas" role="tabpanel" aria-labelledby="home-tab">
-            <table class="table table-hover crud-tabela">
+            <table class="table table-hover table-striped">
                 <thead>
                 <tr>
                     <th scope="col">Nome</th>
@@ -32,12 +32,10 @@
                         <td>${banda.genero.descricao}</td>
                         <td class="text-center"><i class="fas fa-edit"></i></td>
                         <td class="text-center">
-                            <form:form action="${s:mvcUrl('CC#deleteBand').arg(0, banda.id).build()}" method="POST">
+                            <form:form action="${s:mvcUrl('CC#deleteBand').arg(0, banda.id).build()}" method="POST" id="delete-band-${banda.id}">
                                 <input name="id"  type="hidden" alt="Excluir" title="Excluir" />
-                                <button class="btn" type="submit" onclick="if (!confirm(
-                                    'Deletar a banda irá também deletar todos os álbuns associados a ela.' +
-                                         ' Tem certeza de que quer deletar?'
-                                         )) { return false }"><i class="fas fa-trash"></i>
+                                <button class="btn" type="button" onclick="confirmDelete(event, ${banda.id}, '${banda.nome}')">
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </form:form>
                         </td>

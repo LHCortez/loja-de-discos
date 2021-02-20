@@ -1,9 +1,17 @@
-function modalopen(){
-    const hasParam = window.location.href.indexOf('login');
-
-    if(hasParam) {
-        $('#loginModal').show();
-    } else {
-        $('#loginModal').hide();
-    }
+function confirmDelete(event, id, nome) {
+    event.preventDefault();
+    Swal.fire({
+        title: ("Deletar " + nome + " ?"),
+        text: "Isto fará com que todos os álbuns da banda também sejam deletados.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Não, cancelar',
+        confirmButtonText: 'Sim, deletar.'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            jQuery("#delete-band-" + id).submit();
+        }
+    });
 }
