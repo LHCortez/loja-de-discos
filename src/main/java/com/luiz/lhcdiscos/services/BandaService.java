@@ -22,7 +22,6 @@ public class BandaService {
     @Autowired
     private BandaRepository bandaRepository;
 
-
     public Banda searchById(Integer id) {
         Optional<Banda> optional = bandaRepository.findById(id);
         return optional.orElseThrow(() -> new ObjectNotFoundException(
@@ -37,8 +36,11 @@ public class BandaService {
         return bandaRepository.findBandaByGenero(genero);
     }
 
-    public void save (NovaBandaDTO bandaDTO) {
+    public void save(NovaBandaDTO bandaDTO) {
         Banda banda = new Banda();
+        if (bandaDTO.getId() != 0) {
+            banda = searchById(bandaDTO.getId());
+        }
         banda.setNome(bandaDTO.getNome());
         banda.setGenero(Genero.enumOfDescricao(bandaDTO.getGenero()));
         bandaRepository.save(banda);
@@ -49,7 +51,7 @@ public class BandaService {
         bandaRepository.deleteById(id);
     }
 
-
-
-
+    public boolean existsByNomeIgnoreCase(String name) {
+        return bandaRepository.existsByNomeIgnoreCase(name);
+    }
 }

@@ -6,6 +6,12 @@
 
 <tags:crudTemplate>
 
+
+    <c:if test="${not bandaSalva.isEmpty()}">
+        <p class="text-success">Banda salva! "${bandaSalva}"</p>
+    </c:if>
+
+
     <ul class="nav nav-tabs crud-tabs navbar-dark" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button disabled class="nav-link crud-tabs-link active" id="bandas-tab" data-bs-toggle="tab"
@@ -30,11 +36,15 @@
                     <tr>
                         <td>${banda.nome}</td>
                         <td>${banda.genero.descricao}</td>
-                        <td class="text-center"><i class="fas fa-edit"></i></td>
                         <td class="text-center">
-                            <form:form action="${s:mvcUrl('CC#deleteBand').arg(0, banda.id).build()}" method="POST" id="delete-band-${banda.id}">
+                            <a class="btn" href="${pageContext.request.contextPath}/crud/band/update/${banda.id}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <form:form action="${s:mvcUrl('CBC#deleteBand').arg(0, banda.id).build()}" method="POST" id="delete-band-${banda.id}">
                                 <input name="id"  type="hidden" alt="Excluir" title="Excluir" />
-                                <button class="btn" type="button" onclick="confirmDelete(event, ${banda.id}, '${banda.nome}')">
+                                <button class="btn" type="submit" onclick="confirmDelete(event, ${banda.id}, '${banda.nome}')">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form:form>

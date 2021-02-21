@@ -26,7 +26,6 @@ public abstract class Produto implements Serializable {
     @JoinColumn(name = "banda_id")
     private Banda banda;
 
-
     public Produto(){
     }
 
@@ -113,4 +112,5 @@ public abstract class Produto implements Serializable {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
 }

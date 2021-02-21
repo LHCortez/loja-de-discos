@@ -14,16 +14,16 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="${s:mvcUrl('CC#productList').build()}">Listar Produtos</a>
+                        <a class="nav-link" href="${s:mvcUrl('CPC#productList').build()}">Listar Produtos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Cadastrar Produto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${s:mvcUrl('CC#bandList').build()}">Listar Bandas</a>
+                        <a class="nav-link" href="${s:mvcUrl('CBC#bandList').build()}">Listar Bandas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${s:mvcUrl('CC#createBandForm').build()}">Cadastrar Banda</a>
+                        <a class="nav-link" href="${s:mvcUrl('CBC#bandForm').build()}">Cadastrar Banda</a>
                     </li>
                 </ul>
                 <span class="navbar-text">

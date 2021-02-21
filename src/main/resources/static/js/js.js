@@ -1,11 +1,11 @@
 function confirmDelete(event, id, nome) {
     event.preventDefault();
     Swal.fire({
-        title: ("Deletar " + nome + " ?"),
+        title: ("Deletar " + nome + "?"),
         text: "Isto fará com que todos os álbuns da banda também sejam deletados.",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
+        confirmButtonColor: '#499927',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Não, cancelar',
         confirmButtonText: 'Sim, deletar.'

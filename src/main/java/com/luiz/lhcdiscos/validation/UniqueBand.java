@@ -5,10 +5,10 @@ import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = UniqueBandNameValidator.class)
-@Target( { ElementType.FIELD })
+@Constraint(validatedBy = UniqueBandValidator.class)
+@Target( { ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UniqueBandName {
+public @interface UniqueBand {
 
     String message() default "A banda informada já está cadastrada! " +
             "Caso queira editar, vá na listagem de bandas, selecione a banda e clique no ícone da coluna Editar.";
