@@ -2,7 +2,7 @@ package com.luiz.lhcdiscos.services;
 
 import com.luiz.lhcdiscos.models.Usuario;
 import com.luiz.lhcdiscos.models.UserDetailsImpl;
-import com.luiz.lhcdiscos.dto.NovoUsuarioDTO;
+import com.luiz.lhcdiscos.dto.UsuarioDto;
 import com.luiz.lhcdiscos.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -28,7 +28,7 @@ public class UsuarioService implements UserDetailsService {
         return new UserDetailsImpl(usuario);
     }
 
-    public void save (NovoUsuarioDTO usuarioDTO) {
+    public void save(UsuarioDto usuarioDTO) {
         Usuario usuario = new Usuario();
         usuario.setNome(usuarioDTO.getNome());
         usuario.setEmail((usuarioDTO.getEmail()));
@@ -37,7 +37,7 @@ public class UsuarioService implements UserDetailsService {
         save(usuario);
     }
 
-    public void save (Usuario usuario) {
+    public void save(Usuario usuario) {
         usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         usuarioRepository.save(usuario);
     }

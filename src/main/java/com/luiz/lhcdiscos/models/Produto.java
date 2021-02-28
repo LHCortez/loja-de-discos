@@ -1,25 +1,39 @@
 package com.luiz.lhcdiscos.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Produto implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
+
+    @NotBlank(message = "Preencha o nome do Produto")
+    @Size(max = 50, message = "O nome deve conter no máximo 50 caracteres")
     private String nome;
+
     @Column(columnDefinition = "TEXT")
     private String descricao;
+
+    @NotNull(message = "Preencha o preço")
+    @DecimalMin(value = "1", message = "Valor mínimo de R$ 1")
     private BigDecimal preco;
+
+    @NotBlank(message = "Preencha a capa")
     private String capa;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate lancamento;
 
     @ManyToOne

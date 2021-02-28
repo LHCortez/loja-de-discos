@@ -17,7 +17,7 @@
                         <a class="nav-link" href="${s:mvcUrl('CPC#productList').build()}">Listar Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cadastrar Produto</a>
+                        <a class="nav-link" href="${s:mvcUrl('CPC#albumForm').build()}">Cadastrar Produto</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="${s:mvcUrl('CBC#bandList').build()}">Listar Bandas</a>

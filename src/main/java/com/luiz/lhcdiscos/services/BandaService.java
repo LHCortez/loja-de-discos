@@ -1,10 +1,6 @@
 package com.luiz.lhcdiscos.services;
 
-import com.luiz.lhcdiscos.dto.NovaBandaDTO;
-import com.luiz.lhcdiscos.dto.NovoUsuarioDTO;
 import com.luiz.lhcdiscos.models.Banda;
-import com.luiz.lhcdiscos.models.Produto;
-import com.luiz.lhcdiscos.models.Usuario;
 import com.luiz.lhcdiscos.models.enums.Genero;
 import com.luiz.lhcdiscos.repositories.BandaRepository;
 import com.luiz.lhcdiscos.services.exceptions.ObjectNotFoundException;
@@ -36,22 +32,25 @@ public class BandaService {
         return bandaRepository.findBandaByGenero(genero);
     }
 
-    public void save(NovaBandaDTO bandaDTO) {
-        Banda banda = new Banda();
-        if (bandaDTO.getId() != 0) {
-            banda = searchById(bandaDTO.getId());
+    public void save(Banda banda) {
+        Banda bandaAntiga;
+        if (banda.getId() != null) {
+            bandaAntiga = searchById(banda.getId());
+            bandaAntiga.setNome(banda.getNome());
+            bandaAntiga.setGenero(banda.getGenero());
+            bandaRepository.save(bandaAntiga);
+        } else {
+            bandaRepository.save(banda);
         }
-        banda.setNome(bandaDTO.getNome());
-        banda.setGenero(Genero.enumOfDescricao(bandaDTO.getGenero()));
-        bandaRepository.save(banda);
     }
 
     public void deleteById(Integer id) {
-        System.out.println("fjaldjfalçjdflasjflçsdjfçlas jlçasdj çlafd " + id);
         bandaRepository.deleteById(id);
     }
 
-    public boolean existsByNomeIgnoreCase(String name) {
-        return bandaRepository.existsByNomeIgnoreCase(name);
+    public boolean BandNameIsAvailable(String name) {
+        return !bandaRepository.existsByNomeIgnoreCase(name);
     }
+
+
 }

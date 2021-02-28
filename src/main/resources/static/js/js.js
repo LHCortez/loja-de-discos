@@ -1,4 +1,4 @@
-function confirmDelete(event, id, nome) {
+function confirmDeleteBand(event, id, nome) {
     event.preventDefault();
     Swal.fire({
         title: ("Deletar " + nome + "?"),
@@ -12,6 +12,24 @@ function confirmDelete(event, id, nome) {
     }).then((result) => {
         if (result.isConfirmed) {
             jQuery("#delete-band-" + id).submit();
+        }
+    });
+}
+
+function confirmDeleteProduct(event, id, nome) {
+    event.preventDefault();
+    Swal.fire({
+        title: "Deletar produto?",
+        text: ("Tem certeza que deseja deletar o produto " + nome + "?"),
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#499927',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Não, cancelar',
+        confirmButtonText: 'Sim, deletar.'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            jQuery("#delete-product-" + id).submit();
         }
     });
 }

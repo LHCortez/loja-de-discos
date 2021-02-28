@@ -1,13 +1,13 @@
 package com.luiz.lhcdiscos.validation;
 
-import com.luiz.lhcdiscos.dto.NovaBandaDTO;
+import com.luiz.lhcdiscos.models.Banda;
 import com.luiz.lhcdiscos.services.BandaService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class UniqueBandValidator implements ConstraintValidator<UniqueBand, NovaBandaDTO> {
+public class UniqueBandValidator implements ConstraintValidator<UniqueBand, Banda> {
 
     @Autowired
     private BandaService bandaService;
@@ -17,17 +17,17 @@ public class UniqueBandValidator implements ConstraintValidator<UniqueBand, Nova
     }
 
     @Override
-    public boolean isValid(NovaBandaDTO obj, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(Banda obj, ConstraintValidatorContext constraintValidatorContext) {
         String name = obj.getNome();
-        int id = obj.getId();
+        Integer id = obj.getId();
 
-        if (id == 0) {
-            return !bandaService.existsByNomeIgnoreCase(name);
+        if (id == null) {
+            return bandaService.BandNameIsAvailable(name);
         }
         if (bandaService.searchById(id).getNome().equalsIgnoreCase(name)) {
             return true;
         } else {
-            return !bandaService.existsByNomeIgnoreCase(name);
+            return bandaService.BandNameIsAvailable(name);
         }
 
     }

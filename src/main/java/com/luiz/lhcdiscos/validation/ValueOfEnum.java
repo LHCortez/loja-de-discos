@@ -10,7 +10,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = ValueOfEnumValidator.class)
 public @interface ValueOfEnum {
     Class<? extends Enum<?>> enumClass();
-    String message() default "must be any of enum {enumClass}";
+    String message() default "Deve ser da classe {enumClass}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

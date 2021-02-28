@@ -31,6 +31,4 @@ public class AppWebConfiguration implements WebMvcConfigurer {
         return new LocalValidatorFactoryBean();
     }
 
-
-
 }

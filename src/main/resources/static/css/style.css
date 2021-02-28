@@ -351,6 +351,9 @@ footer {
 }
 .crud-tabs-link {
     border-bottom: 1px solid black!important;
+    border-bottom-right-radius: 0!important;
+    border-bottom-left-radius: 0!important;
+    background-color: #ebeced;
 }
 
 .crud-tabs-link.active {
@@ -358,12 +361,16 @@ footer {
     border-right: 1px solid black!important;
     border-top: 1px solid black!important;
     border-bottom: 1px solid transparent!important;
+    background-color: #f8f9fa!important;
+    color: black!important;
+    font-weight: bold;
 }
 
 .crud-tab-content {
     border: 1px solid #000;
     border-radius: 0 .25rem .25rem .25rem;
 }
+
 
 
 

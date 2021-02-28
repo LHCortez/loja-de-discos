@@ -1,15 +1,21 @@
 package com.luiz.lhcdiscos.models;
 
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
+import com.luiz.lhcdiscos.validation.UniqueAlbum;
+import com.luiz.lhcdiscos.validation.ValueOfEnum;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Entity
+@Table(uniqueConstraints=@UniqueConstraint(columnNames = {"nome", "banda_id", "formato"}))
+@UniqueAlbum
 public class Album extends Produto {
 
+    @ValueOfEnum(enumClass = AlbumFormato.class, message = "Escolha o formato do álbum")
     private AlbumFormato formato;
 
     public Album(){
@@ -22,7 +28,7 @@ public class Album extends Produto {
     }
 
     public AlbumFormato getFormato() {
-        return formato;
+        return this.formato;
     }
 
     public void setFormato(AlbumFormato formato) {

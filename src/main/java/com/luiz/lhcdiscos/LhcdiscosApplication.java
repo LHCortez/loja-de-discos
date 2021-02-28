@@ -169,21 +169,20 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         album10.setCapa("/img/capa-dontbreaktheoath.jpg");
         album10.setLancamento(LocalDate.of(1984, 9, 9));
 
-        Banda banda11 = new Banda("Mercyfuagagl Fate");
-        Album album11 = new Album();
-        banda10.getProdutos().add(album11);
-        album11.setBanda(banda10);
-        album11.setNome("asdfasdfsdf");
-        album11.setFormato(AlbumFormato.VINIL);
-        album11.setDescricao("sdfasfsdfsdfa.");
-        album11.setPreco(BigDecimal.TEN);
-        album11.setCapa("/img/capa-dontbreaktheoath.jpg");
-        album11.setLancamento(LocalDate.of(1984, 9, 9));
+//        Album album11 = new Album();
+//        banda10.getProdutos().add(album11);
+//        album11.setBanda(banda10);
+//        album11.setNome("Don't Break the Oath");
+//        album11.setFormato(AlbumFormato.VINIL);
+//        album11.setDescricao("sdfasfsdfsdfa.");
+//        album11.setPreco(BigDecimal.TEN);
+//        album11.setCapa("/img/capa-dontbreaktheoath.jpg");
+//        album11.setLancamento(LocalDate.of(1984, 9, 9));
 
         bandaRepository.saveAll(Arrays.asList(banda1, banda2, banda3, banda4, banda5, banda6, banda7, banda8,
-                banda9, banda10, banda11));
+                banda9, banda10));
         produtoRepository.saveAll(Arrays.asList(album1, album2, album3, album4, album5, album6, album7, album8,
-                album9, album10, album11));
+                album9, album10));
 
 
         Banda banda12 = new Banda("Behemoth");
@@ -198,6 +197,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
                 "The material is of a highest quality 100% polyester fabrics.");
         tshirt1.setPreco(BigDecimal.TEN);
         tshirt1.setCapa("/img/capa-evangelicis.jpg");
+        tshirt1.setLancamento(LocalDate.of(1984, 9, 9));
        bandaRepository.save(banda12);
        produtoRepository.save(tshirt1);
 

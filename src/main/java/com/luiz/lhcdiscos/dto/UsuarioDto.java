@@ -6,7 +6,7 @@ import com.luiz.lhcdiscos.validation.ValidPassword;
 
 import javax.validation.constraints.*;
 
-public class NovoUsuarioDTO {
+public class UsuarioDto {
 
     @NotBlank(message = "Preencha seu nome completo")
     @Size(max = 50, message = "O nome deve conter no máximo 50 caracteres")

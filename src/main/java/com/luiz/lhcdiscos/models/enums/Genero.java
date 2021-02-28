@@ -16,16 +16,16 @@ public enum Genero {
     METALCORE(7, "Metal Core"),
     OUTROS(8, "Outros");
 
-    private Integer cod;
+    private Integer code;
     private String descricao;
 
     private Genero(Integer cod, String descricao) {
-        this.cod = cod;
+        this.code = cod;
         this.descricao = descricao;
     }
 
-    public Integer getCod() {
-        return cod;
+    public Integer getCode() {
+        return code;
     }
 
     public String getDescricao() {
@@ -38,7 +38,7 @@ public enum Genero {
         return generos;
     }
 
-    public static Genero enumOfDescricao(String descricao) {
+    public static Genero stringToEnum(String descricao) {
         Optional<Genero> genero = Arrays.stream(Genero.values()).filter(x -> x.getDescricao().equals(descricao)).findAny();
         return genero.orElseThrow(() -> new IllegalArgumentException("Gênero inválido: " + genero));
     }

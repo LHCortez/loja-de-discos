@@ -1,25 +1,35 @@
 package com.luiz.lhcdiscos.models;
 
 import com.luiz.lhcdiscos.models.enums.Genero;
+import com.luiz.lhcdiscos.validation.UniqueBand;
+import com.luiz.lhcdiscos.validation.ValueOfEnum;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@UniqueBand
 public class Banda implements Serializable {
-
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(unique = true)
+    @NotBlank(message = "Preencha o nome da banda")
+    @Size(max = 50, message = "O nome deve conter no máximo 50 caracteres")
     private String nome;
+
     @OneToMany(mappedBy = "banda", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Produto> produtos = new HashSet<>();
 
+    @ValueOfEnum(enumClass = Genero.class, message = "Escolha o gênero musical")
     private Genero genero;
 
     public Banda(){
