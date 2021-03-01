@@ -87,7 +87,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     // Forma recomendada de ignorar no filtro de segurança as requisições para recursos estáticos
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/static/**", "/css/**", "/js/**", "/img/**");
+        web.ignoring().antMatchers("/resources/**", "/static/**", "/webjars/**", "/css/**", "/js/**", "/img/**");
     }
 
 

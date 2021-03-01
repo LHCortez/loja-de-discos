@@ -8,7 +8,7 @@ function confirmDeleteBand(event, id, nome) {
         confirmButtonColor: '#499927',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Não, cancelar',
-        confirmButtonText: 'Sim, deletar.'
+        confirmButtonText: 'Sim, deletar'
     }).then((result) => {
         if (result.isConfirmed) {
             jQuery("#delete-band-" + id).submit();
@@ -26,7 +26,7 @@ function confirmDeleteProduct(event, id, nome) {
         confirmButtonColor: '#499927',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Não, cancelar',
-        confirmButtonText: 'Sim, deletar.'
+        confirmButtonText: 'Sim, deletar'
     }).then((result) => {
         if (result.isConfirmed) {
             jQuery("#delete-product-" + id).submit();

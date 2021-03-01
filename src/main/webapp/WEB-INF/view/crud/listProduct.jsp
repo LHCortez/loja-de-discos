@@ -10,7 +10,7 @@
         <p class="text-success">Produto salvo! ${tipoSalvo} "${produtoSalvo}"</p>
     </c:if>
 
-    <ul class="nav nav-tabs crud-tabs navbar-dark" id="myTab" role="tablist">
+    <ul class="nav nav-tabs crud-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link crud-tabs-link active" id="albuns-tab" data-bs-toggle="tab"
                     data-bs-target="#albuns" type="button" role="tab" aria-controls="albuns"
