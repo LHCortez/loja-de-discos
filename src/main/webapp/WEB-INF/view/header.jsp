@@ -22,10 +22,11 @@
                             </li>
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
+<%--                            TODO--%>
                             <sec:authentication property="principal" var="usuario" />
                            <li class="nav-item">
                                <a class="nav-link texto-cor-especial" href="${pageContext.request.contextPath}/user/logout">
-                                    Olá, ${usuario.nome} (SAIR)</a>
+                                    Olá, <sec:authentication property="principal.name" />  (SAIR)</a>
                            </li>
                         </sec:authorize>
                         <li class="nav-item">

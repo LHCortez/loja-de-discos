@@ -59,15 +59,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/search", "/search/**").permitAll()
                 .antMatchers("/product", "/product/**").permitAll()
                 .antMatchers("/user/create").permitAll()
-                .antMatchers("/cart", "/cart/**").permitAll()
+//                .antMatchers("/cart", "/cart/**").permitAll()
                 .antMatchers("/console/**").permitAll()
+                .antMatchers("/oauth2/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/user/login").successHandler(successHandler()).permitAll()
+                    .formLogin()
+                    .loginPage("/user/login")
+                    .failureUrl("/login?param.error=bad_credentials")
+                    .successHandler(successHandler()).permitAll()
                 .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")).permitAll()
-                .logoutSuccessUrl("/");
+                    .logout()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")).permitAll()
+                    .logoutSuccessUrl("/")
+                    .deleteCookies("JSESSIONID")
+                .and()
+                    .oauth2Login()
+                    .loginPage("/user/login");
 
 //        Desabilitar proteção a CRSF para o H2 funcionar
         http.csrf().disable();

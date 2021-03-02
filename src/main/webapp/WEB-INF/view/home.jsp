@@ -19,7 +19,7 @@
                             <img src="https://www.loudmagazine.net/wp-content/uploads/2019/03/darkthrone.jpg"
                                  class="d-block w-100 carrossel-imagem" alt="...">
                             <div class="carousel-caption d-none d-md-block">
-                                <h5>ÇÇÇ First slide label</h5>
+                                <h5>Ã‡Ã‡Ã‡ First slide label</h5>
                                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                             </div>
                         </div>

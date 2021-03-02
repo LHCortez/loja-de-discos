@@ -40,7 +40,7 @@ public class UserDetailsImpl implements UserDetails {
         return usuario.getEmail();
     }
 
-    public String getNome() {
+    public String getName() {
         return usuario.getNome();
     }
 

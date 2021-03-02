@@ -93,6 +93,14 @@
             <version>5.4.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-client -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-client</artifactId>
+            <version>2.4.3</version>
+        </dependency>
+
+
         <!--Password Validator-->
         <!-- https://mvnrepository.com/artifact/org.passay/passay -->
         <dependency>
