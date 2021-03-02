@@ -1,21 +1,16 @@
 package com.luiz.lhcdiscos.controllers;
 
-import com.luiz.lhcdiscos.dto.UsuarioDto;
+import com.luiz.lhcdiscos.dto.NovoUsuarioLocalDto;
 import com.luiz.lhcdiscos.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.Collections;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -25,17 +20,17 @@ public class UsuarioController {
     UsuarioService usuarioService;
 
     @RequestMapping(value="/create", method = RequestMethod.GET)
-    public ModelAndView createUserForm(@ModelAttribute("usuario") UsuarioDto usuario) {
+    public ModelAndView createUserForm(@ModelAttribute("usuario") NovoUsuarioLocalDto usuario) {
         return new ModelAndView("createUser");
     }
 
     @RequestMapping(value="/create", method = RequestMethod.POST)
-    public ModelAndView doCreateUser(@ModelAttribute("usuario") @Valid UsuarioDto usuario, BindingResult result) {
+    public ModelAndView doCreateUser(@ModelAttribute("usuario") @Valid NovoUsuarioLocalDto usuario, BindingResult result) {
         if (result.hasErrors()) {
             return createUserForm(usuario);
         }
 
-        usuarioService.save(usuario);
+        usuarioService.saveNovoUsuarioLocal(usuario);
         return new ModelAndView("redirect:/user/login");
     }
 

@@ -1,5 +1,6 @@
 package com.luiz.lhcdiscos.models;
 
+import com.luiz.lhcdiscos.models.enums.AuthenticationProvider;
 import com.luiz.lhcdiscos.models.enums.Role;
 
 import javax.persistence.*;
@@ -20,6 +21,8 @@ public class Usuario {
     @Column(unique = true)
     private String email;
     private String senha;
+    @Enumerated(EnumType.STRING)
+    private AuthenticationProvider authenticationProvider;
     private boolean enabled = true;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -71,6 +74,14 @@ public class Usuario {
 
     public void addRoles(Role... role) {
         roles.addAll(Arrays.asList(role));
+    }
+
+    public AuthenticationProvider getAuthenticationProvider() {
+        return authenticationProvider;
+    }
+
+    public void setAuthenticationProvider(AuthenticationProvider authenticationProvider) {
+        this.authenticationProvider = authenticationProvider;
     }
 
     @PrePersist

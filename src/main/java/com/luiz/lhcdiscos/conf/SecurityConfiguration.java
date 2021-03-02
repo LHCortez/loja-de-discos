@@ -1,5 +1,7 @@
 package com.luiz.lhcdiscos.conf;
 
+import com.luiz.lhcdiscos.oauth.CustomOAuth2UserService;
+import com.luiz.lhcdiscos.oauth.OAuth2LoginSuccessHandler;
 import com.luiz.lhcdiscos.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +26,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private CustomOAuth2UserService oAuth2UserService;
+
+    @Autowired
+    private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -64,18 +72,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/oauth2/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                    .formLogin()
+                .formLogin()
                     .loginPage("/user/login")
-                    .failureUrl("/login?param.error=bad_credentials")
+//                    .usernameParameter("email")
+//                    .failureUrl("/login?param.error=bad_credentials")
                     .successHandler(successHandler()).permitAll()
                 .and()
-                    .logout()
+                .oauth2Login()
+                    .loginPage("/user/login")
+                    .userInfoEndpoint().userService(oAuth2UserService)
+                    .and()
+                    .successHandler(oAuth2LoginSuccessHandler)
+                .and()
+                .logout()
                     .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")).permitAll()
                     .logoutSuccessUrl("/")
-                    .deleteCookies("JSESSIONID")
-                .and()
-                    .oauth2Login()
-                    .loginPage("/user/login");
+                    .deleteCookies("JSESSIONID");
 
 //        Desabilitar proteção a CRSF para o H2 funcionar
         http.csrf().disable();

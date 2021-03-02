@@ -23,7 +23,9 @@
             </form>
             <div class="text-center text-muted delimiter mb-3">ou se logue usando uma rede social</div>
 
-            <a href="${pageContext.request.contextPath}/oauth2/authorization/github">Sign in with Facebook</a>
+            <a href="${pageContext.request.contextPath}/oauth2/authorization/github">GITHUB</a>
+
+            <a href="${pageContext.request.contextPath}/oauth2/authorization/google">GOOGLE</a>
 
             <div class="d-flex justify-content-center social-buttons gap-3 my-4">
                 <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip"
