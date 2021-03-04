@@ -3,49 +3,50 @@
 <jsp:useBean id="carrinhoCompras" scope="session" class="com.luiz.lhcdiscos.models.CarrinhoCompras"/>
 
 <header>
-    <section id="banner">
-        <nav class="navbar navbar-light">
-            <div id="container-banner" class="container-xl d-flex justify-content-center justify-content-lg-between">
+    <section id="banner container-xl">
+            <div id="container-banner">
                 <!-- Logo gerado em: https://www.brandcrowd.com/maker/logo/barbarian-devil-esports-clan-19187#popup-colorpalette -->
-                <a class="navbar-brand" href="${s:mvcUrl('HC#home').build()}"><img class="logo" src="${pageContext.request.contextPath}/img/logo-transparent.png" alt=""></a>
+                <a href="${s:mvcUrl('HC#home').build()}">
+                    <img class="logo mx-auto d-block pt-2" src="${pageContext.request.contextPath}/img/logo-transparent.png" alt="">
+                </a>
 
-                <form action="${pageContext.request.contextPath}/search" method="get" id="form-busca" class="d-flex">
+                <form action="${pageContext.request.contextPath}/search" method="get" id="form-busca"
+                      class="d-flex mx-auto mt-3 mb-3">
                     <input name="s" class="form-control me-2" type="search" placeholder="Pesquisar..." aria-label="Search">
                     <button class="btn botao-busca" type="submit"><i class="fas fa-search"></i></button>
                 </form>
-
-                <div class="d-flex">
-                    <ul class="nav list-inline mx-auto justify-content-center" id="entrar-e-carrinho-link">
-                        <sec:authorize access="!isAuthenticated()">
-                            <li class="nav-item">
-                                <a class="nav-link texto-cor-especial" href="${s:mvcUrl('UC#loginForm').build()}">ENTRAR</a>
-                            </li>
-                        </sec:authorize>
-                        <sec:authorize access="isAuthenticated()">
-<%--                            TODO--%>
-                           <li class="nav-item">
-                               <a class="nav-link texto-cor-especial" href="${pageContext.request.contextPath}/user/logout">
-                                    Olá, <sec:authentication property="principal.name" />  (sair)</a>
-                           </li>
-                        </sec:authorize>
-                        <sec:authorize access="hasRole('ADMIN')">
-                            <li class="nav-item">
-                                <a class="nav-link texto-cor-especial" href="${s:mvcUrl('CPC#productList').build()}">
-                                    Área do Administrador
-                                </a>
-                            </li>
-                        </sec:authorize>
-
-                        <li class="nav-item">
-                            <a class="nav-link texto-cor-especial" href="${s:mvcUrl('CC#carrinho').build()}">
-                                CARRINHO (${carrinhoCompras.quantidadeTotal})
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
             </div>
-        </nav>
+
+        <ul class="list-inline list-group list-group-horizontal-md d-flex justify-content-end mb-2 text-end" id="entrar-e-carrinho-link">
+
+            <sec:authorize access="isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/user/logout">
+                        Olá, <sec:authentication property="principal.name" />  (sair)</a>
+                </li>
+            </sec:authorize>
+
+            <sec:authorize access="!isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" href="${s:mvcUrl('UC#loginForm').build()}">ENTRAR</a>
+                </li>
+            </sec:authorize>
+
+            <sec:authorize access="hasRole('ADMIN')">
+                <li class="nav-item">
+                    <a class="nav-link" href="${s:mvcUrl('CPC#productList').build()}">
+                        Área do Administrador
+                    </a>
+                </li>
+            </sec:authorize>
+
+            <li class="nav-item">
+                <a class="nav-link" href="${s:mvcUrl('CC#carrinho').build()}">
+                    CARRINHO (${carrinhoCompras.quantidadeTotal})
+                </a>
+            </li>
+        </ul>
+
     </section>
 
 <%--    <section class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
