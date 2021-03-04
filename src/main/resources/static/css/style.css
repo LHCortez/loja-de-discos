@@ -316,6 +316,11 @@ a {
     max-width: 600px;
 }
 
+#login {
+    padding-top: 30px;
+    padding-bottom: 100px;
+}
+
 #login-form {
     /*width: 600px;*/
    width: 100%;
@@ -329,6 +334,7 @@ a {
     color: white;
     background-color: #ab7325;
     width: 200px;
+    font-family: 'Roboto', sans-serif;
 }
 
 .botao-destaque:hover,
@@ -371,11 +377,21 @@ footer {
     border-radius: 0 .25rem .25rem .25rem;
 }
 
+.google-login {
+    font-family: 'Roboto', sans-serif;
+    /*font-weight: bold;*/
+}
+
+.google-login .google-logo {
+    max-width: 40px;
+}
 
 
-
-
-
+#login .texto-cor-especial:hover,
+#login .texto-cor-especial:active {
+    color: unset!important;
+    text-decoration: underline;
+}
 
 
 

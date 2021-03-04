@@ -1,11 +1,10 @@
-package com.luiz.lhcdiscos.oauth;
+package com.luiz.lhcdiscos.security.oauth;
 
 import com.luiz.lhcdiscos.models.enums.AuthenticationProvider;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.Collection;
-import java.util.Locale;
 import java.util.Map;
 
 public class CustomOAuth2User implements OAuth2User {
@@ -35,9 +34,11 @@ public class CustomOAuth2User implements OAuth2User {
     }
 
     public String getEmail() {
-//        TODO verificar o OAuth do github, não é esse o atributo
-        System.out.println(oAuth2User.getAttributes().toString());
-        return oAuth2User.getAttribute("email");
+        String email = oAuth2User.getAttribute("email") ;
+        if (email == null) {
+            throw new NullPointerException("CustomOAuth2User: atributo email não encontrado");
+        }
+        return email;
     }
 
     public AuthenticationProvider getProvider() {

@@ -1,8 +1,11 @@
 package com.luiz.lhcdiscos.conf;
 
-import com.luiz.lhcdiscos.oauth.CustomOAuth2UserService;
-import com.luiz.lhcdiscos.oauth.OAuth2LoginSuccessHandler;
+import com.luiz.lhcdiscos.security.local.LoginSuccessHandler;
+import com.luiz.lhcdiscos.security.local.UserDetailsServiceImpl;
+import com.luiz.lhcdiscos.security.oauth.CustomOAuth2UserService;
+import com.luiz.lhcdiscos.security.oauth.OAuth2LoginSuccessHandler;
 import com.luiz.lhcdiscos.services.UsuarioService;
+import com.sun.xml.bind.v2.TODO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +28,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     private CustomOAuth2UserService oAuth2UserService;
@@ -35,7 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UsuarioService();
+        return new UserDetailsServiceImpl();
     }
 
     @Bean
@@ -58,10 +61,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder());
     }
 
+//    TODO: Tratar erro (type=Forbidden, status=403) quando tenta acessar crud sem ter role admin
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/crud/**").permitAll()
+                .antMatchers("/crud/**").hasRole("ADMIN")
 //                .antMatchers("/search/").hasRole("ADMIN")
                 .antMatchers("/").permitAll()
                 .antMatchers("/search", "/search/**").permitAll()

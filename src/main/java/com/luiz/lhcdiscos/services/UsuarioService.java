@@ -1,7 +1,7 @@
 package com.luiz.lhcdiscos.services;
 
 import com.luiz.lhcdiscos.models.Usuario;
-import com.luiz.lhcdiscos.models.UserDetailsImpl;
+import com.luiz.lhcdiscos.security.local.UserDetailsImpl;
 import com.luiz.lhcdiscos.dto.NovoUsuarioLocalDto;
 import com.luiz.lhcdiscos.models.enums.AuthenticationProvider;
 import com.luiz.lhcdiscos.models.enums.Role;
@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsuarioService implements UserDetailsService {
+public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -21,14 +21,6 @@ public class UsuarioService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Override
-    public UserDetailsImpl loadUserByUsername(String email) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepository.findUsuarioByEmailIgnoreCase(email);
-        if (usuario == null) {
-            throw new UsernameNotFoundException("Usuário não encontrado");
-        }
-        return new UserDetailsImpl(usuario);
-    }
 
     public void saveNovoUsuarioLocal(NovoUsuarioLocalDto novoUsuarioLocalDTO) {
         Usuario usuario = new Usuario();
@@ -37,6 +29,7 @@ public class UsuarioService implements UserDetailsService {
         usuario.setSenha((novoUsuarioLocalDTO.getSenha()));
         usuario.addRoles(novoUsuarioLocalDTO.getRole());
         usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        usuario.setAuthenticationProvider(AuthenticationProvider.LOCAL);
         save(usuario);
     }
 

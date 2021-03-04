@@ -1,4 +1,4 @@
-package com.luiz.lhcdiscos.conf;
+package com.luiz.lhcdiscos.security.local;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;

@@ -1,4 +1,4 @@
-package com.luiz.lhcdiscos.oauth;
+package com.luiz.lhcdiscos.security.oauth;
 
 import com.luiz.lhcdiscos.models.Usuario;
 import com.luiz.lhcdiscos.services.UsuarioService;
@@ -25,6 +25,8 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
         CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
         String email = oAuth2User.getEmail();
         Usuario usuario = usuarioService.findUsuarioByEmailIgnoreCase(email);
+
+//        TODO: Bug quando atualiza um usuário administrado, dá erro ao entrar no CRUD. Não reconhece que é admin
 
         if (usuario == null) {
             usuarioService.createNewUserAfterOAuthLoginSuccess(email, oAuth2User.getName(), oAuth2User.getProvider());

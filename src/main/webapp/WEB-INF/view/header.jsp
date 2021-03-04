@@ -25,9 +25,17 @@
 <%--                            TODO--%>
                            <li class="nav-item">
                                <a class="nav-link texto-cor-especial" href="${pageContext.request.contextPath}/user/logout">
-                                    Olá, <sec:authentication property="principal.name" />  (SAIR)</a>
+                                    Olá, <sec:authentication property="principal.name" />  (sair)</a>
                            </li>
                         </sec:authorize>
+                        <sec:authorize access="hasRole('ADMIN')">
+                            <li class="nav-item">
+                                <a class="nav-link texto-cor-especial" href="${s:mvcUrl('CPC#productList').build()}">
+                                    Área do Administrador
+                                </a>
+                            </li>
+                        </sec:authorize>
+
                         <li class="nav-item">
                             <a class="nav-link texto-cor-especial" href="${s:mvcUrl('CC#carrinho').build()}">
                                 CARRINHO (${carrinhoCompras.quantidadeTotal})

@@ -5,9 +5,9 @@
 <tags:pageTemplate>
 
 
-    <section id="login" class="bg-light d-flex align-items-center justify-content-center p-3 mt-3 rounded">
-        <div id="login-form-container">
-            <h5 class="text-center my-4">Login</h5>
+    <section id="login" class="bg-light d-flex align-items-center justify-content-center mt-3 rounded">
+        <div id="login-form-container mx-1">
+            <h4 class="text-center my-5">Faça o login!</h4>
             <form id="login-form" action="${pageContext.request.contextPath}/user/login" method="post">
                 <div class="form-floating">
                     <input type="email" name="username" class="form-control my-4" aria-describedby="emailHelp"
@@ -21,28 +21,19 @@
                 </div>
                 <button type="submit" class="btn w-100 mt-0 mb-4 botao-destaque">Entrar</button>
             </form>
-            <div class="text-center text-muted delimiter mb-3">ou se logue usando uma rede social</div>
+            <div class="text-center text-muted delimiter mb-3">ou...</div>
 
-            <a href="${pageContext.request.contextPath}/oauth2/authorization/github">GITHUB</a>
-
-            <a href="${pageContext.request.contextPath}/oauth2/authorization/google">GOOGLE</a>
-
-            <div class="d-flex justify-content-center social-buttons gap-3 my-4">
-                <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip"
-                        data-placement="top" title="Twitter">
-                    <i class="fab fa-twitter"></i>
-                </button>
-                <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip"
-                        data-placement="top" title="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </button>
-                <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip"
-                        data-placement="top" title="Linkedin">
-                    <i class="fab fa-linkedin"></i>
-                </button>
+            <div class="text-center">
+                <a href="${pageContext.request.contextPath}/oauth2/authorization/google"
+                      class="btn btn-primary py-0 ps-0 google-login border-2 ">
+                    <img class="google-logo rounded" src="${pageContext.request.contextPath}/img/google-logo.png" alt="Google"/>
+                    <span class="align-middle px-3">Entre com o Google</span>
+                </a>
             </div>
-            <div class="text-center mt-4 mb-6"> Ainda não é cadastrado?
-                <a href="${s:mvcUrl('UC#createUserForm').build()}" class="text-info">Clique aqui</a>.
+
+
+            <div class="text-center mt-5 mb-6 fs-5 "> Ainda não é cadastrado?
+                <a href="${s:mvcUrl('UC#createUserForm').build()}" class="texto-cor-especial">Clique aqui</a>.
             </div>
         </div>
     </section>
