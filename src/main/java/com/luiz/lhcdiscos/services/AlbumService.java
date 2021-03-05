@@ -1,7 +1,6 @@
 package com.luiz.lhcdiscos.services;
 
 import com.luiz.lhcdiscos.models.Album;
-import com.luiz.lhcdiscos.models.Camiseta;
 import com.luiz.lhcdiscos.models.Produto;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.repositories.AlbumRepository;
@@ -14,6 +13,7 @@ import java.util.Optional;
 
 @Service
 public class AlbumService {
+
     @Autowired
     AlbumRepository albumRepository;
 
@@ -57,6 +57,8 @@ public class AlbumService {
     }
 
     public List<Album> buscarPorFormato(AlbumFormato formato) {
-        return albumRepository.findAlbumsByFormato(formato);
+        List<Album> albums = albumRepository.findAlbumByFormato(formato);
+        albums.forEach(System.out::println);
+        return albumRepository.findAlbumByFormato(formato);
     }
 }

@@ -1,6 +1,7 @@
 package com.luiz.lhcdiscos.models;
 
 import com.luiz.lhcdiscos.models.enums.Genero;
+import com.luiz.lhcdiscos.models.enums.Role;
 import com.luiz.lhcdiscos.validation.UniqueBand;
 import com.luiz.lhcdiscos.validation.ValueOfEnum;
 
@@ -8,9 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @UniqueBand
@@ -56,11 +55,11 @@ public class Banda implements Serializable {
     }
 
     public Set<Produto> getProdutos() {
-        return produtos;
+        return Collections.unmodifiableSet(produtos);
     }
 
-    public void setProdutos(Set<Produto> albums) {
-        this.produtos = albums;
+    public void addProdutos(Produto... produtos) {
+        this.produtos.addAll(Arrays.asList(produtos));
     }
 
     public Genero getGenero() {

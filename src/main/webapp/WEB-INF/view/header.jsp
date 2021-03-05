@@ -18,7 +18,6 @@
             </div>
 
         <ul class="list-inline list-group list-group-horizontal-md d-flex justify-content-end mb-2 text-end" id="entrar-e-carrinho-link">
-
             <sec:authorize access="isAuthenticated()">
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/user/logout">

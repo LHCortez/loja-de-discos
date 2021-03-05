@@ -39,7 +39,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         banda1.setGenero(Genero.GOTHICMETAL);
         Album album1 = new Album();
         album1.setBanda(banda1);
-        banda1.getProdutos().add(album1);
+        banda1.addProdutos(album1);
         album1.setNome("Aégis");
         album1.setFormato(AlbumFormato.VINIL);
         album1.setDescricao("Aégis é o terceiro álbum de estúdio da banda norueguesa Theatre of Tragedy, " +
@@ -52,7 +52,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         banda2.setGenero(Genero.BLACKMETAL);
         Album album2 = new Album();
         album2.setBanda(banda2);
-        banda2.getProdutos().add(album2);
+        banda2.addProdutos(album2);
         album2.setNome("Un Monde de Glace et de Sang");
         album2.setFormato(AlbumFormato.VINIL);
         album2.setDescricao("“Un Monde de Glace et de Sang” is the 8th studio album by the band. " +
@@ -65,7 +65,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         Banda banda3 = new Banda("Moonspell");
         banda3.setGenero(Genero.GOTHICMETAL);
         Album album3 = new Album();
-        banda3.getProdutos().add(album3);
+        banda3.addProdutos(album3);
         album3.setBanda(banda3);
         album3.setNome("1755");
         album3.setFormato(AlbumFormato.CD);
@@ -79,7 +79,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         Banda banda4 = new Banda("Mercfddayful Fate");
         banda4.setGenero(Genero.HEAVYMETAL);
         Album album4 = new Album();
-        banda4.getProdutos().add(album4);
+        banda4.addProdutos(album4);
         album4.setBanda(banda4);
         album4.setNome("Don't Break the Oath");
         album4.setFormato(AlbumFormato.VINIL);
@@ -94,7 +94,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         Banda banda5 = new Banda("Mercgagdyful Fate");
         banda5.setGenero(Genero.HEAVYMETAL);
         Album album5 = new Album();
-        banda5.getProdutos().add(album5);
+        banda5.addProdutos(album5);
         album5.setBanda(banda5);
         album5.setNome("Don't Break the Oath");
         album5.setFormato(AlbumFormato.DVD);
@@ -107,7 +107,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         Banda banda6 = new Banda("Mercyful Fate");
         banda6.setGenero(Genero.HEAVYMETAL);
         Album album6 = new Album();
-        banda6.getProdutos().add(album6);
+        banda6.addProdutos(album6);
         album6.setBanda(banda6);
         album6.setNome("Don't Break the Oath");
         album6.setFormato(AlbumFormato.CASSETE);
@@ -120,7 +120,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         Banda banda7 = new Banda("Mercyful Fafgdgate");
         banda7.setGenero(Genero.HEAVYMETAL);
         Album album7 = new Album();
-        banda7.getProdutos().add(album7);
+        banda7.addProdutos(album7);
         album7.setBanda(banda7);
         album7.setNome("Don't Break the Oath");
         album7.setFormato(AlbumFormato.VINIL);
@@ -133,7 +133,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         Banda banda8 = new Banda("Meagfgrcyful Fate");
         banda8.setGenero(Genero.HEAVYMETAL);
         Album album8 = new Album();
-        banda8.getProdutos().add(album8);
+        banda8.addProdutos(album8);
         album8.setBanda(banda8);
         album8.setNome("Don't Break the Oath");
         album8.setFormato(AlbumFormato.VINIL);
@@ -146,7 +146,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         Banda banda9 = new Banda("Mercyful Faafgfte");
         banda9.setGenero(Genero.HEAVYMETAL);
         Album album9 = new Album();
-        banda9.getProdutos().add(album9);
+        banda9.addProdutos(album9);
         album9.setBanda(banda9);
         album9.setNome("Don't Break the Oath");
         album9.setFormato(AlbumFormato.VINIL);
@@ -159,7 +159,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         Banda banda10 = new Banda("Meagfrcyful Fate");
         banda10.setGenero(Genero.HEAVYMETAL);
         Album album10 = new Album();
-        banda10.getProdutos().add(album10);
+        banda10.addProdutos(album10);
         album10.setBanda(banda10);
         album10.setNome("Don't Break the Oath");
         album10.setFormato(AlbumFormato.VINIL);
@@ -170,7 +170,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         album10.setLancamento(LocalDate.of(1984, 9, 9));
 
 //        Album album11 = new Album();
-//        banda10.getProdutos().add(album11);
+//        banda10.addProdutos(album11);
 //        album11.setBanda(banda10);
 //        album11.setNome("Don't Break the Oath");
 //        album11.setFormato(AlbumFormato.VINIL);
@@ -189,7 +189,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         banda12.setGenero(Genero.DEATHMETAL);
         Camiseta tshirt1 = new Camiseta();
         tshirt1.setBanda(banda12);
-        banda12.getProdutos().add(tshirt1);
+        banda12.addProdutos(tshirt1);
         tshirt1.setSize(CamisetaSize.M);
         tshirt1.setNome("Evangelicis");
         tshirt1.setDescricao("An all-over print 'Evangelicis' Behemoth t-shirt. The print is made with a " +

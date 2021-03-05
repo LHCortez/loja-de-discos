@@ -350,12 +350,25 @@ a {
     color: white;
 }
 
-footer {
-    color: #6c757d;
+#footer {
+    color: #c6c6c6;
 }
 
 .footer-container {
     max-width: 1000px;
+}
+
+#footer .footer-link {
+    font-size: 35px;
+    color: #c6c6c6;
+}
+
+
+
+#footer .footer-link:hover,
+#footer .footer-link:active {
+    color: #ab7325;
+    transition-duration: 500ms;
 }
 
 .crud-tabs {
@@ -392,7 +405,6 @@ footer {
 .google-login .google-logo {
     max-width: 40px;
 }
-
 
 #login .texto-cor-especial:hover,
 #login .texto-cor-especial:active {

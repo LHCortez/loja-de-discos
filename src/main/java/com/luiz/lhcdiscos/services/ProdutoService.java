@@ -4,6 +4,7 @@ import com.luiz.lhcdiscos.models.Banda;
 import com.luiz.lhcdiscos.models.Produto;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.models.enums.Genero;
+import com.luiz.lhcdiscos.repositories.AlbumRepository;
 import com.luiz.lhcdiscos.repositories.ProdutoRepository;
 import com.luiz.lhcdiscos.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class ProdutoService {
 
     @Autowired
     private ProdutoRepository<Produto> produtoRepository;
+
+    @Autowired
+    private AlbumRepository albumRepository;
 
     public Produto searchById(Integer id) {
         Optional<Produto> optional = produtoRepository.findById(id);
@@ -39,7 +43,7 @@ public class ProdutoService {
 
     public List<? extends Produto> buscarPorCategoria(String categoria) {
         if (AlbumFormato.getFormatos().contains(categoria)){
-            return new AlbumService().buscarPorFormato(AlbumFormato.valueOf(categoria.toUpperCase()));
+            return albumRepository.findAlbumByFormato(AlbumFormato.valueOf(categoria.toUpperCase()));
         }
         return buscarPorSubclasse(categoria);
     }
