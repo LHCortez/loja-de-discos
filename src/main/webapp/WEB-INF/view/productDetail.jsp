@@ -1,6 +1,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <tags:pageTemplate>
 
@@ -19,13 +20,13 @@
                             <p class="text-muted mb-0">Lançamento: ${produto.lancamento}</p>
                             <p class="text-muted mb-0">Gênero: ${produto.banda.genero.descricao}</p>
                             <h2 class="texto-cor-especial fs-1 my-3">R$ ${produto.preco}</h2>
-                            <form action="${s:mvcUrl('CC#add').arg(0, produto.id).build()}" method="post">
+                            <form:form action="${s:mvcUrl('CC#add').arg(0, produto.id).build()}" method="post">
                                 <button class="btn btn-dark w-100 botao-adicionar-carrinho mt-2 mb-4 fs-5"
                                         type="submit">
                                     <i class="fas fa-cart-plus"></i>
                                     Adicionar ao carrinho
                                 </button>
-                            </form>
+                            </form:form>
                             <p>${produto.descricao}</p>
                         </div>
                     </div>

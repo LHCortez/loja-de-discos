@@ -337,7 +337,8 @@ a {
     width: 100%;
 }
 
-.botao-destaque {
+.botao-destaque,
+.stripe-button {
     color: white;
     background-color: #ab7325;
     width: 200px;

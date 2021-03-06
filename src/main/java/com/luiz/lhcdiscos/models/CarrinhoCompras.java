@@ -61,6 +61,10 @@ public class CarrinhoCompras implements Serializable {
         this.itens.remove(produto);
     }
 
+    public void limpa() {
+        this.itens.clear();
+    }
+
     private Produto buscaProdutoPeloId(Integer id) {
         return itens
                 .keySet()

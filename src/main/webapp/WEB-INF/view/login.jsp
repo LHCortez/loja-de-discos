@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <tags:pageTemplate>
 
@@ -8,7 +9,7 @@
     <section id="login" class="bg-light d-flex align-items-center justify-content-center mt-3 rounded">
         <div id="login-form-container mx-1">
             <h4 class="text-center my-5">Faça o login!</h4>
-            <form id="login-form" action="${pageContext.request.contextPath}/user/login" method="post">
+            <form:form id="login-form" action="${pageContext.request.contextPath}/user/login" method="post">
                 <div class="form-floating">
                     <input type="email" name="username" class="form-control my-4" aria-describedby="emailHelp"
                            aria-label="E-mail" id="floatingInput" placeholder="E-mail">
@@ -20,7 +21,7 @@
                     <label for="floatingInput">Senha</label>
                 </div>
                 <button type="submit" class="btn w-100 mt-0 mb-4 botao-destaque">Entrar</button>
-            </form>
+            </form:form>
             <div class="text-center text-muted delimiter mb-3">ou...</div>
 
             <div class="text-center">

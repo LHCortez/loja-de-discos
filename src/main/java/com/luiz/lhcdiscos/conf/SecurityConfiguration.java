@@ -9,6 +9,7 @@ import com.sun.xml.bind.v2.TODO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -67,18 +68,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/crud/**").hasRole("ADMIN")
+                .antMatchers("/charge", "/charge/**").permitAll()
 //                .antMatchers("/search/").hasRole("ADMIN")
                 .antMatchers("/").permitAll()
                 .antMatchers("/search", "/search/**").permitAll()
                 .antMatchers("/product", "/product/**").permitAll()
+                .antMatchers("/cart/**").permitAll()
                 .antMatchers("/user/create").permitAll()
-//                .antMatchers("/cart", "/cart/**").permitAll()
                 .antMatchers("/console/**").permitAll()
                 .antMatchers("/oauth2/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/user/login")
+                    .loginPage("/user/login").permitAll()
 //                    .usernameParameter("email")
 //                    .failureUrl("/login?param.error=bad_credentials")
                     .successHandler(successHandler()).permitAll()
@@ -93,6 +95,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")).permitAll()
                     .logoutSuccessUrl("/")
                     .deleteCookies("JSESSIONID");
+
+//        http.csrf().ignoringAntMatchers("/cart/add");
 
 //        Desabilitar proteção a CRSF para o H2 funcionar
         http.csrf().disable();

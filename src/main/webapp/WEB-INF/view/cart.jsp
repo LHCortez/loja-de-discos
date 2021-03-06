@@ -2,6 +2,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:useBean id="carrinhoCompras" scope="session" class="com.luiz.lhcdiscos.models.CarrinhoCompras"/>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <tags:pageTemplate>
 
@@ -42,7 +44,7 @@
                                     <p class="text-muted">Preço unitário: R$ ${produto.preco}</p>
                                 </td>
                                 <td data-title="Quantidade" class="text-center">
-                                    <form role="form" action="${pageContext.request.contextPath}/cart/setQuantidade"
+                                    <form:form role="form" action="${pageContext.request.contextPath}/cart/setquantidade"
                                             method="post">
                                         <input type="hidden" value="${produto.id}" name="id">
                                         <select class="form-select form-select-sm w-0" aria-label="Selecione quantidade"
@@ -60,7 +62,7 @@
                                                 </c:choose>
                                             </c:forEach>
                                         </select>
-                                    </form>
+                                    </form:form>
                                 </td>
                                 <td data-title="Subtotal" class="text-end preco">
                                     R$ ${carrinhoCompras.getValorPorProduto(produto)}
@@ -77,7 +79,7 @@
                             <tr>
                                 <td colspan="2"></td>
                                 <td class="fw-bold text-end" colspan="2">Valor total:</td>
-                                <td class="text-end preco">R$ ${carrinhoCompras.valorTotalDoCarrinho}</td>
+                                <td class="text-end preco">R$ ${amountInCents/100}</td>
                             </tr>
                             <tr>
                                 <td colspan="2"></td>
@@ -87,10 +89,39 @@
                         </tfoot>
                     </table>
 
+<%--                    https://stripe.com/docs/testing--%>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end p-4">
-                        <button class="btn col-md-3 botao-destaque p-2" type="button">Finalizar compra</button>
+                        <sec:authorize access="isAuthenticated()">
+                            <form:form action='${pageContext.request.contextPath}/charge' method='POST' id='checkout-form'>
+                                <input type='hidden' value='${amountInCents}' name='amount' />
+                                <sec:authentication property="principal.email" var="email"/>
+                                <script
+                                        src='https://checkout.stripe.com/checkout.js'
+                                        class='stripe-button'
+                                        data-key='${stripePublicKey}'
+                                        data-amount=${amountInCents},
+                                        data-currency='${currency}'
+                                        data-name='LHC Discos'
+                                        data-description='Finalize seu pedido!'
+                                        data-email='${email}'
+                                        data-image
+                                                ='https://github.com/LHCortez/loja-de-discos/blob/main/src/main/resources/static/img/logo-transparent.png?raw=true'
+                                        data-locale='auto'
+                                        data-zip-code='false'>
+                                </script>
+                                <script>
+                                    // Esconder o botão padrão do stripe
+                                    document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+                                </script>
+                                <button class="btn col-md-3 botao-destaque p-2" type="submit">Finalizar compra</button>
+                            </form:form>
+                        </sec:authorize>
+                        <sec:authorize access="!isAuthenticated()">
+                                <a class="btn col-md-3 botao-destaque p-2" href="${pageContext.request.contextPath}/user/login">
+                                    Finalizar compra
+                                </a>
+                        </sec:authorize>
                     </div>
-
                 </div>
             </c:otherwise>
         </c:choose>
