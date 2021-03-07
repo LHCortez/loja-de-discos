@@ -1,4 +1,4 @@
-package com.luiz.lhcdiscos.converters;
+package com.luiz.lhcdiscos.exporters;
 
 import com.luiz.lhcdiscos.models.Album;
 import com.luiz.lhcdiscos.models.Camiseta;

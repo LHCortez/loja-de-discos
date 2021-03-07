@@ -32,4 +32,5 @@ function confirmDeleteProduct(event, id, nome) {
             jQuery("#delete-product-" + id).submit();
         }
     });
+
 }

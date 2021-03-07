@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.controllers;
 
-import com.luiz.lhcdiscos.converters.ProdutoExcelExporter;
+import com.luiz.lhcdiscos.exporters.ProdutoExcelExporter;
 import com.luiz.lhcdiscos.models.Album;
 import com.luiz.lhcdiscos.models.Camiseta;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;

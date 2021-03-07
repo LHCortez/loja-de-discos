@@ -3,7 +3,7 @@ package com.luiz.lhcdiscos.services;
 import com.luiz.lhcdiscos.models.Banda;
 import com.luiz.lhcdiscos.models.enums.Genero;
 import com.luiz.lhcdiscos.repositories.BandaRepository;
-import com.luiz.lhcdiscos.services.exceptions.ObjectNotFoundException;
+import com.luiz.lhcdiscos.models.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

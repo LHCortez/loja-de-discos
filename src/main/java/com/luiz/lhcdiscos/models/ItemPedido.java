@@ -30,6 +30,10 @@ public class ItemPedido {
     @Column(name = "valor_unitario")
     private BigDecimal valorUnitario;
 
+    @Basic(optional = false)
+    @NotNull
+    private String tipo;
+
     public ItemPedido(){
     }
 
@@ -53,17 +57,20 @@ public class ItemPedido {
         return produto;
     }
 
-    public void setProduto(Produto produto) {
+    public void setProduto(Produto produto, Integer quantidade) {
         this.nome = produto.getNome();
         this.valorUnitario = produto.getPreco();
+        this.tipo = produto.getTipo();
         this.produto = produto;
+        this.quantidade = quantidade;
+
     }
 
     public String getNome() {
         return nome;
     }
 
-    public BigDecimal getValorUnitarior() {
+    public BigDecimal getValorUnitario() {
         return valorUnitario;
     }
 
@@ -73,5 +80,13 @@ public class ItemPedido {
 
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

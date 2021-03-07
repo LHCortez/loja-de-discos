@@ -1,8 +1,12 @@
 package com.luiz.lhcdiscos.controllers;
 
-import com.luiz.lhcdiscos.models.CarrinhoCompras;
-import com.luiz.lhcdiscos.models.PagamentoRequest;
-import com.luiz.lhcdiscos.services.StripeService;
+import com.luiz.lhcdiscos.services.EmailService;
+import com.luiz.lhcdiscos.models.*;
+import com.luiz.lhcdiscos.models.exceptions.PagamentoException;
+import com.luiz.lhcdiscos.services.PedidoService;
+import com.luiz.lhcdiscos.services.UsuarioService;
+import com.luiz.lhcdiscos.stripe.PagamentoRequest;
+import com.luiz.lhcdiscos.stripe.StripeService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.math.BigDecimal;
+import java.security.Principal;
+import java.time.LocalDateTime;
 
 @Controller
 public class PagamentoController {
@@ -20,27 +28,74 @@ public class PagamentoController {
     @Autowired
     private CarrinhoCompras carrinho;
 
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @Autowired
+    private PedidoService pedidoService;
+
     @PostMapping("/charge")
-    public String charge(PagamentoRequest chargeRequest, Model model)
-            throws StripeException {
+    public String charge(PagamentoRequest chargeRequest, Model model, Principal principal)
+            throws StripeException, PagamentoException {
         chargeRequest.setDescription("Example charge");
         chargeRequest.setCurrency(PagamentoRequest.Currency.BRL);
+
         Charge charge = paymentsService.charge(chargeRequest);
-        model.addAttribute("id", charge.getId());
-        model.addAttribute("status", charge.getStatus());
-        model.addAttribute("chargeId", charge.getId());
-        model.addAttribute("balance_transaction", charge.getBalanceTransaction());
-        model.addAttribute("amount", charge.getAmount());
-        model.addAttribute("error", null);
-        carrinho.limpa();
+        Long valorPago = charge.getAmount();
+        LocalDateTime dataPedido = LocalDateTime.now();
+        BigDecimal valorPagoBigDecimal = BigDecimal.valueOf(valorPago).movePointLeft(2);
+        String email = principal.getName();
+
+        if (charge.getPaid() && valorPagoBigDecimal.equals(carrinho.getValorTotalDoCarrinho())) {
+            Integer pedidoId = finalizaCompra(email, valorPagoBigDecimal, dataPedido, charge.getId(), charge.getStatus());
+            model.addAttribute("pedidoId", pedidoId);
+            model.addAttribute("error", null);
+        } else {
+            throw new PagamentoException("Houve algum problema com o pagamento do cliente " + principal.getName());
+        }
 
         return "paymentResult";
     }
 
-    @ExceptionHandler(StripeException.class)
-    public String handleError(Model model, StripeException ex) {
-        model.addAttribute("error", ex.getMessage());
+    @ExceptionHandler({StripeException.class, PagamentoException.class})
+    public String handleError(Model model, Exception ex) {
+        model.addAttribute("error", "ocorreu erro");
+        ex.printStackTrace();
         return "paymentResult";
+    }
+
+    private Integer finalizaCompra(String email, BigDecimal valorPago, LocalDateTime dataPedido,
+                                   String stripeId, String stripeStatus) {
+        Pedido pedido = new Pedido();
+        pedido.setData(dataPedido);
+
+        carrinho.getItens().keySet().forEach(produto -> {
+            ItemPedido itemPedido = new ItemPedido();
+            itemPedido.setProduto(produto, carrinho.getQuantidade(produto));
+            itemPedido.setPedido(pedido);
+            pedido.addItens(itemPedido);
+        });
+
+        Usuario cliente = usuarioService.findUsuarioByEmailIgnoreCase(email);
+        pedido.setCliente(cliente);
+
+        DadosPagamento dadosPagamento = new DadosPagamento();
+        dadosPagamento.setValorPago(valorPago);
+        dadosPagamento.setData(dataPedido);
+        dadosPagamento.setStripeId(stripeId);
+        dadosPagamento.setStripeStatus(stripeStatus);
+        pedido.setPagamento(dadosPagamento);
+
+        pedidoService.save(pedido);
+
+        carrinho.limpa();
+
+        emailService.enviaEmailConfirmacaoDoPedido(email, valorPago, pedido);
+
+        return pedido.getId();
     }
 
 

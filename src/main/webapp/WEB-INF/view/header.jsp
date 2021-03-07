@@ -21,7 +21,7 @@
             <sec:authorize access="isAuthenticated()">
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/user/logout">
-                        Olá, <sec:authentication property="principal.name" />  (sair)</a>
+                        Olá, <sec:authentication property="principal.usuarioName" />  (sair)</a>
                 </li>
             </sec:authorize>
 

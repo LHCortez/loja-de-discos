@@ -80,7 +80,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/user/login").permitAll()
+                    .loginPage("/user/login")
 //                    .usernameParameter("email")
 //                    .failureUrl("/login?param.error=bad_credentials")
                     .successHandler(successHandler()).permitAll()
@@ -99,8 +99,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //        http.csrf().ignoringAntMatchers("/cart/add");
 
 //        Desabilitar proteção a CRSF para o H2 funcionar
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
+//        http.csrf().disable();
+//        http.headers().frameOptions().disable();
 
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");

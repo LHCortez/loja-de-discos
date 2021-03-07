@@ -1,4 +1,4 @@
-package com.luiz.lhcdiscos.services.exceptions;
+package com.luiz.lhcdiscos.models.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException {
 

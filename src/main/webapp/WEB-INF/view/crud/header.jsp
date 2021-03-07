@@ -29,7 +29,7 @@
                 <span class="navbar-text">
                         <%-- TODO: ajustar o usuário depois de colocar a página no spring security--%>
                         <a class="nav-link" href="${pageContext.request.contextPath}/user/logout">
-                            Olá, <sec:authentication property="principal.name" /> (sair)
+                            Olá, <sec:authentication property="principal.usuarioName" /> (sair)
                         </a>
                     </span>
             </div>

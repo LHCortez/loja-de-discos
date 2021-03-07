@@ -1,4 +1,4 @@
-package com.luiz.lhcdiscos.models;
+package com.luiz.lhcdiscos.stripe;
 
 public class PagamentoRequest {
 

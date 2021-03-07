@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.models;
 
-import com.luiz.lhcdiscos.services.exceptions.ObjectNotFoundException;
+import com.luiz.lhcdiscos.models.exceptions.ObjectNotFoundException;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;

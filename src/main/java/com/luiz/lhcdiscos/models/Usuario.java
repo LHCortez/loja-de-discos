@@ -4,10 +4,7 @@ import com.luiz.lhcdiscos.models.enums.AuthenticationProvider;
 import com.luiz.lhcdiscos.models.enums.Role;
 
 import javax.persistence.*;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "usuarios")
@@ -27,6 +24,10 @@ public class Usuario {
 
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles = EnumSet.noneOf(Role.class);
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Pedido> pedidos = new ArrayList<>();
+
 
     public Integer getId() {
         return id;
@@ -74,6 +75,14 @@ public class Usuario {
 
     public void addRoles(Role... role) {
         roles.addAll(Arrays.asList(role));
+    }
+
+    public void addPedido(Pedido... pedido) {
+        this.pedidos.addAll(Arrays.asList(pedido));
+    }
+
+    public List<Pedido> getPedidos() {
+        return Collections.unmodifiableList(pedidos);
     }
 
     public AuthenticationProvider getAuthenticationProvider() {

@@ -2,27 +2,33 @@ package com.luiz.lhcdiscos.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 @Entity
-public class Pedido {
+public class Pedido implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ItemPedido> itens;
+    private List<ItemPedido> itens = new ArrayList<>();
 
     @NotNull
     private LocalDateTime data;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private DadosPagamento pagamento;
+
     @ManyToOne
     @NotNull
-    private Cliente cliente;
+    private Usuario cliente;
 
     public Integer getId() {
         return id;
@@ -46,5 +52,21 @@ public class Pedido {
 
     public void setData(LocalDateTime data) {
         this.data = data;
+    }
+
+    public Usuario getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
+    }
+
+    public DadosPagamento getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(DadosPagamento pagamento) {
+        this.pagamento = pagamento;
     }
 }

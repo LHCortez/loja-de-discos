@@ -1,6 +1,5 @@
-package com.luiz.lhcdiscos.services;
+package com.luiz.lhcdiscos.stripe;
 
-import com.luiz.lhcdiscos.models.PagamentoRequest;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;

@@ -106,14 +106,14 @@
                                         data-email='${email}'
                                         data-image
                                                 ='https://github.com/LHCortez/loja-de-discos/blob/main/src/main/resources/static/img/logo-transparent.png?raw=true'
-                                        data-locale='auto'
+                                        data-locale='pt-BR'
                                         data-zip-code='false'>
                                 </script>
                                 <script>
                                     // Esconder o botão padrão do stripe
                                     document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
                                 </script>
-                                <button class="btn col-md-3 botao-destaque p-2" type="submit">Finalizar compra</button>
+                                <button class="btn col-md-3 botao-destaque p-2" type="submit" >Finalizar compra</button>
                             </form:form>
                         </sec:authorize>
                         <sec:authorize access="!isAuthenticated()">

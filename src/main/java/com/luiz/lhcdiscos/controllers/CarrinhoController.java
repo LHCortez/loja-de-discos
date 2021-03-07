@@ -1,7 +1,7 @@
 package com.luiz.lhcdiscos.controllers;
 
 import com.luiz.lhcdiscos.models.CarrinhoCompras;
-import com.luiz.lhcdiscos.models.PagamentoRequest;
+import com.luiz.lhcdiscos.stripe.PagamentoRequest;
 import com.luiz.lhcdiscos.models.Produto;
 import com.luiz.lhcdiscos.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;

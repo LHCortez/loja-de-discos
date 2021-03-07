@@ -41,7 +41,7 @@ public class UserDetailsImpl implements UserDetails {
         return usuario.getEmail();
     }
 
-    public String getName() {
+    public String getUsuarioName() {
         return usuario.getNome();
     }
 
