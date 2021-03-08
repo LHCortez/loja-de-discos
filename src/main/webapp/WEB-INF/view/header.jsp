@@ -23,6 +23,9 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/user/logout">
                         Olá, <sec:authentication property="principal.usuarioName" />  (sair)</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/user/orders">Meus Pedidos</a>
+                </li>
             </sec:authorize>
 
             <sec:authorize access="!isAuthenticated()">

@@ -13,14 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDateTime;
 
 @Controller
-public class PagamentoController {
+public class PedidoController {
 
     @Autowired
     private StripeService paymentsService;
@@ -98,5 +100,10 @@ public class PagamentoController {
         return pedido.getId();
     }
 
-
+    @GetMapping("/user/orders")
+    public ModelAndView pedidos(Principal principal) {
+        ModelAndView modelAndView = new ModelAndView("orders");
+        modelAndView.addObject("pedidos", pedidoService.searchPedidosByClienteEmail(principal.getName()));
+        return modelAndView;
+    }
 }

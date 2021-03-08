@@ -96,7 +96,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .logoutSuccessUrl("/")
                     .deleteCookies("JSESSIONID");
 
-//        http.csrf().ignoringAntMatchers("/cart/add");
+        http.csrf().ignoringAntMatchers("/cart/add");
+        http.csrf().ignoringAntMatchers("/cart/remove");
 
 //        Desabilitar proteção a CRSF para o H2 funcionar
 //        http.csrf().disable();

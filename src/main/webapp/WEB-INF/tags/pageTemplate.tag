@@ -11,9 +11,10 @@
 
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/css/bootstrap.min.css">
     <link type='text/css' rel='stylesheet' media='screen' href='${pageContext.request.contextPath}/css/style.css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/0641055230.js" crossorigin="anonymous"></script>
+    <script data-search-pseudo-elements defer src="https://kit.fontawesome.com/0641055230.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 

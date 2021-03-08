@@ -5,6 +5,8 @@ import com.luiz.lhcdiscos.repositories.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PedidoService {
 
@@ -15,6 +17,7 @@ public class PedidoService {
         pedidoRepository.save(pedido);
     }
 
-
-
+    public List<Pedido> searchPedidosByClienteEmail(String email) {
+        return pedidoRepository.findPedidoByCliente_EmailIgnoreCase(email);
+    }
 }
