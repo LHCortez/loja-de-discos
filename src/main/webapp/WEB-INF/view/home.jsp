@@ -77,7 +77,16 @@
                                  alt="...">
                             <div class="card-body pb-1">
                                 <h5 class="card-title">${produto.nome} - ${produto.tipo}</h5>
-                                <p class="card-text">${produto.banda.nome}</p>
+
+                                <c:choose>
+                                    <c:when test="${produto.tipo.equals('Livro')}">
+                                        <p class="card-text">${produto.autor}</p>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p class="card-text">${produto.banda.nome}</p>
+                                    </c:otherwise>
+                                </c:choose>
+
                             </div>
                             <div class="card-footer border-light pt-0 pb-0">
                                 <small class="text-muted">R$ ${produto.preco}</small>

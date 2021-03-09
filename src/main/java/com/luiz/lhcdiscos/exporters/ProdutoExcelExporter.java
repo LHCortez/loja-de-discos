@@ -1,8 +1,6 @@
 package com.luiz.lhcdiscos.exporters;
 
-import com.luiz.lhcdiscos.models.Album;
-import com.luiz.lhcdiscos.models.Camiseta;
-import com.luiz.lhcdiscos.models.Produto;
+import com.luiz.lhcdiscos.models.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.WorkbookUtil;
 import org.apache.poi.xssf.usermodel.XSSFFont;
@@ -14,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoExcelExporter {
@@ -38,25 +37,41 @@ public class ProdutoExcelExporter {
         font.setBold(true);
         style.setFont(font);
 
-        if (produtoList.get(0) instanceof Camiseta) {
-            createCell(rowHeader, 0, "Camiseta ID", style);
-        } else if (produtoList.get(0) instanceof Album) {
-            createCell(rowHeader, 0, "Album ID", style);
+        int columnCount = 0;
+
+        if (!produtoList.isEmpty()) {
+            if (produtoList.get(0) instanceof Camiseta) {
+                createCell(rowHeader, columnCount++, "Camiseta ID", style);
+            } else if (produtoList.get(0) instanceof Album) {
+                createCell(rowHeader, columnCount++, "Album ID", style);
+            } else if (produtoList.get(0) instanceof Patch) {
+                createCell(rowHeader, columnCount++, "Patch ID", style);
+            } else if (produtoList.get(0) instanceof Livro) {
+                createCell(rowHeader, columnCount++, "Livro ID", style);
+            }
+        } else {
+            createCell(rowHeader, columnCount++, "ID", style);
         }
 
-        createCell(rowHeader, 1, "Nome", style);
-        createCell(rowHeader, 2, "Descrição", style);
-        createCell(rowHeader, 3, "Preço (R$)", style);
-        createCell(rowHeader, 4, "Capa", style);
-        createCell(rowHeader, 5, "Lançamento", style);
-        if (produtoList.get(0) instanceof Camiseta) {
-            createCell(rowHeader, 6, "Tamanho", style);
-        } else if (produtoList.get(0) instanceof Album) {
-            createCell(rowHeader, 6, "Formato", style);
+        createCell(rowHeader, columnCount++, "Nome", style);
+        createCell(rowHeader, columnCount++, "Descrição", style);
+        createCell(rowHeader, columnCount++, "Preço (R$)", style);
+        createCell(rowHeader, columnCount++, "Capa", style);
+        createCell(rowHeader, columnCount++, "Lançamento", style);
+
+        if (!produtoList.isEmpty()) {
+            if (produtoList.get(0) instanceof Camiseta) {
+                createCell(rowHeader, columnCount++, "Tamanho", style);
+            } else if (produtoList.get(0) instanceof Album) {
+                createCell(rowHeader, columnCount++, "Formato", style);
+            } else if (produtoList.get(0) instanceof Livro) {
+                createCell(rowHeader, columnCount++, "Autor", style);
+            }
         }
-        createCell(rowHeader, 7, "Banda", style);
-        createCell(rowHeader, 8, "Banda ID", style);
-        createCell(rowHeader, 9, "Banda Gênero", style);
+
+        createCell(rowHeader, columnCount++, "Banda", style);
+        createCell(rowHeader, columnCount++, "Banda ID", style);
+        createCell(rowHeader, columnCount, "Banda Gênero", style);
 
     }
 
@@ -103,6 +118,9 @@ public class ProdutoExcelExporter {
             } else if (produto instanceof Album) {
                 Album album = (Album) produto;
                 createCell(row, columnCount++, album.getFormato().toString(), style);
+            } else if (produto instanceof Livro) {
+                Livro livro = (Livro) produto;
+                createCell(row, columnCount++, livro.getAutor(), style);
             }
             createCell(row, columnCount++, produto.getBanda().getNome(), style);
             createCell(row, columnCount++, produto.getBanda().getId(), style);

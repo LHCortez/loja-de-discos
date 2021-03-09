@@ -38,6 +38,7 @@ public abstract class Produto implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "banda_id")
+    @NotNull(message = "Selecione a banda")
     private Banda banda;
 
     public Produto(){

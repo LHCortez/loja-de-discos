@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
@@ -36,8 +38,9 @@ public class DetalheController {
             produtos2.remove(produto);
             produtos.addAll(produtos2);
         }
+        Set<Produto> produtosSet = new HashSet<>(produtos);
         modelAndView.addObject("produto", produto);
-        modelAndView.addObject("produtos", produtos.stream().limit(2).collect(Collectors.toList()));
+        modelAndView.addObject("produtos", produtosSet.stream().limit(2).collect(Collectors.toList()));
         return modelAndView;
     }
 

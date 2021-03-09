@@ -39,7 +39,7 @@
             <fieldset class="row mb-3">
                 <label for="banda-genero" class="col-md-1 col-form-label">Gênero</label>
                 <div class="col-md-4">
-                    <form:select path="genero" id="banda-genero" class="form-select">
+                    <form:select path="genero" id="banda-genero" class="form-select" required="true">
                         <option value="">Selecione o gênero</option>
                         <c:forEach items="${generos}" var="genero">
                             <c:choose>

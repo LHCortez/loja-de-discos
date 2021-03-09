@@ -15,8 +15,17 @@
                             <img src="${pageContext.request.contextPath}${produto.capa}" class="imagem-detalhe" alt="...">
                         </div>
                         <div class="col-sm-8 col-xs-12 px-4 container">
-                            <h2 class="titulo">${produto.banda.nome.toUpperCase()}</h2>
-                            <h3>${produto.nome}  (${produto.tipo})</h3>
+                            <c:choose>
+                                <c:when test="${produto.tipo.equals('Livro')}">
+                                    <h2 class="titulo">${produto.autor.toUpperCase()}</h2>
+                                    <h3>${produto.nome}  (${produto.tipo})</h3>
+                                    <p class="text-muted mb-0">Banda: ${produto.banda.nome}</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <h2 class="titulo">${produto.banda.nome.toUpperCase()}</h2>
+                                    <h3>${produto.nome}  (${produto.tipo})</h3>
+                                </c:otherwise>
+                            </c:choose>
                             <p class="text-muted mb-0">Lançamento: ${produto.lancamento}</p>
                             <p class="text-muted mb-0">Gênero: ${produto.banda.genero.descricao}</p>
                             <h2 class="texto-cor-especial fs-1 my-3">R$ ${produto.preco}</h2>

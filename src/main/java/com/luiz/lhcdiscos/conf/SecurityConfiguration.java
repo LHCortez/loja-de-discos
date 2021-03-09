@@ -100,8 +100,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().ignoringAntMatchers("/cart/remove");
 
 //        Desabilitar proteção a CRSF para o H2 funcionar
-//        http.csrf().disable();
-//        http.headers().frameOptions().disable();
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
 
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");

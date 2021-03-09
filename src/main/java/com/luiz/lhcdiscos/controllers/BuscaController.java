@@ -1,9 +1,11 @@
 package com.luiz.lhcdiscos.controllers;
 
 import com.luiz.lhcdiscos.models.Album;
+import com.luiz.lhcdiscos.models.Livro;
 import com.luiz.lhcdiscos.models.Produto;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.models.enums.Genero;
+import com.luiz.lhcdiscos.services.LivroService;
 import com.luiz.lhcdiscos.services.ProdutoService;
 import org.reflections.Reflections;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping("/search")
@@ -25,6 +24,9 @@ public class BuscaController {
 
     @Autowired
     private ProdutoService produtoService;
+
+    @Autowired
+    private LivroService livroService;
 
     private List<String> getCategorias() {
         List<String> categorias = new ArrayList<>();
@@ -41,7 +43,6 @@ public class BuscaController {
 
     @RequestMapping(method = RequestMethod.GET, params = {})
     public ModelAndView busca() {
-        System.out.println("BuscaString");
         ModelAndView modelAndView = new ModelAndView("search");
         modelAndView.addObject("categorias", getCategorias());
         modelAndView.addObject("generos", Genero.getGeneros());
@@ -51,11 +52,17 @@ public class BuscaController {
 
     @RequestMapping(method = RequestMethod.GET, params = "s")
     public ModelAndView buscaString(@RequestParam String s){
-        System.out.println("BuscaString");
         ModelAndView modelAndView = new ModelAndView("search");
+
+        Collection<Produto> produtos = produtoService.buscarPorString(s);
+        List<Livro> livros = livroService.searchLivroByAuthorName(s);
+
+        Set<Produto> produtosAll = new HashSet<>(produtos);
+        produtosAll.addAll(livros);
+
         modelAndView.addObject("categorias", getCategorias());
         modelAndView.addObject("generos", Genero.getGeneros());
-        modelAndView.addObject("produtos", produtoService.buscarPorString(s));
+        modelAndView.addObject("produtos", produtosAll);
         return modelAndView;
     }
 

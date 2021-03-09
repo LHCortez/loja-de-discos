@@ -11,6 +11,8 @@
         window.onload = function() {
             if (id != null){
                 document.getElementById('album').style.display = 'none';
+                document.getElementById('patch').style.display = 'none';
+                document.getElementById('livro').style.display = 'none';
             }
         }
     </script>
@@ -22,6 +24,14 @@
         </li>
         <li class="nav-item" role="presentation" id="camiseta">
             <a class="btn nav-link crud-tabs-link active" style="pointer-events: none;">Camiseta</a>
+        </li>
+        <li class="nav-item" role="presentation" id="patch">
+            <a class="btn nav-link crud-tabs-link"
+               href="${pageContext.request.contextPath}/crud/product/create/patch">Patch</a>
+        </li>
+        <li class="nav-item" role="presentation" id="livro">
+            <a class="btn nav-link crud-tabs-link"
+               href="${pageContext.request.contextPath}/crud/product/create/livro">Livro</a>
         </li>
     </ul>
 
@@ -51,7 +61,7 @@
             <fieldset class="tamanho row mb-3">
             <label for="tamanho" class="col-md-2 col-lg-1 col-form-label">Tamanho</label>
             <div class="col-md-4 col-xl-3">
-                    <form:select path="size" id="tamanho" class="form-select">
+                    <form:select path="size" id="tamanho" class="form-select" required="true">
                         <option value="">Selecione o tamanho</option>
                         <c:forEach items="${tamanhos}" var="tamanho">
                             <c:choose>

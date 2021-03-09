@@ -393,6 +393,27 @@ a {
     font-weight: bold;
 }
 
+@media screen and (max-width: 378px) {
+    .crud-tabs-link {
+        padding-left: 7px!important;
+        padding-right: 7px!important;
+    }
+}
+
+@media screen and (max-width: 306px) {
+    .crud-tabs-link {
+        padding-left: 3px!important;
+        padding-right: 3px!important;
+    }
+}
+
+@media screen and (max-width: 274px) {
+    .crud-tabs-link {
+        padding-left: 0!important;
+        padding-right: 0!important;
+    }
+}
+
 .crud-tab-content {
     border: 1px solid #000;
     border-radius: 0 .25rem .25rem .25rem;
