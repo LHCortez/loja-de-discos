@@ -1,10 +1,7 @@
 package com.luiz.lhcdiscos.controllers;
 
 import com.luiz.lhcdiscos.exporters.ProdutoExcelExporter;
-import com.luiz.lhcdiscos.models.Album;
-import com.luiz.lhcdiscos.models.Camiseta;
-import com.luiz.lhcdiscos.models.Livro;
-import com.luiz.lhcdiscos.models.Patch;
+import com.luiz.lhcdiscos.models.*;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.models.enums.CamisetaSize;
 import com.luiz.lhcdiscos.services.*;
@@ -13,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -25,6 +23,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/crud/product")
@@ -47,6 +46,26 @@ public class CrudProdutoController {
 
     @Autowired
     private PatchService patchService;
+
+    @Autowired
+    private S3Service s3Service;
+
+    private void saveCapaS3(Produto produto, MultipartFile capa) {
+        if((produto.getCapa() != null)
+                && !produto.getCapa().isEmpty()
+                && !Objects.requireNonNull(capa.getOriginalFilename()).isBlank()){
+
+            String[] url = produto.getCapa().split("/");
+            String fileKey = url[url.length-1];
+            s3Service.delete(fileKey);
+
+            String path = s3Service.write(capa);
+            produto.setCapa(path);
+        } else if (!Objects.requireNonNull(capa.getOriginalFilename()).isBlank()) {
+            String path = s3Service.write(capa);
+            produto.setCapa(path);
+        }
+    }
 
     @GetMapping("/list")
     public ModelAndView productList(HttpServletRequest request) {
@@ -75,12 +94,16 @@ public class CrudProdutoController {
     }
 
     @PostMapping("/create/album")
-    public ModelAndView saveAlbum(@ModelAttribute("album") @Valid Album album,
+    public ModelAndView saveAlbum(@RequestParam("file") MultipartFile capa, @ModelAttribute("album") @Valid Album album,
                                   BindingResult result, RedirectAttributes model) {
 
         if (result.hasErrors()) {
+            System.out.println(result.getAllErrors());
             return albumForm(album);
         }
+
+        saveCapaS3(album, capa);
+
         albumService.save(album);
         model.addFlashAttribute("salvo", album.getNome());
         model.addFlashAttribute("tipoSalvo", "Álbum");
@@ -96,12 +119,16 @@ public class CrudProdutoController {
     }
 
     @PostMapping("/create/camiseta")
-    public ModelAndView saveCamiseta(@ModelAttribute("camiseta") @Valid Camiseta camiseta,
+    public ModelAndView saveCamiseta(@RequestParam("file") MultipartFile capa,
+                                     @ModelAttribute("camiseta") @Valid Camiseta camiseta,
                                      BindingResult result, RedirectAttributes model) {
 
         if (result.hasErrors()) {
             return camisetaForm(camiseta);
         }
+
+        saveCapaS3(camiseta, capa);
+
         camisetaService.save(camiseta);
         model.addFlashAttribute("salvo", camiseta.getNome());
         model.addFlashAttribute("tipoSalvo", "Camiseta");
@@ -116,12 +143,15 @@ public class CrudProdutoController {
     }
 
     @PostMapping("/create/patch")
-    public ModelAndView savePatch(@ModelAttribute("patch") @Valid Patch patch,
+    public ModelAndView savePatch(@RequestParam("file") MultipartFile capa, @ModelAttribute("patch") @Valid Patch patch,
                                   BindingResult result, RedirectAttributes model) {
 
         if (result.hasErrors()) {
             return patchForm(patch);
         }
+
+        saveCapaS3(patch, capa);
+
         patchService.save(patch);
         model.addFlashAttribute("salvo", patch.getNome());
         model.addFlashAttribute("tipoSalvo", "Patch");
@@ -136,12 +166,15 @@ public class CrudProdutoController {
     }
 
     @PostMapping("/create/livro")
-    public ModelAndView saveLivro(@ModelAttribute("livro") @Valid Livro livro,
+    public ModelAndView saveLivro(@RequestParam("file") MultipartFile capa, @ModelAttribute("livro") @Valid Livro livro,
                                   BindingResult result, RedirectAttributes model) {
 
         if (result.hasErrors()) {
             return livroForm(livro);
         }
+
+        saveCapaS3(livro, capa);
+
         livroService.save(livro);
         model.addFlashAttribute("salvo", livro.getNome());
         model.addFlashAttribute("tipoSalvo", "Livro");
@@ -178,6 +211,12 @@ public class CrudProdutoController {
 
     @PostMapping("/delete")
     public ModelAndView deleteProduct(@RequestParam Integer id) {
+        Produto produto = produtoService.searchById(id);
+
+        String[] url = produto.getCapa().split("/");
+        String fileKey = url[url.length-1];
+        s3Service.delete(fileKey);
+
         produtoService.deleteById(id);
         return new ModelAndView("redirect:/crud/product/list");
     }

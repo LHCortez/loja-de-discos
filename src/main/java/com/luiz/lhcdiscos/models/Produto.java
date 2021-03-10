@@ -30,7 +30,7 @@ public abstract class Produto implements Serializable {
     @DecimalMin(value = "1", message = "Valor mínimo de R$ 1")
     private BigDecimal preco;
 
-    @NotBlank(message = "Preencha a capa")
+//    @NotBlank(message = "Preencha a capa")
     private String capa;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

@@ -85,6 +85,12 @@
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-aws-context -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-aws-context</artifactId>
+            <version>2.2.6.RELEASE</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>

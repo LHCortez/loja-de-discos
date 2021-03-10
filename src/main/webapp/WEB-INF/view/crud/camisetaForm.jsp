@@ -15,6 +15,13 @@
                 document.getElementById('livro').style.display = 'none';
             }
         }
+
+        let capa = '${camiseta.capa}';
+        window.onload = function() {
+            if (capa != null){
+                document.getElementById('produto-capa').required = false;
+            }
+        }
     </script>
 
     <ul class="nav nav-tabs crud-tabs navbar-dark" id="myTab" role="tablist">
@@ -46,7 +53,8 @@
             </c:otherwise>
         </c:choose>
 
-        <form:form modelAttribute="camiseta" action="${pageContext.request.contextPath}/crud/product/create/camiseta" method="POST">
+        <form:form modelAttribute="camiseta" action="${s:mvcUrl('CPC#saveCamiseta').build()}" method="POST"
+                   enctype="multipart/form-data">
 
             <form:errors/>
 
@@ -128,14 +136,15 @@
             <fieldset class="capa row mb-3">
             <label for="produto-capa" class="col-md-2 col-lg-1 col-form-label">Capa</label>
             <div class="col-md-6 col-lg-4">
-                <form:input required="true" path="capa" type="text" class="form-control" id="produto-capa" value="${camiseta.capa}"/>
-                <form:errors path="capa" cssClass="error"/>
+                <input name="file" required type="file" class="form-control" id="produto-capa" />
             </div>
         </fieldset>
+            <form:input type="hidden" value="${camiseta.capa}" path="capa"/>
+            <form:input type="hidden" value="${camiseta.id}" path="id"/>
 
-        <form:input type="hidden" value="${camiseta.id}" path="id"/>
-        <button type="submit" class="btn my-3 botao-destaque">Enviar</button>
-    </form:form>
+            <button type="submit" class="btn my-3 botao-destaque">Enviar</button>
+
+        </form:form>
 
     </div>
 

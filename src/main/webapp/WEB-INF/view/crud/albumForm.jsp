@@ -15,6 +15,13 @@
                 document.getElementById('livro').style.display = 'none';
             }
         }
+
+        let capa = '${album.capa}';
+        window.onload = function() {
+            if (capa != null){
+                document.getElementById('produto-capa').required = false;
+            }
+        }
     </script>
 
     <ul class="nav nav-tabs crud-tabs navbar-dark" id="myTab" role="tablist">
@@ -46,7 +53,8 @@
             </c:otherwise>
         </c:choose>
 
-        <form:form modelAttribute="album" action="${pageContext.request.contextPath}/crud/product/create/album" method="POST">
+        <form:form modelAttribute="album" action="${s:mvcUrl('CPC#saveAlbum').build()}"
+                   method="POST" enctype="multipart/form-data">
 
             <form:errors/>
 
@@ -62,7 +70,7 @@
                 <label for="formato" class="col-md-2 col-lg-1 col-form-label">Formato</label>
                 <div class="col-md-4 col-xl-3">
                     <form:select path="formato" id="formato" class="form-select" required="true">
-                        <option value="">Selecione o tamanho</option>
+                        <option value="">Selecione o formato</option>
                         <c:forEach items="${formatos}" var="formato">
                             <c:choose>
                                 <c:when test="${album.formato.toString().equalsIgnoreCase(formato)}">
@@ -125,15 +133,17 @@
                 </div>
             </fieldset>
 
+
+
             <fieldset class="capa row mb-3">
                 <label for="produto-capa" class="col-md-2 col-lg-1 col-form-label">Capa</label>
                 <div class="col-md-6 col-lg-4">
-                    <form:input required="true" path="capa" type="text" class="form-control" id="produto-capa" value="${album.capa}"/>
-                    <form:errors path="capa" cssClass="error"/>
+                    <input name="file" required type="file" class="form-control" id="produto-capa" />
                 </div>
             </fieldset>
 
             <form:input type="hidden" value="${album.id}" path="id"/>
+            <form:input type="hidden" value="${album.capa}" path="capa"/>
             <button type="submit" class="btn my-3 botao-destaque">Enviar</button>
         </form:form>
 

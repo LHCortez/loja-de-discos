@@ -15,6 +15,13 @@
                 document.getElementById('livro').style.display = 'none';
             }
         }
+
+        let capa = '${patch.capa}';
+        window.onload = function() {
+            if (capa != null){
+                document.getElementById('produto-capa').required = false;
+            }
+        }
     </script>
 
     <ul class="nav nav-tabs crud-tabs navbar-dark" id="myTab" role="tablist">
@@ -46,7 +53,8 @@
             </c:otherwise>
         </c:choose>
 
-        <form:form modelAttribute="patch" action="${pageContext.request.contextPath}/crud/product/create/patch" method="POST">
+        <form:form modelAttribute="patch" action="${s:mvcUrl('CPC#savePatch').build()}" method="POST"
+                   enctype="multipart/form-data">
             <form:errors/>
 
             <fieldset class="nome row mb-3">
@@ -107,14 +115,14 @@
             <fieldset class="capa row mb-3">
                 <label for="produto-capa" class="col-md-2 col-lg-1 col-form-label">Capa</label>
                 <div class="col-md-6 col-lg-4">
-                    <form:input required="true" path="capa" type="text" class="form-control" id="produto-capa" value="${patch.capa}"/>
-                    <form:errors path="capa" cssClass="error"/>
+                    <input name="file" required type="file" class="form-control" id="produto-capa" />
                 </div>
             </fieldset>
 
-        <form:input type="hidden" value="${patch.id}" path="id"/>
-        <button type="submit" class="btn my-3 botao-destaque">Enviar</button>
-    </form:form>
+            <form:input type="hidden" value="${patch.capa}" path="capa"/>
+            <form:input type="hidden" value="${patch.id}" path="id"/>
+            <button type="submit" class="btn my-3 botao-destaque">Enviar</button>
+        </form:form>
 
     </div>
 
