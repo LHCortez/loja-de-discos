@@ -1,5 +1,7 @@
 package com.luiz.lhcdiscos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -28,6 +30,7 @@ public class Pedido implements Serializable {
 
     @ManyToOne
     @NotNull
+    @JsonIgnore
     private Usuario cliente;
 
     public Integer getId() {

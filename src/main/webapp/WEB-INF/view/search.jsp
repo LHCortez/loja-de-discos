@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 
-<tags:pageTemplate>
+<tags:pageTemplate paginatitulo="Busca -">
 
     <div class="container">
         <div class="row w-100 mt-3 gap-3">

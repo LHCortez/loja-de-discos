@@ -6,7 +6,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<tags:pageTemplate>
+<tags:pageTemplate paginatitulo="Meus pedidos -">
 
     <section id="carrinho" class="container-xl bg-light p-3 mt-3 rounded">
         <h2 class="titulo">Meus pedidos</h2>

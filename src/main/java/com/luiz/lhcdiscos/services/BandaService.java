@@ -52,5 +52,8 @@ public class BandaService {
         return !bandaRepository.existsByNomeIgnoreCase(name);
     }
 
+    public void saveAll(List<Banda> bandas) {
+        bandaRepository.saveAll(bandas);
+    }
 
 }

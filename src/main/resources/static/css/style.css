@@ -566,11 +566,16 @@ a {
     left: -34%;
 }
 
-
 @media screen and (max-width: 480px) {
     .progress-descricao {
         display: none;
     }
+}
+
+
+.chart {
+    width: 100%;
+    min-height: 316px;
 }
 
 

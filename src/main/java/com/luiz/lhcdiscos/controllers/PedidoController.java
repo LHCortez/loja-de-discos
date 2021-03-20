@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @Controller
 public class PedidoController {
@@ -47,7 +48,7 @@ public class PedidoController {
 
         Charge charge = paymentsService.charge(chargeRequest);
         Long valorPago = charge.getAmount();
-        LocalDateTime dataPedido = LocalDateTime.now();
+        LocalDateTime dataPedido = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
         BigDecimal valorPagoBigDecimal = BigDecimal.valueOf(valorPago).movePointLeft(2);
         String email = principal.getName();
 

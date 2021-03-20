@@ -17,6 +17,22 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/sweetalert2.all.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/js.js"></script>
+
+    <!--Load the AJAX API Google Charts-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!--Load the Embed API-->
+    <script>
+        (function(w,d,s,g,js,fs){
+            g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
+            js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
+            js.src='https://apis.google.com/js/platform.js';
+            fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
+        }(window,document,'script'));
+    </script>
+
+    <!-- Load the DateRangeSelector component script. -->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/date-range-selector.js" charset="UTF-8"></script>
 </head>
 
 <body class="bg-light">

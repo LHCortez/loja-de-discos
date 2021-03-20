@@ -1,17 +1,22 @@
 package com.luiz.lhcdiscos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public abstract class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -24,6 +29,7 @@ public abstract class Produto implements Serializable {
     private String nome;
 
     @Column(columnDefinition = "TEXT")
+    @JsonIgnore
     private String descricao;
 
     @NotNull(message = "Preencha o preço")
@@ -40,6 +46,12 @@ public abstract class Produto implements Serializable {
     @JoinColumn(name = "banda_id")
     @NotNull(message = "Selecione a banda")
     private Banda banda;
+
+    @PrePersist
+    @PreUpdate
+    private void prepare(){
+        this.descricao = this.descricao.replaceAll("\n","<br />");
+    }
 
     public Produto(){
     }
@@ -69,6 +81,7 @@ public abstract class Produto implements Serializable {
         this.nome = nome;
     }
 
+    @JsonIgnore
     public String getDescricao() {
         return descricao;
     }
@@ -91,10 +104,6 @@ public abstract class Produto implements Serializable {
 
     public void setCapa(String capa) {
         this.capa = capa;
-    }
-
-    public String getTipoProduto(){
-        return this.getClass().getSimpleName();
     }
 
     public Banda getBanda() {

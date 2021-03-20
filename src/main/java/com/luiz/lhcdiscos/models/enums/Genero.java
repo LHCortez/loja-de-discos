@@ -13,7 +13,7 @@ public enum Genero {
     GOTHICMETAL(4, "Gothic Metal"),
     THRASHMETAL(5, "Thrash Metal"),
     HEAVYMETAL(6, "Heavy Metal"),
-    METALCORE(7, "Metal Core"),
+    DEATHCORE(7, "Death Core"),
     OUTROS(8, "Outros");
 
     private Integer code;

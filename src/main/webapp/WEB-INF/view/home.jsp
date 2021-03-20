@@ -2,7 +2,8 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 
-<tags:pageTemplate>
+
+<tags:pageTemplate paginatitulo="">
 
     <section id="carrossel-grid" class="container-xl">
         <div class="row">
@@ -16,29 +17,18 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="https://www.loudmagazine.net/wp-content/uploads/2019/03/darkthrone.jpg"
+                            <img src="${pageContext.request.contextPath}/img/carrossel-paradiselost-obsidian.png"
                                  class="d-block w-100 carrossel-imagem" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>ÇÇÇ First slide label</h5>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </div>
                         </div>
                         <div class="carousel-item">
-                            <img
-                                    src="https://www.wearethepit.com/wp-content/uploads/2020/05/Behemoth_Grzegorz-Go%C5%82e%CC%A8biowski.jpg"
+                            <img src="${pageContext.request.contextPath}/img/carrossel-enslaved-utgard.png"
                                     class="d-block w-100 carrossel-imagem" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Second slide label</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
+
                         </div>
                         <div class="carousel-item">
-                            <img src="https://www.nuclearblast.de/en/data/bands/enslaved/news/_dsc2452.jpg"
+                            <img src="${pageContext.request.contextPath}/img/carrossel-sepultura-quadra.png"
                                  class="d-block w-100 carrossel-imagem" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Third slide label</h5>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                            </div>
+
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button"
@@ -55,13 +45,13 @@
             </div>
             <div class="col-md-3 p-0">
                 <a href="#"><img class="imagem-promocao"
-                                 src="https://www.nuclearblast.de/en/data/imagedata/shop-startseite/button-leiste/kacheln/releases/harakiri-for-the-sky-kleine-kachel_1294x576px.jpg?x=275"
+                                 src="${pageContext.request.contextPath}/img/pequeno-moonspell.png"
                                  alt=""></a>
                 <a href="#"><img class="imagem-promocao"
-                                 src="https://www.nuclearblast.de/en/data/imagedata/shop-startseite/button-leiste/kacheln/releases/magnum-kleine-kachel_1294x576px.jpg?x=275"
+                                 src="${pageContext.request.contextPath}/img/pequeno-paradiselost.png"
                                  alt=""></a>
                 <a href="#"><img class="imagem-promocao"
-                                 src="https://www.nuclearblast.de/en/data/imagedata/shop-startseite/button-leiste/kacheln/releases/frozen-soul-kleine-kachel_1294x576px.jpg?x=275"
+                                 src="${pageContext.request.contextPath}/img/pequeno-mercyfulfate.png"
                                  alt=""></a>
             </div>
         </div>

@@ -25,9 +25,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="${s:mvcUrl('CBC#bandForm').build()}">Cadastrar Banda</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${s:mvcUrl('CC#index').build()}">Estatísticas</a>
+                    </li>
                 </ul>
                 <span class="navbar-text">
-                        <%-- TODO: ajustar o usuário depois de colocar a página no spring security--%>
                         <a class="nav-link" href="${pageContext.request.contextPath}/user/logout">
                             Olá, <sec:authentication property="principal.usuarioName" /> (sair)
                         </a>

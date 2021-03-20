@@ -5,7 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<tags:pageTemplate>
+<tags:pageTemplate paginatitulo="Meu carrinho -">
 
     <section id="carrinho" class="container-xl bg-light p-3 mt-3 rounded">
         <h2 class="titulo pb-3">Carrinho</h2>

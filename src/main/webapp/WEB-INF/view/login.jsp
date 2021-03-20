@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<tags:pageTemplate>
+<tags:pageTemplate paginatitulo="Login -">
 
 
     <section id="login" class="bg-light d-flex align-items-center justify-content-center mt-3 rounded">

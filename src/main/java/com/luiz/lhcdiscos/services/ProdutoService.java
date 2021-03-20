@@ -60,6 +60,10 @@ public class ProdutoService {
         produtoRepository.deleteById(id);
     }
 
+    public void saveAll(List<Produto> produtos) {
+        produtoRepository.saveAll(produtos);
+    }
+
     private List<Produto> buscarPorSubclasse(String nomeSubclasse) {
         String nome = "com.luiz.lhcdiscos.models.".concat(nomeSubclasse);
         System.out.println(nome);
@@ -71,6 +75,8 @@ public class ProdutoService {
             throw new ObjectNotFoundException("Não foi possível encontrar o objeto com os parâmetros fornecidos");
         }
     }
+
+
 
 
 }

@@ -1,7 +1,7 @@
 package com.luiz.lhcdiscos.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.luiz.lhcdiscos.models.enums.Genero;
-import com.luiz.lhcdiscos.models.enums.Role;
 import com.luiz.lhcdiscos.validation.UniqueBand;
 import com.luiz.lhcdiscos.validation.ValueOfEnum;
 
@@ -26,12 +26,18 @@ public class Banda implements Serializable {
     private String nome;
 
     @OneToMany(mappedBy = "banda", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<Produto> produtos = new HashSet<>();
 
     @ValueOfEnum(enumClass = Genero.class, message = "Escolha o gênero musical")
     private Genero genero;
 
     public Banda(){
+    }
+
+    public Banda(String nome, Genero genero){
+        this.nome = nome;
+        this.genero = genero;
     }
 
     public Banda(String nome) {
@@ -54,6 +60,7 @@ public class Banda implements Serializable {
         this.nome = nome;
     }
 
+    @JsonIgnore
     public Set<Produto> getProdutos() {
         return Collections.unmodifiableSet(produtos);
     }
@@ -75,11 +82,11 @@ public class Banda implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Banda banda = (Banda) o;
-        return Objects.equals(nome, banda.nome) && genero == banda.genero;
+        return Objects.equals(id, banda.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, genero);
+        return Objects.hash(id);
     }
 }

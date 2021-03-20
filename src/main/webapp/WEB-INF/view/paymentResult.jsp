@@ -2,7 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<tags:pageTemplate>
+<tags:pageTemplate paginatitulo="Pagamento -">
 
     <section id="pagamento-resultado" class="container-xl bg-light p-3 mt-3 rounded">
 

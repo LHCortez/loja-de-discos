@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<tags:pageTemplate>
+<tags:pageTemplate paginatitulo="Cadastro de novo usuário -">
 
     <section id="cria-conta" class="bg-light p-3 mt-3 rounded">
 
