@@ -7,7 +7,10 @@ import com.luiz.lhcdiscos.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.WebApplicationContext;
@@ -28,7 +31,7 @@ public class CarrinhoController {
     @Autowired
     private CarrinhoCompras carrinho;
 
-    @RequestMapping(method=RequestMethod.GET)
+    @GetMapping
     public ModelAndView carrinho(){
         Map<Produto, Integer> produtosNoCarrinho = carrinho.getItens();
         ModelAndView modelAndView = new ModelAndView("cart");
@@ -37,23 +40,26 @@ public class CarrinhoController {
                 carrinho.getValorTotalDoCarrinho().movePointRight(2).intValueExact());
         modelAndView.addObject("stripePublicKey", stripePublicKey);
         modelAndView.addObject("currency", PagamentoRequest.Currency.BRL);
+
+
+        modelAndView.addObject("produtos", produtoService.findAllByOrderByDateAsc(PageRequest.of(0, 10)));
         return modelAndView;
     }
 
-    @RequestMapping(value="/add", method = RequestMethod.POST)
+    @PostMapping("/add")
     public ModelAndView add(Integer id) {
         Produto produto = produtoService.searchById(id);
         carrinho.add(produto);
         return new ModelAndView("redirect:/cart");
     }
 
-    @RequestMapping(value="/remove", method = RequestMethod.POST)
+    @PostMapping("/remove")
     public ModelAndView remove(Integer id) {
         carrinho.remover(id);
         return new ModelAndView("redirect:/cart");
     }
 
-    @RequestMapping(value="/setquantidade", method = RequestMethod.POST)
+    @PostMapping("/setquantidade")
     public ModelAndView setQuantidade(Integer id, Integer qnt) {
         if (qnt == null) throw new NullPointerException();
         carrinho.setQuantidade(id, qnt);

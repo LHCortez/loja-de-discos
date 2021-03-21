@@ -8,49 +8,53 @@
     <section id="carrossel-grid" class="container-xl">
         <div class="row">
             <div class="col-md-9 p-0">
-                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel"
+                <div id="carousel" class="carousel slide" data-bs-ride="carousel"
                      data-bs-interval="4000">
                     <ol class="carousel-indicators">
-                        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
-                        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
-                        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+                        <li data-bs-target="#carousel" data-bs-slide-to="0" class="active"></li>
+                        <li data-bs-target="#carousel" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#carousel" data-bs-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="${pageContext.request.contextPath}/img/carrossel-paradiselost-obsidian.png"
-                                 class="d-block w-100 carrossel-imagem" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="${pageContext.request.contextPath}/img/carrossel-enslaved-utgard.png"
+                            <a href="${pageContext.request.contextPath}/product/14">
+                                <img src="${pageContext.request.contextPath}/img/carrossel-paradiselost-obsidian.png"
                                     class="d-block w-100 carrossel-imagem" alt="...">
-
+                            </a>
                         </div>
                         <div class="carousel-item">
-                            <img src="${pageContext.request.contextPath}/img/carrossel-sepultura-quadra.png"
-                                 class="d-block w-100 carrossel-imagem" alt="...">
-
+                            <a href="${pageContext.request.contextPath}/product/12">
+                                <img src="${pageContext.request.contextPath}/img/carrossel-enslaved-utgard.png"
+                                        class="d-block w-100 carrossel-imagem" alt="...">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="${pageContext.request.contextPath}/product/15">
+                                <img src="${pageContext.request.contextPath}/img/carrossel-sepultura-quadra.png"
+                                     class="d-block w-100 carrossel-imagem" alt="...">
+                            </a>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button"
+                    <a class="carousel-control-prev" href="#carousel" role="button"
                        data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
+                        <span class="visually-hidden">Anterior</span>
                     </a>
-                    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button"
+                    <a class="carousel-control-next" href="#carousel" role="button"
                        data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
+                        <span class="visually-hidden">Próximo</span>
                     </a>
                 </div>
             </div>
-            <div class="col-md-3 p-0">
-                <a href="#"><img class="imagem-promocao"
+            <div class="col-md-3 p-0 text-center">
+                <a href="${pageContext.request.contextPath}/product/16"><img class="imagem-promocao"
                                  src="${pageContext.request.contextPath}/img/pequeno-moonspell.png"
                                  alt=""></a>
-                <a href="#"><img class="imagem-promocao"
+                <a href="${pageContext.request.contextPath}/product/17"><img class="imagem-promocao"
                                  src="${pageContext.request.contextPath}/img/pequeno-paradiselost.png"
                                  alt=""></a>
-                <a href="#"><img class="imagem-promocao"
+                <a href="${pageContext.request.contextPath}/product/2"><img class="imagem-promocao"
                                  src="${pageContext.request.contextPath}/img/pequeno-mercyfulfate.png"
                                  alt=""></a>
             </div>

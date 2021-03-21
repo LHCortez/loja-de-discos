@@ -29,4 +29,7 @@ public interface ProdutoRepository<T extends Produto> extends JpaRepository<T, I
     @Query("SELECT p FROM Produto p JOIN FETCH p.banda b WHERE b = :banda")
     List<Produto> searchProdutoByBanda(Banda banda, Pageable pageable);
 
+    @Query("SELECT p FROM Produto p ORDER BY p.lancamento DESC")
+    List<Produto> findAllByOrderByDateAsc(Pageable pageable);
+
 }

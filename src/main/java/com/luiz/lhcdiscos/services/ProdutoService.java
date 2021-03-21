@@ -56,6 +56,10 @@ public class ProdutoService {
         return produtoRepository.searchProdutoByBanda(banda, pageable);
     }
 
+    public List<Produto> findAllByOrderByDateAsc(Pageable pageable) {
+        return produtoRepository.findAllByOrderByDateAsc(pageable);
+    }
+
     public void deleteById(Integer id) {
         produtoRepository.deleteById(id);
     }

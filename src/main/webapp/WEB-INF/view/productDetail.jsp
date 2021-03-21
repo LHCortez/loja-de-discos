@@ -9,7 +9,7 @@
 
         <div class="container">
             <div class="row gap-2">
-                <div class="col-md-10 col-xs-12 bg-light rounded p-4">
+                <div class="col-12 col-lg-10 bg-light rounded p-4 pb-5">
                     <div class="row">
                         <div class="col-sm-4 col-xs-12">
                             <img src="${pageContext.request.contextPath}${produto.capa}" class="imagem-detalhe" alt="...">
@@ -40,6 +40,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col rounded p-2" id="sugestoes">
                     <h3 class="fs-6 titulo">Confira também esses produtos similares!</h3>
                     <div class="sugestoes-card-group">
@@ -50,8 +51,16 @@
                                         <img src="${pageContext.request.contextPath}${produto.capa}"
                                              class="card-img-top imagem-sugestoes" alt="...">
                                         <div class="card-body pb-1">
-                                            <h5 class="card-title texto-sugestoes">${produto.nome} -
-                                                    ${produto.tipo} - ${produto.banda.nome} -
+                                            <h5 class="card-title texto-sugestoes">
+                                                    ${produto.nome} - ${produto.tipo} -
+                                                <c:choose>
+                                                    <c:when test="${produto.tipo.equals('Livro')}">
+                                                        ${produto.autor} -
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        ${produto.banda.nome} -
+                                                    </c:otherwise>
+                                                </c:choose>
                                                 R$ ${produto.preco}</h5>
                                         </div>
                                     </div>

@@ -4,18 +4,18 @@
 
 <header>
     <section id="banner container-xl">
-            <div id="container-banner">
-                <!-- Logo gerado em: https://www.brandcrowd.com/maker/logo/barbarian-devil-esports-clan-19187#popup-colorpalette -->
-                <a href="${s:mvcUrl('HC#home').build()}">
-                    <img class="logo mx-auto d-block pt-2" src="${pageContext.request.contextPath}/img/logo-transparent.png" alt="">
-                </a>
+        <div id="container-banner">
+            <!-- Logo gerado em: https://www.brandcrowd.com/maker/logo/barbarian-devil-esports-clan-19187#popup-colorpalette -->
+            <a href="${s:mvcUrl('HC#home').build()}">
+                <img class="logo mx-auto d-block pt-2" src="${pageContext.request.contextPath}/img/logo-transparent.png" alt="">
+            </a>
 
-                <form action="${pageContext.request.contextPath}/search" method="get" id="form-busca"
-                      class="d-flex mx-auto mt-3 mb-3">
-                    <input name="s" class="form-control me-2" type="search" placeholder="Pesquisar..." aria-label="Search">
-                    <button class="btn botao-busca" type="submit"><i class="fas fa-search"></i></button>
-                </form>
-            </div>
+            <form action="${pageContext.request.contextPath}/search" method="get" id="form-busca"
+                  class="d-flex mx-auto mt-3 mb-3">
+                <input name="s" class="form-control me-2" type="search" placeholder="Pesquisar..." aria-label="Search">
+                <button class="btn botao-busca" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
 
         <ul class="list-inline list-group list-group-horizontal-md d-flex justify-content-end mb-2 text-end" id="entrar-e-carrinho-link">
             <sec:authorize access="isAuthenticated()">

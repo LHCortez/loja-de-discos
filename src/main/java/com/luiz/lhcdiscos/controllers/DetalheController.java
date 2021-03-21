@@ -40,7 +40,7 @@ public class DetalheController {
         }
         Set<Produto> produtosSet = new HashSet<>(produtos);
         modelAndView.addObject("produto", produto);
-        modelAndView.addObject("produtos", produtosSet.stream().limit(2).collect(Collectors.toList()));
+        modelAndView.addObject("produtos", produtosSet.stream().limit(3).collect(Collectors.toList()));
         return modelAndView;
     }
 

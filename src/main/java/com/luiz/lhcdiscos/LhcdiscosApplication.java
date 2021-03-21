@@ -62,6 +62,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         Banda darkthrone = new Banda("Darkthrone", Genero.BLACKMETAL);
         Banda emperor = new Banda("Emperor", Genero.BLACKMETAL);
         Banda celticFrost = new Banda("Celtic Frost", Genero.BLACKMETAL);
+        Banda enslaved = new Banda("Enslaved", Genero.BLACKMETAL);
 
         Banda candlemass = new Banda("Candlemass", Genero.DOOMMETAL);
         Banda saintvitus = new Banda("Saint Vitus", Genero.DOOMMETAL);
@@ -74,7 +75,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
 
         bandaService.saveAll(Arrays.asList(mercyfulFate, judasPriest, behemoth, death, emperor, moonspell, paradiseLost,
                 theatreOfTragedy, megadeth, sepultura, darkFortress, mgla, darkthrone, candlemass, saintvitus,
-                carnifex, thyArtIsMurder, petShopBoys, babymetal, celticFrost));
+                carnifex, thyArtIsMurder, petShopBoys, babymetal, celticFrost, enslaved));
 
 //        PRODUTOS ---------------------------------------------------------------------------------------------------
 
@@ -197,6 +198,20 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         monotheist.setDescricao("Monotheist é o sexto é último álbum de estúdio da banda suíça de heavy metal Celtic Frost, lançado em 2006. Ele é a primeira gravação nova lançada em 14 anos pela banda após uma série de relançamentos.");
         monotheist.setBanda(celticFrost);
 
+        Album utgard = new Album();
+        utgard.setNome("Utgard");
+        utgard.setFormato(AlbumFormato.CD);
+        utgard.setCapa("https://e.snmc.io/i/600/w/978bd974c18ef8417cf8f46345d210c0/8346050/enslaved-utgard-Cover-Art.jpg");
+        utgard.setLancamento(LocalDate.of(2020, 10, 2));
+        utgard.setPreco(BigDecimal.valueOf(45.50));
+        utgard.setDescricao("O ENSLAVED vem cuidadosamente se reinventando a cada álbum, refinando e melhorando sua criatividade, levando seu Black Metal pagão e progressivo a um nível totalmente único. “A época do álbum E [14º álbum de estúdio, lançado em 2017] foi a mais intensa que tivemos até agora”, comenta com entusiasmo o guitarrista Ivar Bjørnson. “Cobrimos mais territórios do que nunca e, com alegria, percebemos que éramos mais notados fora da cena do metal extremo”. Ele lembra que foi uma época emocionante mas, ao mesmo tempo, estranha porque um dia eles estavam tocando seu revolucionário álbum “Frost” na íntegra apenas para no dia seguinte, tocar suas músicas mais psicodélicas em um festival progressivo. Só agora ficou claro que este foi apenas o começo de mais uma jornada.\n" +
+                "\n" +
+                "E é assim que chegamos ao novo e 15º álbum de estúdio “Utgard”. “Utgard pode ser inúmeras coisas”, diz o vocalista Grutle Kjellson. “Uma imagem, uma metáfora, uma localização esotérica. Na mitologia nórdica, a conhecemos como uma paisagem onde vivem os gigantes, onde os deuses de Asgard não tem nenhum controle. A nível psicológico, pode representar as esferas do sono, sonhos ou sonhos lúcidos; as fronteiras externas da sua própria consciência e o que está além delas no subconsciente. Utgard representa algo difícil de dominar completamente e até talvez impossível. Esse algo é perigoso, caótico, incontrolável. No entanto, há algo encantador em um lugar como este. É onde habitam a loucura, a criatividade, o humor e o caos”.\n" +
+                "\n" +
+                "“Utgard pode ser um lugar muito assustador, mas é exatamente disso que trata o álbum”, acrescenta Grutle. “Vencer o medo e conviver com os seres encontrados neste lugar”.");
+        utgard.setBanda(enslaved);
+
+
         Livro lobosQueForamHomens = new Livro();
         lobosQueForamHomens.setNome("Lobos que foram homens");
         lobosQueForamHomens.setCapa("https://images-na.ssl-images-amazon.com/images/I/51vrlPov-hL._SX346_BO1,204,203,200_.jpg");
@@ -207,8 +222,57 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         lobosQueForamHomens.setDescricao("Com mais de vinte e cinco anos de carreira, o Moonspell é a banda de heavy metal mais importante de Portugal. Agora, sua história é contada pela primeira vez. Mais do que a simples biografia de uma banda, LOBOS QUE FORAM HOMENS disseca uma carreira feita de riscos e conquistas, revelando fatos até então inteiramente desconhecidos do público. Com depoimentos de todos os seus atuais e antigos membros, bem como de diversos colaboradores e membros de outras bandas de referência, o livro apresenta a história contada sem filtros, com todos os ossos à mostra. Adentrando no círculo íntimo do Moonspell, o autor explora seus sucessos e tribulações, com o foco direcionado para o lado pessoal e humano de suas relações, que nem sempre foram fáceis, tornando LOBOS QUE FORAM HOMENS um retrato essencial para compreender a importância desse fenômeno do metal europeu.");
         lobosQueForamHomens.setBanda(moonspell);
 
+        Album hermitage = new Album();
+        hermitage.setNome("Hermitage");
+        hermitage.setFormato(AlbumFormato.VINIL);
+        hermitage.setCapa("https://e.snmc.io/i/600/w/94385ac71f9d2d8f6e6a360a5b14f1d2/8586029/moonspell-hermitage-Cover-Art.jpg");
+        hermitage.setLancamento(LocalDate.of(2021, 2, 26));
+        hermitage.setPreco(BigDecimal.valueOf(119.90));
+        hermitage.setDescricao("MOONSPELL is approaching their 30th anniversary as a band more ambitiously and stronger than ever. Hermitage – the gothic metal pioneers‘13th studio album – was recorded, mixed and mastered by Jaime Gomez Arellano (Paradise Lost, Primordial, Ghost, Sólstafir, etc.) at the Orgone Studios in the UK. Building upon the album’s dark, revolutionary and sensitive facets, it’s an entertaining yet epic journey through the darkest days of human existence. Beautifully crafted tracks such as “The Greater Good“ show us the modernity of the wolves in 2021, while “Common Prayers“ embraces the MOONSPELL tradition of writing a dark, gothic metal song like no other band can. “All Or Nothing“ brings back the ethereal and melodic sounds of MOONSPELL, served by a beautiful musical landscape, making it most likely one of the deepest and most sincerely heart-breaking tunes the Portuguese dark metal titans have ever written. But of course, they don‘t stray away from their metal roots, especially influenced by underground metal bands like Bathory on tracks like the bombastic and epic metal anthem “The Hermit Saints“! Hermitage is a revolutionary, wonderfully intuitive and epic journey by one of the most distinctive dark metal bands of all time, and a testament to what they’ve always loved the most: Honest, emotional metal that binds us even in the darkest times.");
+        hermitage.setBanda(moonspell);
+
+        Album obsidian = new Album();
+        obsidian.setNome("Obsidian");
+        obsidian.setFormato(AlbumFormato.CD);
+        obsidian.setCapa("https://e.snmc.io/i/600/w/80108bf1dd88c4e53395a97416193ac2/8181307/paradise-lost-obsidian-Cover-Art.jpg");
+        obsidian.setLancamento(LocalDate.of(2020, 5, 15));
+        obsidian.setPreco(BigDecimal.valueOf(50.00));
+        obsidian.setDescricao("Produzido pela própria banda, com a ajuda do renomado guru de estúdio Jamie \"Gomez\" Arellano, \"Obsidian\" é outra amostra da ardente paixão do PARADISE LOST por continuar em frente, sempre. Os fãs da banda que preferem algo mais feroz e mais raiz, se sentiram bem servidos com músicas como ?The Devil Embraced? e ?Serenity?, enquanto que os fãs mais góticos serão instantaneamente hipnotizados por faixas como ?Ghosts?, ?Forsaken? e ?Ending Days?. Entre esses dois extremos, temos um PARADISE LOST que continua desafiando os limites da sua identidade musical há muito estabelecida, resultando na criação de algumas das músicas mais ousadas de sua carreira até hoje.\n" +
+                "\n" +
+                "E como sempre, para defender a mística de sua banda, Holmes continua relutante em revelar os detalhes de suas letras, mas \"Obsidian\" é claramente um álbum com muitas coisas preocupantes que não saem da sua cabeça. \"Não há um tema central. É exatamente como me sentia na época\", explica Nick. \"Se houver uma ideia ou um conceito por trás disso, é a ideia de que certas decisões podem afetar você e sua vida muito tempo depois, como acontece com o Efeito Borboleta. Eu amo esse conceito de você fazer algo hoje que possa afetar algo mais tarde. [...]\"\n" +
+                "\n" +
+                "Com um dos materiais mais poderosos de sua banda, Nick Holmes utilizou uma variedade de conceitos líricos e declarações misteriosas em \"Obsidian\" e segundo Greg Mackintosh manter esse ar de mistério é uma parte fundamental da identidade do PARADISE LOST. Enquanto eles marcham para sua quarta década como banda, o PARADISE LOST nunca soou mais potente ou unido em sua determinação de dar vida à escuridão. \"Obsidian\" é mais um ponto alto na carreira da banda, assim como os álbuns \"The Plague Within\" e \"Medusa\", mas superando-os artisticamente em profundidade, clima e poder emocional.\n" +
+                "\n" +
+                "Enquanto que muitas outras bandas do estilo abraçam o negócio da nostalgia, o PARADISE LOST continua sendo uma força vibrante, vital e infinitamente elegante dentro do gênero.");
+        obsidian.setBanda(paradiseLost);
+
+        Album draconianTimes = new Album();
+        draconianTimes.setNome("Draconian Times");
+        draconianTimes.setFormato(AlbumFormato.CD);
+        draconianTimes.setCapa("https://e.snmc.io/i/600/w/6689efc3ca7d75cce5097d406a52c290/1215286/paradise-lost-draconian-times-Cover-Art.jpg");
+        draconianTimes.setLancamento(LocalDate.of(1995, 6, 12));
+        draconianTimes.setPreco(BigDecimal.valueOf(39.90));
+        draconianTimes.setDescricao("Draconian Times is the fifth studio album by British metal band Paradise Lost. Two tracks from the album, \"The Last Time\" and \"Forever Failure\", were released as singles with music videos, and both charted.\n" +
+                "\n" +
+                "The album was played in its entirety on the band's live record Draconian Times MMXI. It was also released with Shades of God and Icon in a boxed set called Original Album Classics.\n" +
+                "\n" +
+                "A song called \"Another Desire\" was written during the recording of Draconian Times, but not released on the album or the reissues. Instead, it was included in the \"Forever Failure\" single.");
+        draconianTimes.setBanda(paradiseLost);
+
+        Album quadra = new Album();
+        quadra.setNome("Quadra");
+        quadra.setFormato(AlbumFormato.CD);
+        quadra.setCapa("https://e.snmc.io/i/600/w/0e1086ec99427554e83e43c349cb56f2/7980491/sepultura-quadra-Cover-Art.jpg");
+        quadra.setLancamento(LocalDate.of(2020, 2, 7));
+        quadra.setPreco(BigDecimal.valueOf(30.00));
+        quadra.setDescricao("Quadra é o décimo quinto álbum de estúdio da banda brasileira Sepultura, lançado em 7 de fevereiro de 2020, através da gravadora Nuclear Blast. É um álbum conceitual baseado na numerologia, no número \"quatro\" e seus significados como descrito no Quadrívio. Assim como em seu álbum anterior Machine Messiah, a banda foi à Suécia para gravar com o produtor Jens Bogren.\n" +
+                "\n" +
+                "É o álbum mais bem sucedido da banda desde Against de 1998, entrando nas paradas musicais em 17 países, e no top 20 em 7 países. É também o álbum mais bem sucedido da história da banda na Alemanha e Suíça, ultrapassando a posição de Roots, atingindo a posição número 5 e número 13, respectivamente.");
+        quadra.setBanda(sepultura);
+
         produtoService.saveAll(Arrays.asList(melissa, dontBreakTheOath, sadWingsOfDestiny, painkiller, firepower,
-                evangelicis, demigod, leprosy, inTheNighsideEclipse, onlyDeathIsReal, monotheist, lobosQueForamHomens));
+                evangelicis, demigod, leprosy, inTheNighsideEclipse, onlyDeathIsReal, monotheist, utgard, lobosQueForamHomens,
+                obsidian, quadra, hermitage, draconianTimes));
 
 //        USUÁRIOS ---------------------------------------------------------------------------------------------------
 
