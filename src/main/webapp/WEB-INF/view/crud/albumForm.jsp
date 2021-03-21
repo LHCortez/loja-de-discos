@@ -56,13 +56,13 @@
         <form:form modelAttribute="album" action="${s:mvcUrl('CPC#saveAlbum').build()}"
                    method="POST" enctype="multipart/form-data">
 
-            <form:errors/>
+            <form:errors cssClass="text-danger"/>
 
             <fieldset class="nome row mb-3">
                 <label for="produto-nome" class="col-md-2 col-lg-1 col-form-label">Nome</label>
                 <div class="col-md-6 col-lg-4">
                     <form:input required="true" path="nome" type="text" class="form-control" id="produto-nome" value="${album.nome}"/>
-                    <form:errors path="nome" cssClass="error"/>
+                    <form:errors path="nome" cssClass="text-danger"/>
                 </div>
             </fieldset>
 
@@ -82,7 +82,7 @@
                             </c:choose>
                         </c:forEach>
                     </form:select>
-                    <form:errors path="formato" cssClass="error"/>
+                    <form:errors path="formato" cssClass="text-danger"/>
                 </div>
             </fieldset>
 
@@ -102,7 +102,7 @@
                             </c:choose>
                         </c:forEach>
                     </form:select>
-                    <form:errors path="banda" cssClass="error"/>
+                    <form:errors path="banda" cssClass="text-danger"/>
                 </div>
             </fieldset>
 
@@ -111,7 +111,7 @@
                 <div class="col-md-6 col-lg-4">
                     <form:textarea required="true" path="descricao" type="text" class="form-control" rows="7"
                                    id="produto-descricao" value="${album.descricao}"/>
-                    <form:errors path="descricao" cssClass="error"/>
+                    <form:errors path="descricao" cssClass="text-danger"/>
                 </div>
             </fieldset>
 
@@ -120,7 +120,7 @@
                 <div class="col-md-3 col-xl-2">
                     <form:input required="true" path="preco" type="number" min="1" class="form-control" step="any"
                                 id="produto-preco" value="${album.preco}"/>
-                    <form:errors path="preco" cssClass="error"/>
+                    <form:errors path="preco" cssClass="text-danger"/>
                 </div>
             </fieldset>
 
@@ -129,7 +129,7 @@
                 <div class="col-md-3 col-xl-2">
                     <form:input required="true" path="lancamento" type="date" class="form-control"
                                 id="produto-lancamento" value="${album.lancamento}"/>
-                    <form:errors path="lancamento" cssClass="error"/>
+                    <form:errors path="lancamento" cssClass="text-danger"/>
                 </div>
             </fieldset>
 

@@ -482,7 +482,9 @@ a {
 }
 
 #login .texto-cor-especial:hover,
-#login .texto-cor-especial:active {
+#login .texto-cor-especial:active,
+#carrinho .texto-cor-especial:hover,
+#carrinho .texto-cor-especial:active{
     color: unset!important;
     text-decoration: underline;
 }

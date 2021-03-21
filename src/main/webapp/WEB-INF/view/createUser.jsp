@@ -15,30 +15,30 @@
                 <label for="nome" class="col-sm-4 col-form-label">Nome completo</label>
                 <div class="col-sm-8">
                     <form:input path="nome" size="30" type="text" class="form-control" id="nome" placeholder="Nome completo" />
-                    <form:errors path="nome" cssClass="error"/>
+                    <form:errors path="nome" cssClass="text-danger"/>
                 </div>
             </div>
             <div class="row my-4">
                 <label for="email" class="col-sm-4 col-form-label">E-mail</label>
                 <div class="col-sm-8">
                     <form:input type="email" class="form-control" id="email" placeholder="E-mail" path="email"/>
-                    <form:errors path="email" cssClass="error"/>
+                    <form:errors path="email" cssClass="text-danger"/>
                 </div>
             </div>
             <div class="row my-4">
                 <label for="senha" class="col-sm-4 col-form-label">Senha</label>
                 <div class="col-sm-8">
                     <form:password path="senha" class="form-control" id="senha" placeholder="Senha"/>
-                    <form:errors path="senha" cssClass="error"/>
+                    <form:errors path="senha" cssClass="text-danger"/>
                 </div>
             </div>
-<%--            <div class="row mb-3">--%>
-<%--                <label for="senha2" class="col-sm-4 col-form-label">Repita a senha</label>--%>
-<%--                <div class="col-sm-8">--%>
-<%--                    <input type="password" class="form-control" id="senha2" placeholder="Repita a senha"--%>
-<%--                           name="senhConfirmation">--%>
-<%--                </div>--%>
-<%--            </div>--%>
+            <div class="row my-4">
+                <label for="confirmaSenha" class="col-sm-4 col-form-label">Repita a senha</label>
+                <div class="col-sm-8">
+                    <form:password path="confirmaSenha" class="form-control" id="confirmaSenha" placeholder="Repita a senha"/>
+                    <form:errors cssClass="text-danger"/>
+                </div>
+            </div>
             <fieldset class="row my-4">
                 <legend class="col-form-label col-sm-4 pt-0">Tipo de conta</legend>
                 <div class="col-sm-8">

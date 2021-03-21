@@ -26,9 +26,8 @@ public class UsuarioService {
         Usuario usuario = new Usuario();
         usuario.setNome(novoUsuarioLocalDTO.getNome());
         usuario.setEmail((novoUsuarioLocalDTO.getEmail()));
-        usuario.setSenha((novoUsuarioLocalDTO.getSenha()));
         usuario.addRoles(novoUsuarioLocalDTO.getRole());
-        usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        usuario.setSenha(passwordEncoder.encode(novoUsuarioLocalDTO.getSenha()));
         usuario.setAuthenticationProvider(AuthenticationProvider.LOCAL);
         save(usuario);
     }

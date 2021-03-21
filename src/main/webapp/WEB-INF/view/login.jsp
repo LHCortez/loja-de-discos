@@ -7,8 +7,21 @@
 
 
     <section id="login" class="bg-light d-flex align-items-center justify-content-center mt-3 rounded">
+
         <div id="login-form-container mx-1">
             <h4 class="text-center my-5">Faça o login!</h4>
+
+            <c:if test="${param.error != null}">
+                <p class="text-danger mb-0">Falha ao fazer Login.</p>
+                    <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+                        <p class="text-danger"><c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" /></p>
+                    </c:if>
+            </c:if>
+
+            <c:if test="${novoUsuario == true}">
+                <p class="text-success mb-0">Novo usuário cadastrado!</p>
+            </c:if>
+
             <form:form id="login-form" action="${pageContext.request.contextPath}/user/login" method="post">
                 <div class="form-floating">
                     <input type="email" name="username" class="form-control my-4" aria-describedby="emailHelp"

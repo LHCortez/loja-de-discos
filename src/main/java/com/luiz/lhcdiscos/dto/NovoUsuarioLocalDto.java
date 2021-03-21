@@ -1,11 +1,13 @@
 package com.luiz.lhcdiscos.dto;
 
 import com.luiz.lhcdiscos.models.enums.Role;
+import com.luiz.lhcdiscos.validation.ConfirmPasswords;
 import com.luiz.lhcdiscos.validation.UniqueUsername;
 import com.luiz.lhcdiscos.validation.ValidPassword;
 
 import javax.validation.constraints.*;
 
+@ConfirmPasswords
 public class NovoUsuarioLocalDto {
 
     @NotBlank(message = "Preencha seu nome completo")
@@ -19,6 +21,8 @@ public class NovoUsuarioLocalDto {
 
     @ValidPassword
     private String senha;
+
+    private String confirmaSenha;
 
     private Role role = Role.ROLE_USER;
 
@@ -46,6 +50,14 @@ public class NovoUsuarioLocalDto {
         this.senha = senha;
     }
 
+    public String getConfirmaSenha() {
+        return confirmaSenha;
+    }
+
+    public void setConfirmaSenha(String confirmaSenha) {
+        this.confirmaSenha = confirmaSenha;
+    }
+
     public String getRoleNome() {
         return role.name();
     }
@@ -61,5 +73,6 @@ public class NovoUsuarioLocalDto {
     public void setRole(String roleString) {
         this.role = Role.valueOf(roleString);
     }
+
 
 }

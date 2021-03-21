@@ -13,7 +13,8 @@
             <c:choose>
                 <c:when test="${carrinhoCompras.quantidadeTotal == 0}">
                     <p>O seu carrinho está vazio.</p>
-                    <p><a href="${s:mvcUrl('BC#busca').build()}">Clique aqui</a> e encontre diversos produtos de seu interesse! </p>
+                    <p><a href="${s:mvcUrl('BC#busca').build()}" class="texto-cor-especial">Clique aqui</a>
+                        e encontre diversos produtos de seu interesse! </p>
                 </c:when>
                 <c:otherwise>
                     <div class="table-responsive">
@@ -39,7 +40,8 @@
                                         </a>
                                     </td>
                                     <td data-title="Produto">
-                                        <a href="${s:mvcUrl('DC#detalhe').arg(0, produto.id).build()}">
+                                        <a href="${s:mvcUrl('DC#detalhe').arg(0, produto.id).build()}"
+                                           class="texto-cor-especial fw-bold">
                                                 ${produto.banda.nome} - ${produto.nome} - ${produto.tipo}
                                         </a>
                                         <p class="text-muted">Preço unitário: R$ ${produto.preco}</p>
@@ -77,15 +79,15 @@
                             </c:forEach>
                             </tbody>
                             <tfoot>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td class="fw-bold text-center text-nowrap" colspan="2">Quantidade Total:</td>
+                                <td class="text-center preco">${carrinhoCompras.quantidadeTotal}</td>
+                            </tr>
                                 <tr>
                                     <td colspan="2"></td>
-                                    <td class="fw-bold text-end" colspan="2">Valor total:</td>
-                                    <td class="text-end preco">R$ ${amountInCents/100}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"></td>
-                                    <td class="fw-bold text-end" colspan="2">Quantidade Total:</td>
-                                    <td class="text-end preco">${carrinhoCompras.quantidadeTotal}</td>
+                                    <td class="fw-bold text-center text-nowrap" colspan="2">Valor total:</td>
+                                    <td class="text-center preco">R$ ${amountInCents/100}</td>
                                 </tr>
                             </tfoot>
                         </table>

@@ -55,6 +55,7 @@ public class PedidoController {
         if (charge.getPaid() && valorPagoBigDecimal.equals(carrinho.getValorTotalDoCarrinho())) {
             Integer pedidoId = finalizaCompra(email, valorPagoBigDecimal, dataPedido, charge.getId(), charge.getStatus());
             model.addAttribute("pedidoId", pedidoId);
+            model.addAttribute("valorPago", valorPagoBigDecimal);
             model.addAttribute("error", null);
         } else {
             throw new PagamentoException("Houve algum problema com o pagamento do cliente " + principal.getName());

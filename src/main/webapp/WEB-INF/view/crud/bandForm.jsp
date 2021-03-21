@@ -31,8 +31,8 @@
                 <div class="col-md-4">
                     <form:input required="true" path="nome" type="text" class="form-control" id="banda-nome"
                                 value="${banda.nome}"/>
-                    <form:errors path="nome" cssClass="error"/>
-                    <form:errors/>
+                    <form:errors path="nome" cssClass="text-danger"/>
+                    <form:errors cssClass="text-danger"/>
                 </div>
             </fieldset>
 
@@ -52,7 +52,7 @@
                             </c:choose>
                         </c:forEach>
                     </form:select>
-                    <form:errors path="genero" cssClass="error"/>
+                    <form:errors path="genero" cssClass="text-danger"/>
                 </div>
             </fieldset>
 
