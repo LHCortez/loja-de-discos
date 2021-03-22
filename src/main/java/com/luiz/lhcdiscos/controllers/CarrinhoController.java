@@ -2,7 +2,7 @@ package com.luiz.lhcdiscos.controllers;
 
 import com.luiz.lhcdiscos.models.CarrinhoCompras;
 import com.luiz.lhcdiscos.stripe.PagamentoRequest;
-import com.luiz.lhcdiscos.models.Produto;
+import com.luiz.lhcdiscos.models.entities.Produto;
 import com.luiz.lhcdiscos.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 

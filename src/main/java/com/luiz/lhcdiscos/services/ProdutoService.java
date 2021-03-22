@@ -1,13 +1,14 @@
 package com.luiz.lhcdiscos.services;
 
-import com.luiz.lhcdiscos.models.Banda;
-import com.luiz.lhcdiscos.models.Produto;
+import com.luiz.lhcdiscos.models.entities.Banda;
+import com.luiz.lhcdiscos.models.entities.Produto;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.models.enums.Genero;
 import com.luiz.lhcdiscos.repositories.AlbumRepository;
 import com.luiz.lhcdiscos.repositories.ProdutoRepository;
 import com.luiz.lhcdiscos.models.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +59,10 @@ public class ProdutoService {
 
     public List<Produto> findAllByOrderByDateAsc(Pageable pageable) {
         return produtoRepository.findAllByOrderByDateAsc(pageable);
+    }
+
+    public Page<Produto> findProdutoByPage(Pageable pageable) {
+        return produtoRepository.findAll(pageable);
     }
 
     public void deleteById(Integer id) {

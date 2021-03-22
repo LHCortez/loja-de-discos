@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.services;
 
-import com.luiz.lhcdiscos.models.Banda;
+import com.luiz.lhcdiscos.models.entities.Banda;
 import com.luiz.lhcdiscos.models.enums.Genero;
 import com.luiz.lhcdiscos.repositories.BandaRepository;
 import com.luiz.lhcdiscos.models.exceptions.ObjectNotFoundException;

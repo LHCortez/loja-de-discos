@@ -1,4 +1,4 @@
-package com.luiz.lhcdiscos.models;
+package com.luiz.lhcdiscos.models.entities;
 
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.validation.UniqueAlbum;

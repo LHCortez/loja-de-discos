@@ -1,7 +1,7 @@
 package com.luiz.lhcdiscos.controllers;
 
 import com.luiz.lhcdiscos.exporters.ProdutoExcelExporter;
-import com.luiz.lhcdiscos.models.*;
+import com.luiz.lhcdiscos.models.entities.*;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.models.enums.CamisetaSize;
 import com.luiz.lhcdiscos.services.*;

@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.validation;
 
-import com.luiz.lhcdiscos.models.Livro;
+import com.luiz.lhcdiscos.models.entities.Livro;
 import com.luiz.lhcdiscos.services.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
 

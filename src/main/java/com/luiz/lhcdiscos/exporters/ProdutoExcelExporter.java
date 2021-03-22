@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.exporters;
 
-import com.luiz.lhcdiscos.models.*;
+import com.luiz.lhcdiscos.models.entities.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.WorkbookUtil;
 import org.apache.poi.xssf.usermodel.XSSFFont;
@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoExcelExporter {

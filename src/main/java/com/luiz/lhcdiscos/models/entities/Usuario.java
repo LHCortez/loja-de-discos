@@ -1,4 +1,4 @@
-package com.luiz.lhcdiscos.models;
+package com.luiz.lhcdiscos.models.entities;
 
 import com.luiz.lhcdiscos.models.enums.AuthenticationProvider;
 import com.luiz.lhcdiscos.models.enums.Role;

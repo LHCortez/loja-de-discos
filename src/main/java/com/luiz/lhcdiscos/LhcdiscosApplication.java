@@ -1,13 +1,10 @@
 package com.luiz.lhcdiscos;
 
-import com.luiz.lhcdiscos.models.*;
+import com.luiz.lhcdiscos.models.entities.*;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.models.enums.CamisetaSize;
 import com.luiz.lhcdiscos.models.enums.Genero;
 import com.luiz.lhcdiscos.models.enums.Role;
-import com.luiz.lhcdiscos.repositories.BandaRepository;
-import com.luiz.lhcdiscos.repositories.ProdutoRepository;
-import com.luiz.lhcdiscos.repositories.UsuarioRepository;
 import com.luiz.lhcdiscos.services.BandaService;
 import com.luiz.lhcdiscos.services.PedidoService;
 import com.luiz.lhcdiscos.services.ProdutoService;

@@ -1,14 +1,11 @@
 package com.luiz.lhcdiscos.services;
 
-import com.luiz.lhcdiscos.models.Usuario;
-import com.luiz.lhcdiscos.security.local.UserDetailsImpl;
+import com.luiz.lhcdiscos.models.entities.Usuario;
 import com.luiz.lhcdiscos.dto.NovoUsuarioLocalDto;
 import com.luiz.lhcdiscos.models.enums.AuthenticationProvider;
 import com.luiz.lhcdiscos.models.enums.Role;
 import com.luiz.lhcdiscos.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

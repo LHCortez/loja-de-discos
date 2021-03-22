@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.services;
 
-import com.luiz.lhcdiscos.models.Camiseta;
+import com.luiz.lhcdiscos.models.entities.Camiseta;
 import com.luiz.lhcdiscos.repositories.CamisetaRepository;
 import com.luiz.lhcdiscos.models.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

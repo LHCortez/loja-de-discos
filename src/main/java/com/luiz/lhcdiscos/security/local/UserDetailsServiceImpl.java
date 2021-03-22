@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.security.local;
 
-import com.luiz.lhcdiscos.models.Usuario;
+import com.luiz.lhcdiscos.models.entities.Usuario;
 import com.luiz.lhcdiscos.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

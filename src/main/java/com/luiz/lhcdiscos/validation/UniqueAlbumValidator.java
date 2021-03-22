@@ -1,7 +1,6 @@
 package com.luiz.lhcdiscos.validation;
 
-import com.luiz.lhcdiscos.models.Album;
-import com.luiz.lhcdiscos.models.Camiseta;
+import com.luiz.lhcdiscos.models.entities.Album;
 import com.luiz.lhcdiscos.services.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 

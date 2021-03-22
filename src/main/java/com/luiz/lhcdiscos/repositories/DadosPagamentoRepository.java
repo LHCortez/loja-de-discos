@@ -1,7 +1,6 @@
 package com.luiz.lhcdiscos.repositories;
 
-import com.luiz.lhcdiscos.models.DadosPagamento;
-import com.luiz.lhcdiscos.models.Pedido;
+import com.luiz.lhcdiscos.models.entities.DadosPagamento;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

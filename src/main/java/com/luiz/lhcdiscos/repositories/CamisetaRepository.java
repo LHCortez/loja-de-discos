@@ -1,7 +1,7 @@
 package com.luiz.lhcdiscos.repositories;
 
-import com.luiz.lhcdiscos.models.Banda;
-import com.luiz.lhcdiscos.models.Camiseta;
+import com.luiz.lhcdiscos.models.entities.Banda;
+import com.luiz.lhcdiscos.models.entities.Camiseta;
 import com.luiz.lhcdiscos.models.enums.CamisetaSize;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
 package com.luiz.lhcdiscos.services;
 
-import com.luiz.lhcdiscos.models.Album;
-import com.luiz.lhcdiscos.models.Produto;
+import com.luiz.lhcdiscos.models.entities.Album;
+import com.luiz.lhcdiscos.models.entities.Produto;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.repositories.AlbumRepository;
 import com.luiz.lhcdiscos.models.exceptions.ObjectNotFoundException;

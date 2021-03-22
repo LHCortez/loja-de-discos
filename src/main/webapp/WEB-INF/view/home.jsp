@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
@@ -63,7 +65,7 @@
     <section id="destaques" class="bg-light p-3 mt-5 rounded">
         <h2 class="titulo pb-3">Destaques</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 g-4">
-            <c:forEach items="${produtos}" var="produto">
+            <c:forEach items="${page.content}" var="produto">
                 <div class="col p-3 capa-card">
                     <a href="${s:mvcUrl('DC#detalhe').arg(0, produto.id).build()}" class="">
                         <div class="card">
@@ -90,6 +92,51 @@
                 </div>
             </c:forEach>
         </div>
+
+
+        <nav aria-label="Páginas">
+            <ul class="pagination justify-content-center">
+                <c:choose>
+                    <c:when test="${hasPrevious}">
+                        <li class="page-item">
+                            <a class="page-link" href="${pageContext.request.contextPath}/?page=${currentPage-2}">Anterior</a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+
+
+                <c:forEach var="count" begin="1" end="${totalPages}">
+                    <c:choose>
+                        <c:when test="${count.equals(currentPage)}">
+                            <li class="page-item active"><a class="page-link" href="${pageContext.request.contextPath}/?page=${count-1}">${count}</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/?page=${count-1}">${count}</a></li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+
+                <c:choose>
+                    <c:when test="${hasNext}">
+                        <li class="page-item">
+                            <a class="page-link" href="${pageContext.request.contextPath}/?page=${currentPage}">Próximo</a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Próximo</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </nav>
+
+
     </section>
 
 </tags:pageTemplate>

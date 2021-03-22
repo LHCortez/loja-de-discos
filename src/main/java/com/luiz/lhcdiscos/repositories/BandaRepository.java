@@ -1,12 +1,10 @@
 package com.luiz.lhcdiscos.repositories;
 
-import com.luiz.lhcdiscos.models.Banda;
+import com.luiz.lhcdiscos.models.entities.Banda;
 import com.luiz.lhcdiscos.models.enums.Genero;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository

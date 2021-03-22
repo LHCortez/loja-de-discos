@@ -1,7 +1,7 @@
 package com.luiz.lhcdiscos.repositories;
 
-import com.luiz.lhcdiscos.models.Banda;
-import com.luiz.lhcdiscos.models.Patch;
+import com.luiz.lhcdiscos.models.entities.Banda;
+import com.luiz.lhcdiscos.models.entities.Patch;
 import org.springframework.stereotype.Repository;
 
 @Repository

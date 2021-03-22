@@ -1,8 +1,8 @@
 package com.luiz.lhcdiscos.controllers;
 
-import com.luiz.lhcdiscos.models.Album;
-import com.luiz.lhcdiscos.models.Livro;
-import com.luiz.lhcdiscos.models.Produto;
+import com.luiz.lhcdiscos.models.entities.Album;
+import com.luiz.lhcdiscos.models.entities.Livro;
+import com.luiz.lhcdiscos.models.entities.Produto;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.models.enums.Genero;
 import com.luiz.lhcdiscos.services.LivroService;

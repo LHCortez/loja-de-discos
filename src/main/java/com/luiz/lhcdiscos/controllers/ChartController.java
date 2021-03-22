@@ -1,7 +1,7 @@
 package com.luiz.lhcdiscos.controllers;
 
-import com.luiz.lhcdiscos.models.DadosPagamento;
-import com.luiz.lhcdiscos.models.ItemPedido;
+import com.luiz.lhcdiscos.models.entities.DadosPagamento;
+import com.luiz.lhcdiscos.models.entities.ItemPedido;
 import com.luiz.lhcdiscos.services.AnalyticsService;
 import com.luiz.lhcdiscos.services.DadosPagamentoService;
 import com.luiz.lhcdiscos.services.ItemPedidoService;

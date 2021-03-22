@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.controllers;
 
-import com.luiz.lhcdiscos.models.Produto;
+import com.luiz.lhcdiscos.models.entities.Produto;
 import com.luiz.lhcdiscos.services.BandaService;
 import com.luiz.lhcdiscos.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;

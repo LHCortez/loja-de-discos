@@ -1,5 +1,9 @@
 package com.luiz.lhcdiscos.controllers;
 
+import com.luiz.lhcdiscos.models.entities.DadosPagamento;
+import com.luiz.lhcdiscos.models.entities.ItemPedido;
+import com.luiz.lhcdiscos.models.entities.Pedido;
+import com.luiz.lhcdiscos.models.entities.Usuario;
 import com.luiz.lhcdiscos.services.EmailService;
 import com.luiz.lhcdiscos.models.*;
 import com.luiz.lhcdiscos.models.exceptions.PagamentoException;

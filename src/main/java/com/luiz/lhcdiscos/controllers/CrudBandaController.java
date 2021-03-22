@@ -1,7 +1,7 @@
 package com.luiz.lhcdiscos.controllers;
 
 import com.luiz.lhcdiscos.exporters.BandaExcelExporter;
-import com.luiz.lhcdiscos.models.Banda;
+import com.luiz.lhcdiscos.models.entities.Banda;
 import com.luiz.lhcdiscos.models.enums.Genero;
 import com.luiz.lhcdiscos.services.BandaService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.luiz.lhcdiscos.models;
+package com.luiz.lhcdiscos.models.entities;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

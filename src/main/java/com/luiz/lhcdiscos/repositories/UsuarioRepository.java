@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.repositories;
 
-import com.luiz.lhcdiscos.models.Usuario;
+import com.luiz.lhcdiscos.models.entities.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

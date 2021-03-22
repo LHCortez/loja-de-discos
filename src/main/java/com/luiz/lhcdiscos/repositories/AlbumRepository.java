@@ -1,10 +1,8 @@
 package com.luiz.lhcdiscos.repositories;
 
-import com.luiz.lhcdiscos.models.Album;
-import com.luiz.lhcdiscos.models.Banda;
+import com.luiz.lhcdiscos.models.entities.Album;
+import com.luiz.lhcdiscos.models.entities.Banda;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
-import com.luiz.lhcdiscos.models.enums.CamisetaSize;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

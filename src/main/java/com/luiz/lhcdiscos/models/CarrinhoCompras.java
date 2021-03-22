@@ -1,5 +1,6 @@
 package com.luiz.lhcdiscos.models;
 
+import com.luiz.lhcdiscos.models.entities.Produto;
 import com.luiz.lhcdiscos.models.exceptions.ObjectNotFoundException;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;

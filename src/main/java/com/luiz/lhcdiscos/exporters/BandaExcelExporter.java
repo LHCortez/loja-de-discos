@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.exporters;
 
-import com.luiz.lhcdiscos.models.Banda;
+import com.luiz.lhcdiscos.models.entities.Banda;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;

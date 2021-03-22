@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.validation;
 
-import com.luiz.lhcdiscos.models.Banda;
+import com.luiz.lhcdiscos.models.entities.Banda;
 import com.luiz.lhcdiscos.services.BandaService;
 import org.springframework.beans.factory.annotation.Autowired;
 

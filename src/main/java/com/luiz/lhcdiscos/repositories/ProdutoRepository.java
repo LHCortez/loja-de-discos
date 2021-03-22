@@ -1,7 +1,7 @@
 package com.luiz.lhcdiscos.repositories;
 
-import com.luiz.lhcdiscos.models.Banda;
-import com.luiz.lhcdiscos.models.Produto;
+import com.luiz.lhcdiscos.models.entities.Banda;
+import com.luiz.lhcdiscos.models.entities.Produto;
 import com.luiz.lhcdiscos.models.enums.Genero;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

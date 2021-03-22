@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.security.local;
 
-import com.luiz.lhcdiscos.models.Usuario;
+import com.luiz.lhcdiscos.models.entities.Usuario;
 import com.luiz.lhcdiscos.models.enums.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

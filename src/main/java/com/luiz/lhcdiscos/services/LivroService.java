@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.services;
 
-import com.luiz.lhcdiscos.models.Livro;
+import com.luiz.lhcdiscos.models.entities.Livro;
 import com.luiz.lhcdiscos.models.exceptions.ObjectNotFoundException;
 import com.luiz.lhcdiscos.repositories.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
