@@ -33,14 +33,14 @@
                             <c:forEach items="${produtosNoCarrinho.keySet()}" var="produto">
                                 <tr>
                                     <td data-title="">
-                                        <a href="${s:mvcUrl('DC#detalhe').arg(0, produto.id).build()}">
+                                        <a href="${s:mvcUrl('HC#detalhe').arg(0, produto.id).build()}">
                                             <img class="carrinho-imagem"
                                                  src="${pageContext.request.contextPath}${produto.capa}"
                                                  alt="...">
                                         </a>
                                     </td>
                                     <td data-title="Produto">
-                                        <a href="${s:mvcUrl('DC#detalhe').arg(0, produto.id).build()}"
+                                        <a href="${s:mvcUrl('HC#detalhe').arg(0, produto.id).build()}"
                                            class="texto-cor-especial fw-bold">
                                                 ${produto.banda.nome} - ${produto.nome} - ${produto.tipo}
                                         </a>
@@ -136,7 +136,7 @@
             <div class="sugestoes-card-group row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 g-4 mb-5">
                 <c:forEach items="${produtos}" var="produto">
                     <div class="col p-2 capa-card sugestoes-card">
-                        <a href="${s:mvcUrl('DC#detalhe').arg(0, produto.id).build()}" class="">
+                        <a href="${s:mvcUrl('HC#detalhe').arg(0, produto.id).build()}" class="">
                             <div class="card sugestoes-card">
                                 <img src="${pageContext.request.contextPath}${produto.capa}"
                                      class="card-img-top imagem-sugestoes" alt="...">

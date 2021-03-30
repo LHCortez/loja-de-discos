@@ -45,8 +45,8 @@ public class Pedido implements Serializable {
         return Collections.unmodifiableList(this.itens);
     }
 
-    public void addItens(ItemPedido... itens) {
-        this.itens.addAll(Arrays.asList(itens));
+    public void addItens(List<ItemPedido> itens) {
+        this.itens.addAll(itens);
     }
 
     public LocalDateTime getData() {

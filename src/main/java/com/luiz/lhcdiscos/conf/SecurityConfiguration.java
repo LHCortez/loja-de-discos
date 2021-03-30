@@ -29,9 +29,6 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
-
-    @Autowired
     private CustomOAuth2UserService oAuth2UserService;
 
     @Autowired
@@ -62,14 +59,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder());
     }
 
-//    TODO: Tratar erro (type=Forbidden, status=403) quando tenta acessar crud sem ter role admin
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/crud/**").hasRole("ADMIN")
+                .antMatchers("/crud", "/crud/**").hasRole("ADMIN")
                 .antMatchers("/chart").hasRole("ADMIN")
                 .antMatchers("/charge", "/charge/**").permitAll()
+                .antMatchers("/album", "/album/**").permitAll()
+                .antMatchers("/merchandise", "/merchandise/**").permitAll()
+                .antMatchers("/lancamento", "/lancamento/**").permitAll()
+                .antMatchers("/livro", "/livro/**").permitAll()
+//                .antMatchers("error", "/error/**").permitAll()
+                .antMatchers("/contact", "/contact/**").permitAll()
                 .antMatchers("/data", "/data/**").permitAll()
 //                .antMatchers("/search/").hasRole("ADMIN")
                 .antMatchers("/").permitAll()

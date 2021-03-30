@@ -19,6 +19,8 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -82,7 +84,10 @@ public class CrudBandaController {
         String currentDateTime = dateFormatter.format(new Date());
 
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=bandas" + ".xlsx";
+        String headerValue =
+                "attachment; filename=bandas_"
+                        + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy_HH:mm:ss"))
+                        + ".xlsx";
         response.setHeader(headerKey, headerValue);
 
         List<Banda> listbandas = bandaService.searchAll();

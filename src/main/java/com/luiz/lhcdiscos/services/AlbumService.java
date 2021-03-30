@@ -1,11 +1,14 @@
 package com.luiz.lhcdiscos.services;
 
 import com.luiz.lhcdiscos.models.entities.Album;
+import com.luiz.lhcdiscos.models.entities.Camiseta;
 import com.luiz.lhcdiscos.models.entities.Produto;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.repositories.AlbumRepository;
 import com.luiz.lhcdiscos.models.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,9 +59,8 @@ public class AlbumService {
                 .existsByBandaAndFormatoAndNomeIgnoreCase(album.getBanda(), album.getFormato(), album.getNome());
     }
 
-    public List<Album> buscarPorFormato(AlbumFormato formato) {
-        List<Album> albums = albumRepository.findAlbumByFormato(formato);
-        albums.forEach(System.out::println);
-        return albumRepository.findAlbumByFormato(formato);
+    public Page<Album> findAll(Pageable pageable) {
+        return albumRepository.findAll(pageable);
     }
+
 }

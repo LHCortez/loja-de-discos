@@ -9,7 +9,7 @@
     <c:choose>
         <c:when test="${not empty error}">
             <h3 class="text-danger mb-4">Ooops...</h3>
-            <p>Houve um problema com seu pagamento :(</p>
+            <p>Houve um problema com seu pagamento.</p>
             <p>Tente novamente <a href='${pageContext.request.contextPath}/cart'>clicando aqui</a>.</p>
             <p>Caso o problema persista, por favor entre em contato conosco.</p>
         </c:when>

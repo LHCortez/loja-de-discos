@@ -372,7 +372,8 @@ a {
     }
 }
 
-#cria-conta-form {
+#cria-conta-form,
+#contato-form {
     max-width: 600px;
 }
 
@@ -413,11 +414,9 @@ a {
 }
 
 #footer .footer-link {
-    font-size: 35px;
+    /*font-size: 35px;*/
     color: #c6c6c6;
 }
-
-
 
 #footer .footer-link:hover,
 #footer .footer-link:active {

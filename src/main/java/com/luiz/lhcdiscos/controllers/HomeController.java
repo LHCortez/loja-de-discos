@@ -1,20 +1,18 @@
 package com.luiz.lhcdiscos.controllers;
 
-import com.luiz.lhcdiscos.models.Pager;
-import com.luiz.lhcdiscos.models.entities.Produto;
-import com.luiz.lhcdiscos.services.AlbumService;
-import com.luiz.lhcdiscos.services.CamisetaService;
-import com.luiz.lhcdiscos.services.ProdutoService;
+import com.luiz.lhcdiscos.util.Pager;
+import com.luiz.lhcdiscos.models.entities.*;
+import com.luiz.lhcdiscos.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class HomeController {
@@ -23,38 +21,90 @@ public class HomeController {
     private ProdutoService produtoService;
 
     @Autowired
-    CamisetaService camisetaService;
+    private CamisetaService camisetaService;
 
     @Autowired
-    AlbumService albumService;
+    private AlbumService albumService;
+
+    @Autowired
+    private PatchService patchService;
+
+    @Autowired
+    private LivroService livroService;
+
+    private final int pageSize = 15;
+
+    private void prepareModelAndViewProdutosPages(ModelAndView modelAndView, Page<? extends Produto> produtosPage) {
+        Pager pager = new Pager(produtosPage);
+        modelAndView.addAllObjects(Map.of(
+                "page", produtosPage,
+                "pager", pager,
+                "totalPages", pager.getTotalPages(),
+                "currentPage", pager.getPageIndex(),
+                "hasNext", pager.hasNext(),
+                "hasPrevious", pager.hasPrevious()
+        ));
+    }
 
     @GetMapping("/")
-    public ModelAndView home(HttpServletRequest request, @RequestParam(defaultValue = "0") int page) {
+    public ModelAndView home(@RequestParam(defaultValue = "0") int page) {
         ModelAndView modelAndView = new ModelAndView("home");
-        Page<Produto> produtos = produtoService.findProdutoByPage(PageRequest.of(page, 15));
-        List<Produto> produtosList = produtos.getContent();
-        Pager pager = new Pager(produtos);
-        modelAndView.addObject("page", produtos);
-        modelAndView.addObject("pager", pager);
-        modelAndView.addObject("totalPages", pager.getTotalPages());
-        modelAndView.addObject("currentPage", pager.getPageIndex());
-        modelAndView.addObject("hasNext", pager.hasNext());
-        modelAndView.addObject("hasPrevious", pager.hasPrevious());
+        Page<Produto> produtos = produtoService.findAll(PageRequest.of(page, pageSize));
+        prepareModelAndViewProdutosPages(modelAndView, produtos);
+        modelAndView.addObject("titulo", "Destaques");
         return modelAndView;
     }
 
-    @GetMapping("/camiseta")
-    public ModelAndView camiseta() {
+    @GetMapping("/album")
+    public ModelAndView disco(@RequestParam(defaultValue = "0") int page) {
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("produtos", camisetaService.searchAllCamiseta());
+        Page<Album> produtos = albumService.findAll(PageRequest.of(page, pageSize));
+        prepareModelAndViewProdutosPages(modelAndView, produtos);
+        modelAndView.addObject("titulo", "Álbuns");
         return modelAndView;
     }
 
-    @GetMapping("/disco")
-    public ModelAndView disco() {
+    @GetMapping("/livro")
+    public ModelAndView livro(@RequestParam(defaultValue = "0") int page) {
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("produtos", albumService.searchAllAlbum());
+        Page<Livro> produtos = livroService.findAll(PageRequest.of(page, pageSize));
+        prepareModelAndViewProdutosPages(modelAndView, produtos);
+        modelAndView.addObject("titulo", "Livros");
         return modelAndView;
     }
+
+    @GetMapping("/lancamento")
+    public ModelAndView lancamento(@RequestParam(defaultValue = "0") int page) {
+        ModelAndView modelAndView = new ModelAndView("home");
+        List<Produto> produtos = produtoService.findAllByOrderByDateAsc(PageRequest.of(0, 10));
+        Page<Produto> produtosPage = Pager.createPages(produtos, PageRequest.of(page, pageSize));
+        prepareModelAndViewProdutosPages(modelAndView, produtosPage);
+        modelAndView.addObject("titulo", "Lançamentos");
+        return modelAndView;
+    }
+
+    @GetMapping("/merchandise")
+    public ModelAndView merchandise(@RequestParam(defaultValue = "0") int page) {
+        ModelAndView modelAndView = new ModelAndView("home");
+        List<Patch> patches = patchService.findAll();
+        List<Camiseta> camisetas = camisetaService.findAll();
+        List<Produto> produtos = new ArrayList<>(patches);
+        produtos.addAll(camisetas);
+        Page<Produto> produtosPage = Pager.createPages(produtos, PageRequest.of(page, pageSize));
+        prepareModelAndViewProdutosPages(modelAndView, produtosPage);
+        modelAndView.addObject("titulo", "Merchandise");
+        return modelAndView;
+    }
+
+    @GetMapping("/product/{id}")
+    public ModelAndView detalhe(@PathVariable("id") Integer id) {
+        ModelAndView modelAndView = new ModelAndView("productDetail");
+        Produto produto = produtoService.searchById(id);
+        modelAndView.addObject("produto", produto);
+        modelAndView.addObject("produtos", produtoService.searchSimilarProdutos(produto, PageRequest.of(0, 3)));
+        return modelAndView;
+    }
+
+
 
 }

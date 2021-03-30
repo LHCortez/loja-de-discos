@@ -287,7 +287,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         itemPedido1.setPedido(pedido1);
         ItemPedido itemPedido2 = new ItemPedido(evangelicis, 1);
         itemPedido2.setPedido(pedido1);
-        pedido1.addItens(itemPedido1, itemPedido2);
+        pedido1.addItens(Arrays.asList(itemPedido1, itemPedido2));
         pedido1.setCliente(usuario);
         pedido1.setData(LocalDateTime.of(2021,1,24,22,5,30));
         BigDecimal total = BigDecimal.ZERO;
@@ -307,7 +307,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         itemPedido3.setPedido(pedido2);
         ItemPedido itemPedido4 = new ItemPedido(demigod, 1);
         itemPedido4.setPedido(pedido2);
-        pedido2.addItens(itemPedido3, itemPedido4);
+        pedido2.addItens(Arrays.asList(itemPedido3, itemPedido4));
         pedido2.setCliente(usuario);
         pedido2.setData(LocalDateTime.of(2021,2,24,22,5,30));
         total = BigDecimal.ZERO;
@@ -326,7 +326,7 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         itemPedido5.setPedido(pedido3);
         ItemPedido itemPedido6 = new ItemPedido(lobosQueForamHomens, 1);
         itemPedido6.setPedido(pedido3);
-        pedido3.addItens(itemPedido5, itemPedido6);
+        pedido3.addItens(Arrays.asList(itemPedido5, itemPedido6));
         pedido3.setCliente(usuario);
         pedido3.setData(LocalDateTime.of(2021,2,26,22,5,30));
         total = BigDecimal.ZERO;

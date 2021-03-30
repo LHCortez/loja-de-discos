@@ -26,19 +26,19 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("chart")
-public class ChartController {
+public class GraficoController {
 
     @Autowired
-    DadosPagamentoService dadosPagamentoService;
+    private DadosPagamentoService dadosPagamentoService;
 
     @Autowired
-    ItemPedidoService itemPedidoService;
+    private ItemPedidoService itemPedidoService;
 
     @Autowired
-    PedidoService pedidoService;
+    private PedidoService pedidoService;
 
     @Autowired
-    AnalyticsService analyticsService;
+    private AnalyticsService analyticsService;
 
     @GetMapping()
     public ModelAndView index() throws IOException {

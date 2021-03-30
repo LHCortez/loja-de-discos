@@ -4,6 +4,7 @@ import com.luiz.lhcdiscos.models.CarrinhoCompras;
 import com.luiz.lhcdiscos.stripe.PagamentoRequest;
 import com.luiz.lhcdiscos.models.entities.Produto;
 import com.luiz.lhcdiscos.services.ProdutoService;
+import org.apache.jasper.tagplugins.jstl.core.Remove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -27,6 +29,7 @@ public class CarrinhoController {
 
     @Autowired
     private ProdutoService produtoService;
+
     @Autowired
     private CarrinhoCompras carrinho;
 
@@ -40,8 +43,12 @@ public class CarrinhoController {
         modelAndView.addObject("stripePublicKey", stripePublicKey);
         modelAndView.addObject("currency", PagamentoRequest.Currency.BRL);
 
+        List<Produto> produtos = produtoService.findAllByOrderByDateAsc(PageRequest.of(0, 10));
 
-        modelAndView.addObject("produtos", produtoService.findAllByOrderByDateAsc(PageRequest.of(0, 10)));
+//        Remove das recomendações produtos que já estão no carrinho
+        produtos.removeAll(carrinho.getItens().keySet());
+
+        modelAndView.addObject("produtos", produtos);
         return modelAndView;
     }
 

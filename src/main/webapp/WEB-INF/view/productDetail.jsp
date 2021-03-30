@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+
 <tags:pageTemplate paginatitulo="${produto.nome} - ${produto.tipo} - ${produto.banda.nome} -">
 
     <section id="produto-detalhe" class="my-3">
@@ -26,7 +27,9 @@
                                     <h3>${produto.nome}  (${produto.tipo})</h3>
                                 </c:otherwise>
                             </c:choose>
-                            <p class="text-muted mb-0">Lançamento: ${produto.lancamento}</p>
+
+
+                            <p class="text-muted mb-0">Lançamento: <tags:localDate date="${produto.lancamento}"/></p>
                             <p class="text-muted mb-0">Gênero: ${produto.banda.genero.descricao}</p>
                             <h2 class="texto-cor-especial fs-1 my-3">R$ ${produto.preco}</h2>
                             <form:form action="${s:mvcUrl('CC#add').arg(0, produto.id).build()}" method="post">
@@ -46,7 +49,7 @@
                     <div class="sugestoes-card-group">
                         <c:forEach items="${produtos}" var="produto">
                             <div class="col p-2 capa-card sugestoes-card">
-                                <a href="${s:mvcUrl('DC#detalhe').arg(0, produto.id).build()}" class="">
+                                <a href="${s:mvcUrl('HC#detalhe').arg(0, produto.id).build()}" class="">
                                     <div class="card sugestoes-card">
                                         <img src="${pageContext.request.contextPath}${produto.capa}"
                                              class="card-img-top imagem-sugestoes" alt="...">

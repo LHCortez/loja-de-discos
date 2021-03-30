@@ -7,19 +7,33 @@
 <tags:crudTemplate>
 
     <script>
-        let id = ${album.id};
+        let id = '${album.id}';
+        let capa = '${album.capa}';
         window.onload = function() {
-            if (id != null){
+            if (id) {
                 document.getElementById('camiseta').style.display = 'none';
                 document.getElementById('patch').style.display = 'none';
                 document.getElementById('livro').style.display = 'none';
             }
+            if (capa) {
+                document.getElementById('produto-capa').required = false;
+            }
         }
 
-        let capa = '${album.capa}';
-        window.onload = function() {
-            if (capa != null){
-                document.getElementById('produto-capa').required = false;
+        function alterarDisable(){
+            var radios = document.getElementsByName("capaTipo");
+
+            if (radios[0].checked) {
+                document.getElementById("capa-url-input").disabled = false;
+                document.getElementById("capa-url-input").required = true;
+                document.getElementById("capa-upload-input").disabled = true;
+                document.getElementById("capa-upload-input").required = false;
+            }
+            else if (radios[1].checked) {
+                document.getElementById("capa-url-input").disabled = true;
+                document.getElementById("capa-url-input").required = false;
+                document.getElementById("capa-upload-input").disabled = false;
+                document.getElementById("capa-upload-input").required = true;
             }
         }
     </script>
@@ -133,18 +147,39 @@
                 </div>
             </fieldset>
 
-
+            <fieldset class="mb-3 mt-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="capaTipo" id="capa-url" value="capa-url" onclick="alterarDisable()" checked>
+                    <label class="form-check-label" for="capa-url">
+                        Escrever URL da imagem da capa
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="capaTipo" id="capa-upload" value="capa-upload" onclick="alterarDisable()">
+                    <label class="form-check-label" for="capa-upload">
+                        Fazer upload da capa
+                    </label>
+                </div>
+            </fieldset>
 
             <fieldset class="capa row mb-3">
-                <label for="produto-capa" class="col-md-2 col-lg-1 col-form-label">Capa</label>
+                <label for="capa-url-input" class="col-md-2 col-lg-1 col-form-label">Capa (URL)</label>
                 <div class="col-md-6 col-lg-4">
-                    <input name="file" required type="file" class="form-control" id="produto-capa" />
+                    <input name="capaUrl" type="text" class="form-control" id="capa-url-input" value="${album.capa}" required/>
+                </div>
+            </fieldset>
+
+            <fieldset class="capa row mb-3">
+                <label for="capa-upload-input" class="col-md-2 col-lg-1 col-form-label">Capa (Upload)</label>
+                <div class="col-md-6 col-lg-4">
+                    <input name="file" type="file" class="form-control" id="capa-upload-input" disabled/>
                 </div>
             </fieldset>
 
             <form:input type="hidden" value="${album.id}" path="id"/>
             <form:input type="hidden" value="${album.capa}" path="capa"/>
             <button type="submit" class="btn my-3 botao-destaque">Enviar</button>
+
         </form:form>
 
     </div>

@@ -23,11 +23,18 @@
     <div class="tab-content crud-tab-content py-4 px-sm-4" id="myTabContent">
         <div class="tab-pane fade show active table-responsive" id="bandas" role="tabpanel" aria-labelledby="home-tab">
 
-            <div class="text-end mb-3 me-3">
-               <a href="${pageContext.request.contextPath}/crud/band/export">
-                   <i class="fas fa-file-download fs-3"></i> EXPORTAR
-               </a>
-           </div>
+            <div class="row w-100 gap-3">
+                <div class="col-sm-12 col-md-6 mx-3">
+                    <input id="filtroBandaInput" onkeyup="filtro('filtroBandaInput', 'tabelaBandaBody')" class="form-control me-2" type="search" placeholder="Filtrar..." aria-label="Search">
+                </div>
+                <div class="col">
+                    <div class="text-end mb-3 me-3">
+                        <a href="${pageContext.request.contextPath}/crud/band/export">
+                            <i class="fas fa-file-download fs-3"></i> EXPORTAR
+                        </a>
+                    </div>
+                </div>
+            </div>
 
 
             <table class="table table-hover table-striped">
@@ -39,7 +46,7 @@
                     <th scope="col" class="text-center">Excluir</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="tabelaBandaBody">
                 <c:forEach items="${bandas}" var="banda">
                     <tr>
                         <td>${banda.nome}</td>

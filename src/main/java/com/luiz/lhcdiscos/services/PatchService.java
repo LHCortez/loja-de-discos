@@ -15,6 +15,10 @@ public class PatchService {
     @Autowired
     private PatchRepository patchRepository;
 
+    public List<Patch> findAll() {
+        return patchRepository.findAll();
+    }
+
     public Patch searchPatchById(Integer id) {
         Optional<Patch> optional = patchRepository.findById(id);
         return optional.orElseThrow(() -> new ObjectNotFoundException(

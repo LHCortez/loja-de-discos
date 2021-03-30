@@ -19,7 +19,7 @@ import java.util.Map;
 public class UsuarioController {
 
     @Autowired
-    UsuarioService usuarioService;
+    private UsuarioService usuarioService;
 
     @RequestMapping(value="/create", method = RequestMethod.GET)
     public ModelAndView createUserForm(@ModelAttribute("usuario") NovoUsuarioLocalDto usuario) {

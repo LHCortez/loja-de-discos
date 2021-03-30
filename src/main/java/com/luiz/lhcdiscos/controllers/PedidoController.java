@@ -25,6 +25,8 @@ import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class PedidoController {
@@ -77,27 +79,23 @@ public class PedidoController {
 
     private Integer finalizaCompra(String email, BigDecimal valorPago, LocalDateTime dataPedido,
                                    String stripeId, String stripeStatus) {
-        Pedido pedido = new Pedido();
-        pedido.setData(dataPedido);
 
+        List<ItemPedido> itemPedidos = new ArrayList<>();
         carrinho.getItens().keySet().forEach(produto -> {
             ItemPedido itemPedido = new ItemPedido();
             itemPedido.setProduto(produto, carrinho.getQuantidade(produto));
-            itemPedido.setPedido(pedido);
-            pedido.addItens(itemPedido);
+            itemPedidos.add(itemPedido);
         });
 
         Usuario cliente = usuarioService.findUsuarioByEmailIgnoreCase(email);
-        pedido.setCliente(cliente);
 
         DadosPagamento dadosPagamento = new DadosPagamento();
         dadosPagamento.setValorPago(valorPago);
         dadosPagamento.setData(dataPedido);
         dadosPagamento.setStripeId(stripeId);
         dadosPagamento.setStripeStatus(stripeStatus);
-        pedido.setPagamento(dadosPagamento);
 
-        pedidoService.save(pedido);
+        Pedido pedido = pedidoService.finalizaPedido(itemPedidos, cliente, dadosPagamento, dataPedido);
 
         carrinho.limpa();
 

@@ -59,6 +59,17 @@ public class EmailService {
                 stringBuilder.toString());
     }
 
+    public void enviaMensagemContato(String nome, String emailInformado, String mensagem) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<p style='font-weight: bold;'>Nome:</p>")
+                .append("<p>" + nome + "</p>")
+                .append("<p style='font-weight: bold;'>E-mail:</p>")
+                .append("<p>" + emailInformado + "</p>")
+                .append("<p style='font-weight: bold;'>Mensagem:</p>")
+                .append("<p>" + mensagem + "</p>");
+        sendMessage("lhcdiscos@gmail.com", "ContatoForm: " + emailInformado, stringBuilder.toString());
+    }
+
     private void sendMessage(String to, String subject, String text) {
         try {
             MimeMessage message = emailSender.createMimeMessage();

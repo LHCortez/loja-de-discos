@@ -32,5 +32,16 @@ function confirmDeleteProduct(event, id, nome) {
             jQuery("#delete-product-" + id).submit();
         }
     });
-
 }
+
+function filtro(inputName, tableName) {
+    var input = document.getElementById(inputName);
+    var table = document.getElementById(tableName);
+    var filter = input.value.toLowerCase();
+    $("#" + tableName + " tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(filter) > -1)
+    });
+}
+
+
+
