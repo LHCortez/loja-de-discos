@@ -68,11 +68,11 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         Banda thyArtIsMurder = new Banda("Thy Art Is Murder", Genero.DEATHCORE);
 
         Banda petShopBoys = new Banda("Pet Shop Boys", Genero.OUTROS);
-        Banda babymetal = new Banda("Baby Metal", Genero.OUTROS);
+        Banda depecheMode = new Banda("Baby Metal", Genero.OUTROS);
 
         bandaService.saveAll(Arrays.asList(mercyfulFate, judasPriest, behemoth, death, emperor, moonspell, paradiseLost,
                 theatreOfTragedy, megadeth, sepultura, darkFortress, mgla, darkthrone, candlemass, saintvitus,
-                carnifex, thyArtIsMurder, petShopBoys, babymetal, celticFrost, enslaved));
+                carnifex, thyArtIsMurder, petShopBoys, depecheMode, celticFrost, enslaved));
 
 //        PRODUTOS ---------------------------------------------------------------------------------------------------
 
@@ -267,16 +267,114 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
                 "É o álbum mais bem sucedido da banda desde Against de 1998, entrando nas paradas musicais em 17 países, e no top 20 em 7 países. É também o álbum mais bem sucedido da história da banda na Alemanha e Suíça, ultrapassando a posição de Roots, atingindo a posição número 5 e número 13, respectivamente.");
         quadra.setBanda(sepultura);
 
+        Album thatOneNight = new Album();
+        thatOneNight.setNome("That One Night: Live In Buenos Aires");
+        thatOneNight.setFormato(AlbumFormato.DVD);
+        thatOneNight.setCapa("https://images-americanas.b2w.io/produtos/01/00/img/2448951/4/2448951496_1GG.jpg");
+        thatOneNight.setLancamento(LocalDate.of(2007, 3, 6));
+        thatOneNight.setPreco(BigDecimal.valueOf(30.00));
+        thatOneNight.setDescricao("DVD lançado em 2007 pela banda Americana de Thrash Metal. Gravado ao vivo no Obras Stadium em Buenos Aires, Argentina, em 9 de outubro de 2005.\n" +
+                "\n");
+        thatOneNight.setBanda(megadeth);
+
+        Album spectresFromTheOldWorld = new Album();
+        spectresFromTheOldWorld.setNome("Spectres From the Old World");
+        spectresFromTheOldWorld.setFormato(AlbumFormato.VINIL);
+        spectresFromTheOldWorld.setCapa("https://e.snmc.io/i/600/w/bc1ed76c7d8ae6ab1c508e2a88a8af1b/8138727/dark-fortress-spectres-from-the-old-world-Cover-Art.jpg");
+        spectresFromTheOldWorld.setLancamento(LocalDate.of(2020, 2, 28));
+        spectresFromTheOldWorld.setPreco(BigDecimal.valueOf(119.00));
+        spectresFromTheOldWorld.setDescricao("Venerated black metal specialists DARK FORTRESS return with a new album, Spectres from the Old World ! After a six-year gap, Germany s darkest sons continue where Venereal Dawn (2014) left off conceptually the birth-death lifecycle of the universe as told by spacetime but are expanding DARK FORTRESS musical horizons by descending faster and with spiteful intent into the cosmic abyss. Indeed, Spectres from the Old World is more direct, more aggressive than its predecessors. These musical themes play out fiercely in Coalescence, The Spider in the Web, Pazuzu, and the pivotal title track. Here, DARK FORTRESS prove that they remain committed to black metal s netherworld spark. The malignant sounds that inspired DARK FORTRESS on Tales from Eternal Dusk (2001), Seance (2006), and Ylem (2010) are still very much part of the DNA that makes up the band s finest hour on Spectres from the Old World. But as DARK FORTRESS find themselves in good black-hearted company, their destiny calls for venturing beyond the confines of the genre. Pali Aike, named after an actual Chilean hellscape, finds vocalist Morean marshalling his bandmates to very center of time-worn volcanoes to an epic thrum. Isa, in many ways the opposite of Pali Aike, feels very cold, its dissonance and grooves inspired by antediluvian ice storms. The triumvirate is complete with the limpid black expanse of Swan Song. At no time in DARK FORTRESS history have they reached so far out into the darkness, only to find the domine of astronomy non-existent, the end merely an end. Recorded, engineered, mixed, and mastered by V. Santura at Woodshed Studios throughout 2019, Spectres from the Old World marks an important milestone in DARK FORTRESS journey along actual and spiritual left-hand paths. Glimpse into the endless black of the universe on Spectres from the Old World.");
+        spectresFromTheOldWorld.setBanda(darkFortress);
+
+        Album exercisesInFutility = new Album();
+        exercisesInFutility.setNome("Exercises in Futility");
+        exercisesInFutility.setFormato(AlbumFormato.VINIL);
+        exercisesInFutility.setCapa("https://e.snmc.io/i/600/w/09d6bfba01a5aedae12c7e96161a3d45/5811138/mgla-exercises-in-futility-Cover-Art.jpg");
+        exercisesInFutility.setLancamento(LocalDate.of(2015, 9, 4));
+        exercisesInFutility.setPreco(BigDecimal.valueOf(115.99));
+        exercisesInFutility.setDescricao("Exercises in Futility is the third studio album by Polish black metal band Mgła. It was released on 4 September 2015, through Northern Heritage Records. Featuring \"a raw, melodic black metal\" style that was compared to those of Watain and early Burzum, the album is regarded as \"the biggest and most impactful release of the band's 15-year career.\" The front cover features an artwork from French engraver Marcel Roux, titled L'aveugle (\"The blind\", 1908).");
+        exercisesInFutility.setBanda(mgla);
+
+        Album aBlazeInTheNorthernSky = new Album();
+        aBlazeInTheNorthernSky.setNome("A Blaze in the Northern Sky");
+        aBlazeInTheNorthernSky.setFormato(AlbumFormato.CASSETE);
+        aBlazeInTheNorthernSky.setCapa("https://e.snmc.io/i/600/w/dcf488f0f17108758a72174b50c64592/5706952/darkthrone-a-blaze-in-the-northern-sky-Cover-Art.jpg");
+        aBlazeInTheNorthernSky.setLancamento(LocalDate.of(1992, 2, 26));
+        aBlazeInTheNorthernSky.setPreco(BigDecimal.valueOf(89.99));
+        aBlazeInTheNorthernSky.setDescricao("A Blaze In The Northern Sky (em português: Uma chama no céu do Norte) é o segundo disco do grupo musical Darkthrone, tendo sido lançado em fevereiro de 1992 pela gravadora da Inglaterra Peaceville. É o marco do início da fase black metal da banda.\n \n Foi gravado em agosto de 1991 no estúdio Creative, o mesmo estúdio que a banda Mayhem gravou o LP Deathcrush (em 1987) - considerado outro clássico do gênero Black Metal.");
+        aBlazeInTheNorthernSky.setBanda(darkthrone);
+
+        Album epicusDoominicusMetallicus = new Album();
+        epicusDoominicusMetallicus.setNome("Epicus Doomicus Metallicus");
+        epicusDoominicusMetallicus.setFormato(AlbumFormato.VINIL);
+        epicusDoominicusMetallicus.setCapa("https://e.snmc.io/i/600/w/4dfc471de8954f01b9274ee0f816f1ce/2777656/candlemass-epicus-doomicus-metallicus-Cover-Art.jpg");
+        epicusDoominicusMetallicus.setLancamento(LocalDate.of(1986, 2, 10));
+        epicusDoominicusMetallicus.setPreco(BigDecimal.valueOf(199.99));
+        epicusDoominicusMetallicus.setDescricao("Epicus Doomicus Metallicus é o álbum de estreia da banda sueca de doom metal Candlemass, lançado em 10 de junho de 1986 pela Black Dragon Records. O álbum tinha um som muito diferente das outras bandas de heavy metal da Europa da época, por causa de seu uso de vocais operísticos misturados com \u200B\u200Briffs de guitarra lentos e pesados. O álbum não vendeu bem em sua versão inicial, o que levou o grupo a ser retirado da gravadora durante o mesmo ano. Desde então, o álbum foi relançado em vários formatos diferentes. O título Epicus Doomicus Metallicus é uma adaptação do latim para Epic Doom Metal - o gênero do qual a banda é creditada por serem pioneiros.");
+        epicusDoominicusMetallicus.setBanda(candlemass);
+
+        Album bornTooLate = new Album();
+        bornTooLate.setNome("Born Too Late");
+        bornTooLate.setFormato(AlbumFormato.CD);
+        bornTooLate.setCapa("https://e.snmc.io/i/600/w/818a35eee44dfe396de86432e2c43894/2700539/saint-vitus-born-too-late-Cover-Art.jpg");
+        bornTooLate.setLancamento(LocalDate.of(1986, 10, 10));
+        bornTooLate.setPreco(BigDecimal.valueOf(49.99));
+        bornTooLate.setDescricao("Born Too Late is the third studio album by the American doom metal band Saint Vitus, which was released in 1986. It was the first Saint Vitus album featuring The Obsessed singer Scott \"Wino\" Weinrich. It is generally cited as their greatest effort.");
+        bornTooLate.setBanda(saintvitus);
+
+        Camiseta sisterRot = new Camiseta();
+        sisterRot.setNome("Sister Rot");
+        sisterRot.setSize(CamisetaSize.P);
+        sisterRot.setCapa("https://proassets.monopile.cloud/94671/2c1ac8d6d1d64b05fc6a7a3466093396.jpg");
+        sisterRot.setLancamento(LocalDate.of(2021, 2, 15));
+        sisterRot.setPreco(BigDecimal.valueOf(79.99));
+        sisterRot.setDescricao("A black 'Sister Rot' Carnifex t-shirt. Print on the front and back.");
+        sisterRot.setBanda(carnifex);
+
+        Album holyWar = new Album();
+        holyWar.setNome("Holy War");
+        holyWar.setFormato(AlbumFormato.CD);
+        holyWar.setCapa("https://e.snmc.io/i/600/w/4cb39de69291708fb37cc025e504a444/6462030/thy-art-is-murder-holy-war-Cover-Art.png");
+        holyWar.setLancamento(LocalDate.of(2015, 6, 30));
+        holyWar.setPreco(BigDecimal.valueOf(49.99));
+        holyWar.setDescricao("Holy War is the third studio album by Australian deathcore band Thy Art Is Murder. It was released on June 26 through UNFD and Nuclear Blast. The album was produced and mixed by Will Putney, recorded in late 2014. Music videos were released for the tracks \"Light Bearer\" on May 29, and for \"Holy War\" on June 29. Holy War had a successful first week of sales, charting at No. 7 in Australia and No. 82 in the U.S. as well as several other U.S. Charts.");
+        holyWar.setBanda(thyArtIsMurder);
+
+        Album behaviour = new Album();
+        behaviour.setNome("Holy War");
+        behaviour.setFormato(AlbumFormato.VINIL);
+        behaviour.setCapa("https://e.snmc.io/i/600/w/c02c71aae254bc4fa582a6b2ee647e14/1466918/pet-shop-boys-behaviour-Cover-Art.jpg");
+        behaviour.setLancamento(LocalDate.of(1990, 10, 22));
+        behaviour.setPreco(BigDecimal.valueOf(149.99));
+        behaviour.setDescricao("Behaviour é o quarto álbum de estúdio da banda Pet Shop Boys, lançado a 22 de Outubro de 1990.\n" +
+                "\n" +
+                "Behaviour foi aclamado por criticos desde o inicio por ser diferente de tudo o que até então os Pet Shop Boys faziam, os fãs rejeitaram o álbum no começo, mas o inconfundivel estilo Introspectivo e Melancólico do álbum fez com que todos o aclamassem.\n" +
+                "\n" +
+                "O disco pertence à lista dos 1001 Albums You Must Hear Before You Die. O disco atingiu o nº 45 da Billboard 200.");
+        behaviour.setBanda(petShopBoys);
+
+        Album musicForTheMasses = new Album();
+        musicForTheMasses.setNome("Music for the Masses");
+        musicForTheMasses.setFormato(AlbumFormato.VINIL);
+        musicForTheMasses.setCapa("https://e.snmc.io/i/600/w/bea182894ada5379488c582f3a6e3ec0/1692224/depeche-mode-music-for-the-masses-Cover-Art.jpg");
+        musicForTheMasses.setLancamento(LocalDate.of(1987, 9, 28));
+        musicForTheMasses.setPreco(BigDecimal.valueOf(149.99));
+        musicForTheMasses.setDescricao("Music for the Masses is the sixth studio album by English electronic music band Depeche Mode. It was released on 28 September 1987 by Mute Records. The album was supported by the Music for the Masses Tour.");
+        musicForTheMasses.setBanda(depecheMode);
+
+
         produtoService.saveAll(Arrays.asList(melissa, dontBreakTheOath, sadWingsOfDestiny, painkiller, firepower,
                 evangelicis, demigod, leprosy, inTheNighsideEclipse, onlyDeathIsReal, monotheist, utgard, lobosQueForamHomens,
-                obsidian, quadra, hermitage, draconianTimes));
+                obsidian, quadra, hermitage, draconianTimes, thatOneNight, spectresFromTheOldWorld, exercisesInFutility,
+                aBlazeInTheNorthernSky, epicusDoominicusMetallicus, bornTooLate, sisterRot, holyWar, behaviour,
+                musicForTheMasses));
 
 //        USUÁRIOS ---------------------------------------------------------------------------------------------------
 
         Usuario usuario = new Usuario();
         usuario.setNome("Admin");
         usuario.setEmail("lhcdiscos@gmail.com");
-        usuario.setSenha("$2a$10$lt7pS7Kxxe5JfP.vjLNSyOXP11eHgh7RoPxo5fvvbMCZkCUss2DGu");
+        usuario.setSenha("$2y$12$ZIWGwavDCURUmjTVWqRbd.aURIgt/PlO98Lr7fhjR/Zpg9ZhCZwe.");
         usuario.addRoles(Role.ROLE_ADMIN, Role.ROLE_USER);
 
         usuarioService.save(usuario);
@@ -339,7 +437,6 @@ public class LhcdiscosApplication implements WebMvcConfigurer, CommandLineRunner
         dadosPagamento3.setStripeId("xxxx15dfsdfxxx");
         dadosPagamento3.setStripeStatus("pedidoteste");
         pedido3.setPagamento(dadosPagamento3);
-
 
 
         pedidoService.saveAll(Arrays.asList(pedido1, pedido2, pedido3));

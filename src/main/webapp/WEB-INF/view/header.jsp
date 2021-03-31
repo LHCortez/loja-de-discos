@@ -6,10 +6,11 @@
     <section id="banner container-xl">
         <div id="container-banner">
             <!-- Logo gerado em: https://www.brandcrowd.com/maker/logo/barbarian-devil-esports-clan-19187#popup-colorpalette -->
-            <a href="${s:mvcUrl('HC#home').build()}">
-                <img class="logo mx-auto d-block pt-2" src="${pageContext.request.contextPath}/img/logo-transparent.png" alt="">
-            </a>
-
+            <div class="mx-auto d-block pt-2 text-center">
+                <a href="${s:mvcUrl('HC#home').build()}">
+                    <img class="logo" src="${pageContext.request.contextPath}/img/logo-transparent.png" alt="">
+                </a>
+            </div>
             <form action="${pageContext.request.contextPath}/search" method="get" id="form-busca"
                   class="d-flex mx-auto mt-3 mb-3">
                 <input name="s" class="form-control me-2" type="search" placeholder="Pesquisar..." aria-label="Search">

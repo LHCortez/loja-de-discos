@@ -49,7 +49,9 @@
                 <tbody id="tabelaBandaBody">
                 <c:forEach items="${bandas}" var="banda">
                     <tr>
-                        <td>${banda.nome}</td>
+                        <td><a href="#produtos_${banda.id}" data-bs-toggle="modal">
+                                ${banda.nome}</a>
+                        </td>
                         <td>${banda.genero.descricao}</td>
                         <td class="text-center">
                             <a class="btn" href="${pageContext.request.contextPath}/crud/band/update/${banda.id}">
@@ -70,7 +72,38 @@
                 </tbody>
             </table>
         </div>
-
     </div>
+
+    <c:forEach items="${bandas}" var="banda">
+        <div class="modal fade" id="produtos_${banda.id}" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Produtos de ${banda.nome}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-sm">
+                            <thead>
+                            <tr>
+                                <th scope="col">Produto</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${banda.produtos}" var="produto">
+                                <tr>
+                                    <td>${produto.nome} (${produto.tipo})</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c:forEach>
 
 </tags:crudTemplate>

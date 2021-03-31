@@ -24,7 +24,7 @@ public class NovoUsuarioLocalDto {
 
     private String confirmaSenha;
 
-    private Role role = Role.ROLE_USER;
+    private final Role role = Role.ROLE_USER;
 
     public String getNome() {
         return nome;
@@ -58,21 +58,8 @@ public class NovoUsuarioLocalDto {
         this.confirmaSenha = confirmaSenha;
     }
 
-    public String getRoleNome() {
-        return role.name();
-    }
-
-    public void setRoleNome(String roleString) {
-        setRole(roleString);
-    }
-
     public Role getRole() {
         return role;
     }
-
-    public void setRole(String roleString) {
-        this.role = Role.valueOf(roleString);
-    }
-
 
 }

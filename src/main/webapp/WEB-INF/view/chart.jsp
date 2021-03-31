@@ -3,6 +3,22 @@
 
 <tags:crudTemplate>
 
+    <!--Load the AJAX API Google Charts-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!--Load the Embed API-->
+    <script>
+        (function(w,d,s,g,js,fs){
+            g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
+            js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
+            js.src='https://apis.google.com/js/platform.js';
+            fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
+        }(window,document,'script'));
+    </script>
+
+    <!-- Load the DateRangeSelector component script. -->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/date-range-selector.js" charset="UTF-8"></script>
+
     <!-- Gráficos com dados vindos do BD, utilizando o Google Charts -->
     <script type="text/javascript">
 
@@ -174,7 +190,7 @@
                     'dimensions': 'ga:pagePathLevel2',
                     'sort': '-ga:pageviews',
                     'filters': 'ga:pagePath=~/product/*',
-                    'max-results': 7
+                    'max-results': 10
                 },
                 chart: {
                     'container': 'popular_pages_div',

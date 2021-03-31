@@ -9,8 +9,6 @@ import java.util.List;
 
 public class ValidPasswordValidator implements ConstraintValidator<ValidPassword, String> {
 
-    // TODO: 15/02/2021 JS PASSWORD METER https://www.baeldung.com/registration-password-strength-and-rules 
-    
     @Override
     public void initialize(ValidPassword arg0) {
     }

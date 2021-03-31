@@ -91,7 +91,7 @@ public class CrudProdutoController {
     @GetMapping("/create/album")
     public ModelAndView albumForm(@ModelAttribute("album") Album album) {
         ModelAndView modelAndView = new ModelAndView("/crud/albumForm");
-        modelAndView.addObject("bandas", bandaService.searchAll());
+        modelAndView.addObject("bandas", bandaService.findAll());
         modelAndView.addObject("formatos", AlbumFormato.getFormatos());
         return modelAndView;
     }
@@ -119,7 +119,7 @@ public class CrudProdutoController {
     @GetMapping("/create/camiseta")
     public ModelAndView camisetaForm(@ModelAttribute("camiseta") Camiseta camiseta) {
         ModelAndView modelAndView = new ModelAndView("/crud/camisetaForm");
-        modelAndView.addObject("bandas", bandaService.searchAll());
+        modelAndView.addObject("bandas", bandaService.findAll());
         modelAndView.addObject("tamanhos", CamisetaSize.getSizes());
         return modelAndView;
     }
@@ -147,7 +147,7 @@ public class CrudProdutoController {
     @GetMapping("/create/patch")
     public ModelAndView patchForm(@ModelAttribute("patch") Patch patch) {
         ModelAndView modelAndView = new ModelAndView("/crud/patchForm");
-        modelAndView.addObject("bandas", bandaService.searchAll());
+        modelAndView.addObject("bandas", bandaService.findAll());
         return modelAndView;
     }
 
@@ -174,7 +174,7 @@ public class CrudProdutoController {
     @GetMapping("/create/livro")
     public ModelAndView livroForm(@ModelAttribute("livro") Livro livro) {
         ModelAndView modelAndView = new ModelAndView("/crud/livroForm");
-        modelAndView.addObject("bandas", bandaService.searchAll());
+        modelAndView.addObject("bandas", bandaService.findAll());
         return modelAndView;
     }
 

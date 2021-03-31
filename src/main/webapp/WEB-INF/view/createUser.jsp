@@ -39,25 +39,6 @@
                     <form:errors cssClass="text-danger"/>
                 </div>
             </div>
-            <fieldset class="row my-4">
-                <legend class="col-form-label col-sm-4 pt-0">Tipo de conta</legend>
-                <div class="col-sm-8">
-                    <div class="form-check">
-                        <form:radiobutton path="roleNome" class="form-check-input"  name="gridRadios" id="gridRadios1"
-                                          value="ROLE_USER" />
-                        <label class="form-check-label" for="gridRadios1">
-                            Cliente
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <form:radiobutton path="roleNome" class="form-check-input" name="gridRadios" id="gridRadios2"
-                                          value="ROLE_ADMIN"/>
-                        <label class="form-check-label" for="gridRadios2">
-                            Administrador
-                        </label>
-                    </div>
-                </div>
-            </fieldset>
             <button type="submit" class="btn botao-destaque p-2 mt-4 mb-5">Cadastrar</button>
         </form:form>
 

@@ -41,7 +41,7 @@ public class CrudBandaController {
         } else {
             modelAndView.addObject("bandaSalva", "");
         }
-        modelAndView.addObject("bandas", bandaService.searchAll());
+        modelAndView.addObject("bandas", bandaService.findAllJoinedProductList());
         return modelAndView;
     }
 
@@ -90,7 +90,7 @@ public class CrudBandaController {
                         + ".xlsx";
         response.setHeader(headerKey, headerValue);
 
-        List<Banda> listbandas = bandaService.searchAll();
+        List<Banda> listbandas = bandaService.findAll();
 
         BandaExcelExporter excelExporter = new BandaExcelExporter(listbandas);
 

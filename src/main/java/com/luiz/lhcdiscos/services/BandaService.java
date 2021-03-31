@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -24,7 +25,7 @@ public class BandaService {
                 "Objeto não encontrado! Id: " + id + ", Tipo: " + Banda.class.getName()));
     }
 
-    public List<Banda> searchAll() {
+    public List<Banda> findAll() {
         return bandaRepository.findAll();
     }
 
@@ -54,6 +55,10 @@ public class BandaService {
 
     public void saveAll(List<Banda> bandas) {
         bandaRepository.saveAll(bandas);
+    }
+
+    public Set<Banda> findAllJoinedProductList(){
+        return bandaRepository.findAllJoinedProductList();
     }
 
 }

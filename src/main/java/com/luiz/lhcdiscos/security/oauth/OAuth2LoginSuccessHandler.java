@@ -26,8 +26,6 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
         String email = oAuth2User.getEmail();
         Usuario usuario = usuarioService.findUsuarioByEmailIgnoreCase(email);
 
-//        TODO: Bug quando atualiza um usuário administrado, dá erro ao entrar no CRUD. Não reconhece que é admin
-
         if (usuario == null) {
             usuarioService.createNewUserAfterOAuthLoginSuccess(email, oAuth2User.getName(), oAuth2User.getProvider());
         } else {
