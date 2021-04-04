@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.models.entities;
 
-import com.luiz.lhcdiscos.models.enums.AuthenticationProvider;
+import com.luiz.lhcdiscos.models.enums.ProvedorAutenticacao;
 import com.luiz.lhcdiscos.models.enums.Role;
 
 import javax.persistence.*;
@@ -16,12 +16,18 @@ public class Usuario implements Serializable {
     @Column(name = "usuario_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false)
     private String nome;
-    @Column(unique = true)
+
+    @Column(unique = true, nullable = false)
     private String email;
+
     private String senha;
+
     @Enumerated(EnumType.STRING)
-    private AuthenticationProvider authenticationProvider;
+    @Column(name = "authentication_provider")
+    private ProvedorAutenticacao provedorAutenticacao;
     private boolean enabled = true;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -29,7 +35,6 @@ public class Usuario implements Serializable {
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pedido> pedidos = new ArrayList<>();
-
 
     public Integer getId() {
         return id;
@@ -87,12 +92,12 @@ public class Usuario implements Serializable {
         return Collections.unmodifiableList(pedidos);
     }
 
-    public AuthenticationProvider getAuthenticationProvider() {
-        return authenticationProvider;
+    public ProvedorAutenticacao getProvedorAutenticacao() {
+        return provedorAutenticacao;
     }
 
-    public void setAuthenticationProvider(AuthenticationProvider authenticationProvider) {
-        this.authenticationProvider = authenticationProvider;
+    public void setProvedorAutenticacao(ProvedorAutenticacao provedorAutenticacao) {
+        this.provedorAutenticacao = provedorAutenticacao;
     }
 
     @PrePersist

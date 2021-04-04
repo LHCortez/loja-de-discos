@@ -20,16 +20,16 @@ public class UniqueLivroValidator implements ConstraintValidator<UniqueLivro, Li
     public boolean isValid(Livro livro, ConstraintValidatorContext constraintValidatorContext) {
 
         if (livro.getId() == null) {
-            return livroService.livroIsAvailableForSaving(livro);
+            return livroService.estaDisponivelParaPersistir(livro);
         }
 
-        Livro livroNoBd = livroService.searchLivroById(livro.getId());
+        Livro livroNoBd = livroService.buscaPorId(livro.getId());
 
         if (livroNoBd.getNome().equalsIgnoreCase(livro.getNome())
             && (livroNoBd.getAutor().equals(livro.getAutor()))) {
             return true;
         } else {
-            return livroService.livroIsAvailableForSaving(livro);
+            return livroService.estaDisponivelParaPersistir(livro);
         }
 
     }

@@ -19,10 +19,10 @@ public class DevConfig {
 
     @Bean
     public boolean instantiateDatabase() {
-//        if (!strategy.equals("create")) {
-//            return false;
-//        }
-        dbService.instantiateTestDatabase();
+        if (!strategy.equals("create")) {
+            return false;
+        }
+        dbService.instanciaBancoDeDadosDeTeste();
         return true;
     }
 

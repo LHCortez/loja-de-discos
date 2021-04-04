@@ -1,5 +1,5 @@
 package com.luiz.lhcdiscos.models.enums;
 
-public enum AuthenticationProvider {
+public enum ProvedorAutenticacao {
     LOCAL, GOOGLE
 }

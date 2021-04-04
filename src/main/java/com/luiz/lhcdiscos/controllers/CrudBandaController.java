@@ -21,67 +21,65 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/crud/band")
+@RequestMapping("/crud/bandas")
 public class CrudBandaController {
 
     @Autowired
     private BandaService bandaService;
 
-    @GetMapping ("/list")
-    public ModelAndView bandList(HttpServletRequest request) {
-        ModelAndView modelAndView = new ModelAndView("/crud/listBand");
+    @GetMapping ("/read")
+    public ModelAndView read(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("crud/listBandas");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
         if (inputFlashMap != null) {
             modelAndView.addObject("bandaSalva", inputFlashMap.get("salva"));
         } else {
             modelAndView.addObject("bandaSalva", "");
         }
-        modelAndView.addObject("bandas", bandaService.findAllJoinedProductList());
+        modelAndView.addObject("bandas", bandaService.buscaTodosJoinedProdutos());
         return modelAndView;
     }
 
     @GetMapping ("/create")
-    public ModelAndView bandForm(@ModelAttribute("banda") Banda banda) {
-        ModelAndView modelAndView = new ModelAndView("/crud/bandForm");
+    public ModelAndView form(@ModelAttribute("banda") Banda banda) {
+        ModelAndView modelAndView = new ModelAndView("crud/bandaForm");
         modelAndView.addObject("generos", Genero.getGeneros());
         return modelAndView;
     }
 
-    @RequestMapping(value="/create", method = RequestMethod.POST)
-    public ModelAndView saveBand(@ModelAttribute("banda") @Valid Banda banda,
-                                 BindingResult result, RedirectAttributes model) {
+    @PostMapping("/create")
+    public ModelAndView create(@ModelAttribute("banda") @Valid Banda banda,
+                               BindingResult result, RedirectAttributes model) {
         if (result.hasErrors()) {
-            return bandForm(banda);
+            return form(banda);
         }
-        bandaService.save(banda);
+        bandaService.salva(banda);
         model.addFlashAttribute("salva", banda.getNome());
-        return new ModelAndView("redirect:/crud/band/list");
+        return new ModelAndView("redirect:/crud/bandas/read");
     }
 
-    @RequestMapping(value="/delete", method = RequestMethod.POST)
-    public ModelAndView deleteBand(@RequestParam Integer id) {
-        bandaService.deleteById(id);
-        return new ModelAndView("redirect:/crud/band/list");
+    @PostMapping("/delete")
+    public ModelAndView delete(@RequestParam Integer id) {
+        bandaService.deletaPorId(id);
+        return new ModelAndView("redirect:/crud/bandas/read");
     }
 
     @GetMapping ("/update/{id}")
-    public ModelAndView updateBand(@PathVariable Integer id, Model model) {
-        Banda banda = bandaService.searchById(id);
+    public ModelAndView update(@PathVariable Integer id, Model model) {
+        Banda banda = bandaService.buscaPorId(id);
         model.addAttribute("banda", banda);
-        return bandForm(banda);
+        return form(banda);
     }
 
     @GetMapping("/export")
-    public void exportToExcel(HttpServletResponse response) throws IOException {
+    public void exportaParaExcel(HttpServletResponse response) throws IOException {
 
         response.setContentType("application/octet-stream");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
-        String currentDateTime = dateFormatter.format(new Date());
 
         String headerKey = "Content-Disposition";
         String headerValue =
@@ -90,7 +88,7 @@ public class CrudBandaController {
                         + ".xlsx";
         response.setHeader(headerKey, headerValue);
 
-        List<Banda> listbandas = bandaService.findAll();
+        List<Banda> listbandas = bandaService.buscaTodos();
 
         BandaExcelExporter excelExporter = new BandaExcelExporter(listbandas);
 

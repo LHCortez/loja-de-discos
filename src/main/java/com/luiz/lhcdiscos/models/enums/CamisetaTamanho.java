@@ -3,9 +3,8 @@ package com.luiz.lhcdiscos.models.enums;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
-public enum CamisetaSize {
+public enum CamisetaTamanho {
     P,
     M,
     G;
@@ -20,7 +19,7 @@ public enum CamisetaSize {
 
     public static List<String> getSizes(){
         List<String> sizes = new ArrayList<>();
-        Arrays.stream(CamisetaSize.values()).forEach(x -> sizes.add(x.toString()));
+        Arrays.stream(CamisetaTamanho.values()).forEach(x -> sizes.add(x.toString()));
         return sizes;
     }
 

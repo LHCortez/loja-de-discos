@@ -17,24 +17,28 @@ public class LivroService {
     @Autowired
     private LivroRepository livroRepository;
 
-    public Livro searchLivroById(Integer id) {
+    public Livro buscaPorId(Integer id) {
         Optional<Livro> optional = livroRepository.findById(id);
         return optional.orElseThrow(() -> new ObjectNotFoundException(
                 "Livro não encontrado! Id: " + id));
     }
 
-    public List<Livro> findAll() {
-        return livroRepository.findAll();
+    public List<Livro> buscaTodos() {
+        return livroRepository.findAllLivro();
     }
 
-    public Page<Livro> findAll(Pageable pageable) {
+    public Page<Livro> buscaTodos(Pageable pageable) {
         return livroRepository.findAll(pageable);
     }
 
-    public void save(Livro livro) {
+    public List<Livro> buscaPorNomeDoAutor(String searchString) {
+        return livroRepository.searchLivroByAuthorName(searchString);
+    }
+
+    public void salva(Livro livro) {
         Livro livroAntigo;
         if (livro.getId() != null) {
-            livroAntigo = searchLivroById(livro.getId());
+            livroAntigo = buscaPorId(livro.getId());
             livroAntigo.setNome(livro.getNome());
             livroAntigo.setBanda(livro.getBanda());
             livroAntigo.setAutor(livro.getAutor());
@@ -49,13 +53,9 @@ public class LivroService {
         }
     }
 
-    public boolean livroIsAvailableForSaving(Livro livro) {
+    public boolean estaDisponivelParaPersistir(Livro livro) {
         return !livroRepository
                 .existsByNomeIgnoreCaseAndAutorIgnoreCase(livro.getNome(), livro.getAutor());
-    }
-
-    public List<Livro> searchLivroByAuthorName(String searchString) {
-        return livroRepository.searchLivroByAuthorName(searchString);
     }
 
 }

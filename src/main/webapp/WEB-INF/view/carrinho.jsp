@@ -41,13 +41,18 @@
                                     </td>
                                     <td data-title="Produto">
                                         <a href="${s:mvcUrl('HC#detalhe').arg(0, produto.id).build()}"
-                                           class="texto-cor-especial fw-bold">
-                                                ${produto.banda.nome} - ${produto.nome} - ${produto.tipo}
+                                           class="texto-cor-especial fw-bold">${produto.banda.nome} - ${produto.nome} - ${produto.tipo}
+                                            <c:choose>
+                                                <c:when test="${produto.tipo.equals('Camiseta')}">
+                                                    (${produto.tamanho})
+                                                </c:when>
+                                            </c:choose>
                                         </a>
                                         <p class="text-muted">Preço unitário: R$ ${produto.preco}</p>
+
                                     </td>
                                     <td data-title="Quantidade" class="text-center">
-                                        <form:form role="form" action="${pageContext.request.contextPath}/cart/setquantidade"
+                                        <form:form role="form" action="${pageContext.request.contextPath}/carrinho/setquantidade"
                                                 method="post">
                                             <input type="hidden" value="${produto.id}" name="id">
                                             <select class="form-select form-select-sm w-0" aria-label="Selecione quantidade"
@@ -71,9 +76,9 @@
                                         R$ ${carrinhoCompras.getValorPorProduto(produto)}
                                     </td>
                                     <td class="text-center">
-                                        <form action="${s:mvcUrl('CC#remove').arg(0, produto.id).build()}" method="post">
+                                        <form:form action="${s:mvcUrl('CC#remove').arg(0, produto.id).build()}" method="post">
                                             <button type="submit" class="border-0"><i class="fas fa-trash"></i></button>
-                                        </form>
+                                        </form:form>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -120,14 +125,18 @@
                                 </form:form>
                             </sec:authorize>
                             <sec:authorize access="!isAuthenticated()">
-                                    <a class="btn col-md-3 botao-destaque p-2" href="${pageContext.request.contextPath}/user/login">
-                                        Finalizar compra
-                                    </a>
+                                <a class="btn col-md-3 botao-destaque p-2" href="${pageContext.request.contextPath}/usuario/login">
+                                    Finalizar compra
+                                </a>
                             </sec:authorize>
                         </div>
                     </div>
+                    <p class="mt-3 fs-6 text-danger">ATENÇÃO: Esse site foi desenvolvido para a disciplina Trabalho de Conclusão de Curso do curso de especialização
+                        em Desenvolvimento Web Full Stack da PUC Minas. Nenhum produto do site está disponível para venda.
+                    </p>
                 </c:otherwise>
             </c:choose>
+
         </div>
 
         <div id="carrinho-sugestoes" class="container-xl rounded mt-4 p-3">
@@ -141,8 +150,12 @@
                                 <img src="${pageContext.request.contextPath}${produto.capa}"
                                      class="card-img-top imagem-sugestoes" alt="...">
                                 <div class="card-body pb-1">
-                                    <h5 class="card-title texto-sugestoes">
-                                            ${produto.nome} - ${produto.tipo} -
+                                    <h4 class="card-title texto-sugestoes">${produto.nome} - ${produto.tipo} -
+                                        <c:choose>
+                                            <c:when test="${produto.tipo.equals('Camiseta')}">
+                                                ${produto.tamanho} -
+                                            </c:when>
+                                        </c:choose>
                                         <c:choose>
                                             <c:when test="${produto.tipo.equals('Livro')}">
                                                 ${produto.autor} -
@@ -151,7 +164,7 @@
                                                 ${produto.banda.nome} -
                                             </c:otherwise>
                                         </c:choose>
-                                        R$ ${produto.preco}</h5>
+                                        R$ ${produto.preco}</h4>
                                 </div>
                             </div>
                         </a>

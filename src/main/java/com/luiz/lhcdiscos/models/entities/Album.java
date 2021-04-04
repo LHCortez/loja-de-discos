@@ -4,6 +4,7 @@ import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.validation.UniqueAlbum;
 import com.luiz.lhcdiscos.validation.ValueOfEnum;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 public class Album extends Produto {
 
     @ValueOfEnum(enumClass = AlbumFormato.class, message = "Escolha o formato do álbum")
+    @Column(nullable = false)
     private AlbumFormato formato;
 
     public Album(){

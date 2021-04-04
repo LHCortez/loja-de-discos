@@ -9,7 +9,7 @@
 
         <h4 class="titulo mt-4 mb-5">Crie sua conta</h4>
 
-        <form:form  modelAttribute="usuario" action="${pageContext.request.contextPath}/user/create" method="POST"
+        <form:form  modelAttribute="usuario" action="${pageContext.request.contextPath}/usuario/create" method="POST"
                    id="cria-conta-form" class="px-md-5">
             <div class="row my-4">
                 <label for="nome" class="col-sm-4 col-form-label">Nome completo</label>

@@ -25,21 +25,25 @@ public class ItemPedido implements Serializable {
 
     @Basic(optional = false)
     @NotNull
+    @Column(nullable = false)
     private Integer quantidade;
 
     @Basic(optional = false)
     @NotNull
+    @Column(nullable = false)
     private String nome;
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "valor_unitario")
+    @Column(name = "valor_unitario", nullable = false)
     private BigDecimal valorUnitario;
 
     @Basic(optional = false)
     @NotNull
+    @Column(nullable = false)
     private String tipo;
 
+    @Column(nullable = false)
     private Genero generoDaBanda;
 
 //    OBS: Alguns atributos do Produto e Banda foram salvos também nessa entidade pois, ao se deletar o produto na

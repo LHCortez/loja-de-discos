@@ -18,11 +18,11 @@
                     </c:if>
             </c:if>
 
-            <c:if test="${novoUsuario == true}">
+            <c:if test="${novoUsuario}">
                 <p class="text-success mb-0">Novo usuário cadastrado!</p>
             </c:if>
 
-            <form:form id="login-form" action="${pageContext.request.contextPath}/user/login" method="post">
+            <form:form id="login-form" action="${pageContext.request.contextPath}/usuario/login" method="post">
                 <div class="form-floating">
                     <input type="email" name="username" class="form-control my-4" aria-describedby="emailHelp"
                            aria-label="E-mail" id="floatingInput" placeholder="E-mail">
@@ -47,7 +47,7 @@
 
 
             <div class="text-center mt-5 mb-6 fs-5 "> Ainda não é cadastrado?
-                <a href="${s:mvcUrl('UC#createUserForm').build()}" class="texto-cor-especial">Clique aqui</a>.
+                <a href="${s:mvcUrl('UC#usuarioForm').build()}" class="texto-cor-especial">Clique aqui</a>.
             </div>
         </div>
     </section>

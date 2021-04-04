@@ -41,22 +41,22 @@
     <ul class="nav nav-tabs crud-tabs navbar-dark" id="myTab" role="tablist">
         <li class="nav-item" role="presentation" id="album">
             <a class="btn nav-link crud-tabs-link"
-               href="${pageContext.request.contextPath}/crud/product/create/album">Álbum</a>
+               href="${pageContext.request.contextPath}/crud/produtos/create/album">Álbum</a>
         </li>
         <li class="nav-item" role="presentation" id="camiseta">
             <a class="btn nav-link crud-tabs-link active" style="pointer-events: none;">Camiseta</a>
         </li>
         <li class="nav-item" role="presentation" id="patch">
             <a class="btn nav-link crud-tabs-link"
-               href="${pageContext.request.contextPath}/crud/product/create/patch">Patch</a>
+               href="${pageContext.request.contextPath}/crud/produtos/create/patch">Patch</a>
         </li>
         <li class="nav-item" role="presentation" id="livro">
             <a class="btn nav-link crud-tabs-link"
-               href="${pageContext.request.contextPath}/crud/product/create/livro">Livro</a>
+               href="${pageContext.request.contextPath}/crud/produtos/create/livro">Livro</a>
         </li>
     </ul>
 
-    <div class="tab-content crud-tab-content py-4 px-sm-4" id="myTabContent">
+    <div class="tab-content crud-tab-content py-4 px-3 px-sm-4" id="myTabContent">
 
         <c:choose>
             <c:when test="${camiseta.id != null}">
@@ -67,7 +67,7 @@
             </c:otherwise>
         </c:choose>
 
-        <form:form modelAttribute="camiseta" action="${s:mvcUrl('CPC#saveCamiseta').build()}" method="POST"
+        <form:form modelAttribute="camiseta" action="${s:mvcUrl('CPC#createCamiseta').build()}" method="POST"
                    enctype="multipart/form-data">
 
             <form:errors cssClass="text-danger"/>
@@ -84,11 +84,11 @@
             <fieldset class="tamanho row mb-3">
                 <label for="tamanho" class="col-md-2 col-lg-1 col-form-label">Tamanho</label>
                 <div class="col-md-4 col-xl-3">
-                    <form:select path="size" id="tamanho" class="form-select" required="true">
+                    <form:select path="tamanho" id="tamanho" class="form-select" required="true">
                         <option value="">Selecione o tamanho</option>
                         <c:forEach items="${tamanhos}" var="tamanho">
                             <c:choose>
-                                <c:when test="${camiseta.size.toString().equalsIgnoreCase(tamanho)}">
+                                <c:when test="${camiseta.tamanho.toString().equalsIgnoreCase(tamanho)}">
                                     <option value="${tamanho}" selected>${tamanho}</option>
                                 </c:when>
                                 <c:otherwise>
@@ -97,7 +97,7 @@
                             </c:choose>
                         </c:forEach>
                     </form:select>
-                    <form:errors path="size" cssClass="text-danger"/>
+                    <form:errors path="tamanho" cssClass="text-danger"/>
                 </div>
             </fieldset>
 

@@ -20,16 +20,18 @@ public class Banda implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     @NotBlank(message = "Preencha o nome da banda")
     @Size(max = 50, message = "O nome deve conter no máximo 50 caracteres")
     private String nome;
 
-    @OneToMany(mappedBy = "banda", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "banda", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnore
+    @Column(nullable = false)
     private Set<Produto> produtos = new HashSet<>();
 
     @ValueOfEnum(enumClass = Genero.class, message = "Escolha o gênero musical")
+    @Column(nullable = false)
     private Genero genero;
 
     public Banda(){

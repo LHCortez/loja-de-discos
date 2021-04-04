@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.*;
 
 @Controller
-@RequestMapping("/search")
+@RequestMapping("/busca")
 public class BuscaController {
 
     @Autowired
@@ -30,7 +30,7 @@ public class BuscaController {
 
     private final int pageSize = 6;
 
-    private void prepareModelAndView(ModelAndView modelAndView, Page<Produto> produtosPage) {
+    private void preparaModelAndView(ModelAndView modelAndView, Page<Produto> produtosPage) {
         modelAndView.addAllObjects(Map.of(
                 "categorias", getCategorias(),
                 "generos", Genero.getGeneros()
@@ -49,39 +49,39 @@ public class BuscaController {
 
     @GetMapping
     public ModelAndView busca(@RequestParam(defaultValue = "0") int page) {
-        ModelAndView modelAndView = new ModelAndView("search");
-        Page<Produto> produtos = produtoService.findAll(PageRequest.of(page, pageSize));
-        prepareModelAndView(modelAndView, produtos);
+        ModelAndView modelAndView = new ModelAndView("busca");
+        Page<Produto> produtos = produtoService.buscaTodos(PageRequest.of(page, pageSize));
+        preparaModelAndView(modelAndView, produtos);
         return modelAndView;
     }
 
     @GetMapping(params = "s")
     public ModelAndView buscaString(@RequestParam String s, @RequestParam(defaultValue = "0") int page){
-        ModelAndView modelAndView = new ModelAndView("search");
+        ModelAndView modelAndView = new ModelAndView("busca");
 
-        List<Produto> produtosList = produtoService.searchProdutosContainingString(s);
-        List<Livro> livroList = livroService.searchLivroByAuthorName(s);
+        List<Produto> produtosList = produtoService.buscaProdutosContendoString(s);
+        List<Livro> livroList = livroService.buscaPorNomeDoAutor(s);
         Set<Produto> produtosAll = new HashSet<>(produtosList); // Set para não adicionar produtos duplicados
         produtosAll.addAll(livroList);
         Page<Produto> produtosPage = Pager.createPages(new ArrayList<>(produtosAll), PageRequest.of(page, pageSize));
 
-        prepareModelAndView(modelAndView, produtosPage);
+        preparaModelAndView(modelAndView, produtosPage);
         modelAndView.addObject("buscaString", s);
         return modelAndView;
     }
 
     @GetMapping(value="/cat/{categoriaString}")
-    public ModelAndView buscarPorCategoriaOuGenero(@PathVariable String categoriaString, @RequestParam(defaultValue = "0") int page) {
-        ModelAndView modelAndView = new ModelAndView("search");
+    public ModelAndView buscaPorCategoriaOuGenero(@PathVariable String categoriaString, @RequestParam(defaultValue = "0") int page) {
+        ModelAndView modelAndView = new ModelAndView("busca");
         Page<Produto> produtosPage;
         if (getCategorias().contains(categoriaString)){
-            produtosPage = produtoService.searchProdutosByCategoria(categoriaString, PageRequest.of(page, pageSize));
+            produtosPage = produtoService.buscaPorTipo(categoriaString, PageRequest.of(page, pageSize));
         } else {
             Genero genero = Genero.valueOf(categoriaString.toUpperCase().replace(" ", ""));
-            produtosPage = produtoService.searchProdutosByGeneroPage(genero, PageRequest.of(page, pageSize));
+            produtosPage = produtoService.buscaPorGeneroDaBandaPage(genero, PageRequest.of(page, pageSize));
         }
 
-        prepareModelAndView(modelAndView, produtosPage);
+        preparaModelAndView(modelAndView, produtosPage);
         modelAndView.addObject("buscaString", categoriaString);
         return modelAndView;
     }

@@ -13,7 +13,7 @@
                     aria-selected="true">Banda</button>
         </li>
     </ul>
-    <div class="tab-content crud-tab-content py-4 px-sm-4" id="myTabContent">
+    <div class="tab-content crud-tab-content py-4 px-3 px-sm-4" id="myTabContent">
 
         <c:choose>
             <c:when test="${banda.id != null}">
@@ -24,7 +24,7 @@
             </c:otherwise>
         </c:choose>
 
-        <form:form modelAttribute="banda" action="${pageContext.request.contextPath}/crud/band/create" method="POST">
+        <form:form modelAttribute="banda" action="${pageContext.request.contextPath}/crud/bandas/create" method="POST">
 
             <fieldset class="row mb-3">
                 <label for="banda-nome" class="col-md-1 col-form-label">Nome</label>

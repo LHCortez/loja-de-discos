@@ -5,12 +5,10 @@ import com.luiz.lhcdiscos.models.entities.ItemPedido;
 import com.luiz.lhcdiscos.services.AnalyticsService;
 import com.luiz.lhcdiscos.services.DadosPagamentoService;
 import com.luiz.lhcdiscos.services.ItemPedidoService;
-import com.luiz.lhcdiscos.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,8 +23,8 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("chart")
-public class GraficoController {
+@RequestMapping("estatisticas")
+public class EstatisticasController {
 
     @Autowired
     private DadosPagamentoService dadosPagamentoService;
@@ -35,22 +33,19 @@ public class GraficoController {
     private ItemPedidoService itemPedidoService;
 
     @Autowired
-    private PedidoService pedidoService;
-
-    @Autowired
     private AnalyticsService analyticsService;
 
     @GetMapping()
     public ModelAndView index() throws IOException {
-        ModelAndView modelAndView = new ModelAndView("chart");
+        ModelAndView modelAndView = new ModelAndView("estatisticas");
         modelAndView.addObject("analyticsToken", analyticsService.getToken());
         return modelAndView;
     }
 
-    @RequestMapping(value = "data/purchasedItemCount", method = RequestMethod.GET)
+    @GetMapping ("data/quantidadeItensComprados")
     @ResponseBody
-    public Map<String, Long> purchasedItemCount() {
-        List<ItemPedido> itemPedidos = itemPedidoService.findAll();
+    public Map<String, Long> quantidadeItensComprados() {
+        List<ItemPedido> itemPedidos = itemPedidoService.buscaTodos();
         Map<String, Long> itemCount = new HashMap<>();
         itemPedidos.forEach(x -> {
             String tipo = x.getTipo();
@@ -63,10 +58,10 @@ public class GraficoController {
         return itemCount;
     }
 
-    @RequestMapping(value = "data/purchasedItemBandStyle", method = RequestMethod.GET)
+    @GetMapping("data/generoBandaItensComprados")
     @ResponseBody
-    public Map<String, Long> purchasedItemBandStyle() {
-        List<ItemPedido> itemPedidos = itemPedidoService.findAll();
+    public Map<String, Long> generoBandaItensComprados() {
+        List<ItemPedido> itemPedidos = itemPedidoService.buscaTodos();
         Map<String, Long> generos = new HashMap<>();
         itemPedidos.forEach(x -> {
             String genero = x.getGeneroDaBanda().toString();
@@ -79,9 +74,9 @@ public class GraficoController {
         return generos;
     }
 
-    @RequestMapping(value = "data/revenueByMonth", method = RequestMethod.GET)
+    @GetMapping( "data/receitaPorMes")
     @ResponseBody
-    public Map<String, BigDecimal> revenueByMonth()  {
+    public Map<String, BigDecimal> receitaPorMes()  {
 
         YearMonth now = YearMonth.now(ZoneId.of("America/Sao_Paulo"));
 
@@ -91,7 +86,7 @@ public class GraficoController {
         for (int i = 0; i <= 12; i++) {
             YearMonth start = now.minusMonths(i);
             List<DadosPagamento> pagamentosNoMes =
-                    dadosPagamentoService.findPagamentosByDataBetween(start.atDay(1), start.atEndOfMonth());
+                    dadosPagamentoService.buscaDadosPagamentoEntreDatas(start.atDay(1), start.atEndOfMonth());
             BigDecimal valorTotalNoMes = new BigDecimal(0);
             for (DadosPagamento pagamento : pagamentosNoMes){
                 valorTotalNoMes = valorTotalNoMes.add(pagamento.getValorPago());

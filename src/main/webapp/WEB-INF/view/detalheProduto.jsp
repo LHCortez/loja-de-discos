@@ -28,7 +28,11 @@
                                 </c:otherwise>
                             </c:choose>
 
-
+                            <c:choose>
+                                <c:when test="${produto.tipo.equals('Camiseta')}">
+                                    <p class="text-muted mb-0">Tamanho: ${produto.tamanho}</p>
+                                </c:when>
+                            </c:choose>
                             <p class="text-muted mb-0">Lançamento: <tags:localDate date="${produto.lancamento}"/></p>
                             <p class="text-muted mb-0">Gênero: ${produto.banda.genero.descricao}</p>
                             <h2 class="texto-cor-especial fs-1 my-3">R$ ${produto.preco}</h2>
@@ -54,8 +58,12 @@
                                         <img src="${pageContext.request.contextPath}${produto.capa}"
                                              class="card-img-top imagem-sugestoes" alt="...">
                                         <div class="card-body pb-1">
-                                            <h5 class="card-title texto-sugestoes">
-                                                    ${produto.nome} - ${produto.tipo} -
+                                            <h4 class="card-title texto-sugestoes">${produto.nome} - ${produto.tipo} -
+                                                <c:choose>
+                                                    <c:when test="${produto.tipo.equals('Camiseta')}">
+                                                        ${produto.tamanho} -
+                                                    </c:when>
+                                                </c:choose>
                                                 <c:choose>
                                                     <c:when test="${produto.tipo.equals('Livro')}">
                                                         ${produto.autor} -
@@ -64,7 +72,7 @@
                                                         ${produto.banda.nome} -
                                                     </c:otherwise>
                                                 </c:choose>
-                                                R$ ${produto.preco}</h5>
+                                                R$ ${produto.preco}</h4>
                                         </div>
                                     </div>
                                 </a>

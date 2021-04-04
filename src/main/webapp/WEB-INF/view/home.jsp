@@ -19,19 +19,19 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <a href="${pageContext.request.contextPath}/product/14">
+                            <a href="${pageContext.request.contextPath}/produto/14">
                                 <img src="${pageContext.request.contextPath}/img/carrossel-paradiselost-obsidian.png"
                                     class="d-block w-100 carrossel-imagem" alt="...">
                             </a>
                         </div>
                         <div class="carousel-item">
-                            <a href="${pageContext.request.contextPath}/product/12">
+                            <a href="${pageContext.request.contextPath}/produto/12">
                                 <img src="${pageContext.request.contextPath}/img/carrossel-enslaved-utgard.png"
                                         class="d-block w-100 carrossel-imagem" alt="...">
                             </a>
                         </div>
                         <div class="carousel-item">
-                            <a href="${pageContext.request.contextPath}/product/15">
+                            <a href="${pageContext.request.contextPath}/produto/15">
                                 <img src="${pageContext.request.contextPath}/img/carrossel-sepultura-quadra.png"
                                      class="d-block w-100 carrossel-imagem" alt="...">
                             </a>
@@ -50,13 +50,13 @@
                 </div>
             </div>
             <div class="col-md-3 p-0 text-center">
-                <a href="${pageContext.request.contextPath}/product/16"><img class="imagem-promocao"
+                <a href="${pageContext.request.contextPath}/produto/16"><img class="imagem-promocao"
                                  src="${pageContext.request.contextPath}/img/pequeno-moonspell.png"
                                  alt=""></a>
-                <a href="${pageContext.request.contextPath}/product/17"><img class="imagem-promocao"
+                <a href="${pageContext.request.contextPath}/produto/17"><img class="imagem-promocao"
                                  src="${pageContext.request.contextPath}/img/pequeno-paradiselost.png"
                                  alt=""></a>
-                <a href="${pageContext.request.contextPath}/product/2"><img class="imagem-promocao"
+                <a href="${pageContext.request.contextPath}/produto/2"><img class="imagem-promocao"
                                  src="${pageContext.request.contextPath}/img/pequeno-mercyfulfate.png"
                                  alt=""></a>
             </div>
@@ -72,8 +72,13 @@
                             <img src="${pageContext.request.contextPath}${produto.capa}" class="card-img-top"
                                  alt="...">
                             <div class="card-body pb-1">
-                                <h5 class="card-title">${produto.nome} - ${produto.tipo}</h5>
-
+                                <h3 class="card-title fs-5">${produto.nome} - ${produto.tipo}
+                                    <c:choose>
+                                        <c:when test="${produto.tipo.equals('Camiseta')}">
+                                            (${produto.tamanho})
+                                        </c:when>
+                                    </c:choose>
+                                </h3>
                                 <c:choose>
                                     <c:when test="${produto.tipo.equals('Livro')}">
                                         <p class="card-text">${produto.autor}</p>
@@ -82,7 +87,6 @@
                                         <p class="card-text">${produto.banda.nome}</p>
                                     </c:otherwise>
                                 </c:choose>
-
                             </div>
                             <div class="card-footer border-light pt-0 pb-0">
                                 <small class="text-muted">R$ ${produto.preco}</small>

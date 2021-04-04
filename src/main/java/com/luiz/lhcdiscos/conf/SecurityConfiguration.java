@@ -7,8 +7,10 @@ import com.luiz.lhcdiscos.security.oauth.OAuth2LoginSuccessHandler;
 import com.luiz.lhcdiscos.services.UsuarioService;
 import com.sun.xml.bind.v2.TODO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -27,6 +29,9 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Value("${spring.profiles.active}")
+    private String activeProfile;
 
     @Autowired
     private CustomOAuth2UserService oAuth2UserService;
@@ -64,49 +69,46 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/crud", "/crud/**").hasRole("ADMIN")
-                .antMatchers("/chart").hasRole("ADMIN")
-                .antMatchers("/charge", "/charge/**").permitAll()
-                .antMatchers("/album", "/album/**").permitAll()
+                .antMatchers("/data", "/data/**").hasRole("ADMIN")
+                .antMatchers("/estatisticas").hasRole("ADMIN")
+                .antMatchers("/charge", "/charge/**").hasRole("USER")
+                .antMatchers("/albuns", "/albuns/**").permitAll()
                 .antMatchers("/merchandise", "/merchandise/**").permitAll()
-                .antMatchers("/lancamento", "/lancamento/**").permitAll()
-                .antMatchers("/livro", "/livro/**").permitAll()
-//                .antMatchers("error", "/error/**").permitAll()
-                .antMatchers("/contact", "/contact/**").permitAll()
-                .antMatchers("/data", "/data/**").permitAll()
-//                .antMatchers("/search/").hasRole("ADMIN")
+                .antMatchers("/lancamentos", "/lancamentos/**").permitAll()
+                .antMatchers("/livros", "/livros/**").permitAll()
+                .antMatchers("/contato", "/contato/**").permitAll()
                 .antMatchers("/").permitAll()
-                .antMatchers("/search", "/search/**").permitAll()
-                .antMatchers("/product", "/product/**").permitAll()
-                .antMatchers("/cart/**").permitAll()
-                .antMatchers("/user/create").permitAll()
+                .antMatchers("/busca", "/busca/**").permitAll()
+                .antMatchers("/produto", "/produto/**").permitAll()
+                .antMatchers("/carrinho/**").permitAll()
+                .antMatchers("/usuario/create").permitAll()
                 .antMatchers("/console/**").permitAll()
                 .antMatchers("/oauth2/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/user/login")
-//                    .usernameParameter("email")
-                    .loginProcessingUrl("/user/login")
-                    .failureUrl("/user/login?error")
+                    .loginPage("/usuario/login")
+                    .loginProcessingUrl("/usuario/login")
+                    .failureUrl("/usuario/login?error")
                     .successHandler(successHandler()).permitAll()
                 .and()
                 .oauth2Login()
-                    .loginPage("/user/login")
+                    .loginPage("/usuario/login")
                     .userInfoEndpoint().userService(oAuth2UserService)
                     .and()
                     .successHandler(oAuth2LoginSuccessHandler)
                 .and()
                 .logout()
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")).permitAll()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/usuario/logout")).permitAll()
                     .logoutSuccessUrl("/")
                     .deleteCookies("JSESSIONID");
 
-        http.csrf().ignoringAntMatchers("/cart/add");
-        http.csrf().ignoringAntMatchers("/cart/remove");
 
-//        Desabilitar proteção a CRSF para o H2 funcionar
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
+//        Desabilitar proteção a CSRF para o H2 funcionar
+        if (activeProfile.trim().equalsIgnoreCase("test")) {
+            http.csrf().disable();
+            http.headers().frameOptions().disable();
+        }
 
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");

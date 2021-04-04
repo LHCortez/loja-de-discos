@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.security.oauth;
 
-import com.luiz.lhcdiscos.models.enums.AuthenticationProvider;
+import com.luiz.lhcdiscos.models.enums.ProvedorAutenticacao;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
@@ -11,11 +11,11 @@ public class CustomOAuth2User implements OAuth2User {
 
     private OAuth2User oAuth2User;
 
-    private AuthenticationProvider provider;
+    private ProvedorAutenticacao provedorAutenticacao;
 
     public CustomOAuth2User(OAuth2User oAuth2User, String clientName) {
         this.oAuth2User = oAuth2User;
-        this.provider = AuthenticationProvider.valueOf(clientName.toUpperCase());
+        this.provedorAutenticacao = ProvedorAutenticacao.valueOf(clientName.toUpperCase());
     }
 
     @Override
@@ -45,11 +45,11 @@ public class CustomOAuth2User implements OAuth2User {
         return email;
     }
 
-    public AuthenticationProvider getProvider() {
-        return provider;
+    public ProvedorAutenticacao getProvedorAutenticacao() {
+        return provedorAutenticacao;
     }
 
-    public void setProvider(AuthenticationProvider provider) {
-        this.provider = provider;
+    public void setProvedorAutenticacao(ProvedorAutenticacao provedorAutenticacao) {
+        this.provedorAutenticacao = provedorAutenticacao;
     }
 }

@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 public class EmailService {
 
     @Autowired
-    private JavaMailSender emailSender;
+    private JavaMailSender javaMailSender;
 
     public void enviaEmailConfirmacaoDoPedido(String email, BigDecimal valorPago, Pedido pedido) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -51,10 +51,10 @@ public class EmailService {
                 .append("<p style='padding-top: 20px; margin: 0'>Atenciosamente,</p>")
                 .append("<p style='padding: 0; margin: 0'>LHC DISCOS</p>")
                 .append("<p style='padding: 0; margin: 0'>lhcdiscos@gmail.com</p>")
-                .append("<p style='padding: 0; margin: 0'>www.xxxxxxxx.com</p>");
+                .append("<p style='padding: 0; margin: 0'>www.lhcdiscos.herokuapp.com</p>");
 //        TODO: Ao fazer deploy, alterar o domínio
 
-        sendMessage(email,
+        enviaMensagem(email,
                 "Pedido nº " + pedido.getId() + " efetuado com sucesso!",
                 stringBuilder.toString());
     }
@@ -67,19 +67,20 @@ public class EmailService {
                 .append("<p>" + emailInformado + "</p>")
                 .append("<p style='font-weight: bold;'>Mensagem:</p>")
                 .append("<p>" + mensagem + "</p>");
-        sendMessage("lhcdiscos@gmail.com", "ContatoForm: " + emailInformado, stringBuilder.toString());
+
+        enviaMensagem("lhcdiscos@gmail.com", "ContatoForm: " + emailInformado, stringBuilder.toString());
     }
 
-    private void sendMessage(String to, String subject, String text) {
+    private void enviaMensagem(String destinatario, String assunto, String conteudo) {
         try {
-            MimeMessage message = emailSender.createMimeMessage();
+            MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message);
             message.setFrom("noreply@lhcdiscos.com.br");
-            helper.setTo(to);
-            helper.setSubject(subject);
-            message.setContent(text, "text/html; charset=utf-8");
+            helper.setTo(destinatario);
+            helper.setSubject(assunto);
+            message.setContent(conteudo, "text/html; charset=utf-8");
 
-            emailSender.send(message);
+            javaMailSender.send(message);
         } catch (MessagingException e) {
             e.printStackTrace();
         }

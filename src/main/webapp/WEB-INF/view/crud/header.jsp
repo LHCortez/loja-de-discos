@@ -14,23 +14,23 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="${s:mvcUrl('CPC#productList').build()}">Listar Produtos</a>
+                        <a class="nav-link" href="${s:mvcUrl('CPC#read').build()}">Listar Produtos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="${s:mvcUrl('CPC#albumForm').build()}">Cadastrar Produto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${s:mvcUrl('CBC#bandList').build()}">Listar Bandas</a>
+                        <a class="nav-link" href="${s:mvcUrl('CBC#read').build()}">Listar Bandas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${s:mvcUrl('CBC#bandForm').build()}">Cadastrar Banda</a>
+                        <a class="nav-link" href="${s:mvcUrl('CBC#form').build()}">Cadastrar Banda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${s:mvcUrl('GC#index').build()}">Estatísticas</a>
+                        <a class="nav-link" href="${s:mvcUrl('EC#index').build()}">Estatísticas</a>
                     </li>
                 </ul>
                 <span class="navbar-text">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/user/logout">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/usuario/logout">
                             Olá, <sec:authentication property="principal.usuarioName" /> (sair)
                         </a>
                     </span>

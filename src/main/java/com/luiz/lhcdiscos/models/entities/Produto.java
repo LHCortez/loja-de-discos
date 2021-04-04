@@ -26,23 +26,25 @@ public abstract class Produto implements Serializable {
 
     @NotBlank(message = "Preencha o nome do Produto")
     @Size(max = 50, message = "O nome deve conter no máximo 50 caracteres")
+    @Column(nullable = false)
     private String nome;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     @JsonIgnore
     private String descricao;
 
     @NotNull(message = "Preencha o preço")
     @DecimalMin(value = "1", message = "Valor mínimo de R$ 1")
+    @Column(nullable = false)
     private BigDecimal preco;
 
-//    @NotBlank(message = "Preencha a capa")
+    @Column(nullable = false)
     private String capa;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate lancamento;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "banda_id")
     @NotNull(message = "Selecione a banda")
     private Banda banda;

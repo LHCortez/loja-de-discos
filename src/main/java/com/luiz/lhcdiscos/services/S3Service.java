@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -36,7 +35,7 @@ public class S3Service {
     private String region;
 
 
-    public String write(MultipartFile file) {
+    private String salva(MultipartFile file) {
         try {
             String nomeDoArquivo = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy_HH:mm:ss")) + "_" + file.getOriginalFilename();
             s3client.putObject(new PutObjectRequest(bucketName,
@@ -44,7 +43,7 @@ public class S3Service {
                     file.getInputStream(),
                     null)
                     .withCannedAcl(CannedAccessControlList.PublicRead));
-            return "http://" + bucketName + ".s3-" + region + ".amazonaws.com/" + nomeDoArquivo;
+            return "https://" + bucketName + ".s3-" + region + ".amazonaws.com/" + nomeDoArquivo;
 
         } catch (IllegalStateException | IOException | AmazonClientException e) {
             log.info(e.getClass() + ": " + e.getMessage());
@@ -53,7 +52,7 @@ public class S3Service {
         }
     }
 
-    public void delete(String fileKey) {
+    private void deleta(String fileKey) {
         try {
             s3client.deleteObject(new DeleteObjectRequest(bucketName, fileKey));
 
@@ -69,21 +68,21 @@ public class S3Service {
 
     }
 
-    public void deleteIfStoredInS3(String capa) {
+    public void deletaCapa(String capa) {
         if (capa.contains("amazonaws.com")) {
             String[] url = capa.split("/");
             String fileKey = url[url.length-1];
-            delete(fileKey);
+            deleta(fileKey);
         }
     }
 
-    public void saveCapaS3(Produto produto, MultipartFile capa) {
+    public void salvaCapa(Produto produto, MultipartFile capa) {
         if (!Strings.isNullOrEmpty(produto.getCapa().trim()) && !Strings.isNullOrEmpty(capa.getOriginalFilename())) {
-            deleteIfStoredInS3(produto.getCapa());
-            String path = write(capa);
+            deletaCapa(produto.getCapa());
+            String path = salva(capa);
             produto.setCapa(path);
         } else if (!Strings.isNullOrEmpty(capa.getOriginalFilename())) {
-            String path = write(capa);
+            String path = salva(capa);
             produto.setCapa(path);
         } else {
             throw new IllegalArgumentException("Não foi possível salvar no S3, argumentos inválidos");

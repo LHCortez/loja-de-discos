@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Controller
-@RequestMapping("contact")
+@RequestMapping("contato")
 public class ContatoController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class ContatoController {
 
     @GetMapping()
     public ModelAndView index(HttpServletRequest request) {
-        ModelAndView modelAndView = new ModelAndView("contact");
+        ModelAndView modelAndView = new ModelAndView("contato");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
         if (inputFlashMap != null) {
             modelAndView.addObject("emailEnviado", inputFlashMap.get("emailEnviado"));
@@ -33,14 +33,14 @@ public class ContatoController {
         return modelAndView;
     }
 
-    @PostMapping("/send")
-    public ModelAndView send(@RequestParam String nome,
-                             @RequestParam String email,
-                             @RequestParam String mensagem,
-                             RedirectAttributes model) {
+    @PostMapping("/envia")
+    public ModelAndView envia(@RequestParam String nome,
+                              @RequestParam String email,
+                              @RequestParam String mensagem,
+                              RedirectAttributes model) {
         emailService.enviaMensagemContato(nome, email, mensagem);
         model.addFlashAttribute("emailEnviado", true);
-        return new ModelAndView("redirect:/contact");
+        return new ModelAndView("redirect:/contato");
     }
 
 

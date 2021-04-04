@@ -39,11 +39,12 @@
 
             <div class="row w-100 gap-3">
                 <div class="col-sm-12 col-md-6 mx-3">
-                    <input id="filtroAlbunsInput" onkeyup="filtro('filtroAlbunsInput', 'tabelaAlbumBody')" class="form-control me-2" type="search" placeholder="Filtrar..." aria-label="Search">
+                    <input id="filtroAlbunsInput" onkeyup="filtro('filtroAlbunsInput', 'tabelaAlbumBody')"
+                           class="form-control me-2" type="search" placeholder="Filtrar..." aria-label="Search">
                 </div>
                 <div class="col">
                     <div class="text-end mb-3 me-3">
-                        <a href="${pageContext.request.contextPath}/crud/product/export/album">
+                        <a href="${pageContext.request.contextPath}/crud/produtos/export/album">
                             <i class="fas fa-file-download fs-3"></i> EXPORTAR
                         </a>
                     </div>
@@ -73,12 +74,12 @@
                         <td class="d-none d-sm-table-cell">R$${album.preco}</td>
                         <td class="d-none d-lg-table-cell"><tags:localDate date="${album.lancamento}"/></td>
                         <td class="text-center">
-                            <a class="btn" href="${pageContext.request.contextPath}/crud/product/update/album/${album.id}">
+                            <a class="btn" href="${pageContext.request.contextPath}/crud/produtos/update/album/${album.id}">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </td>
                         <td class="text-center">
-                            <form:form action="${s:mvcUrl('CPC#deleteProduct').arg(0, album.id).build()}" method="POST" id="delete-product-${album.id}">
+                            <form:form action="${s:mvcUrl('CPC#deleteProduto').arg(0, album.id).build()}" method="POST" id="delete-product-${album.id}">
                                 <input name="id"  type="hidden" alt="Excluir" title="Excluir" />
                                 <button class="btn" type="button"
                                         onclick="confirmDeleteProduct(event, ${album.id},
@@ -97,11 +98,12 @@
 
             <div class="row w-100 gap-3">
                 <div class="col-sm-12 col-md-6 mx-3">
-                    <input id="filtroCamisetaInput" onkeyup="filtro('filtroCamisetaInput', 'tabelaCamisetaBody')" class="form-control me-2" type="search" placeholder="Filtrar..." aria-label="Search">
+                    <input id="filtroCamisetaInput" onkeyup="filtro('filtroCamisetaInput', 'tabelaCamisetaBody')"
+                           class="form-control me-2" type="search" placeholder="Filtrar..." aria-label="Search">
                 </div>
                 <div class="col">
                     <div class="text-end mb-3 me-3">
-                        <a href="${pageContext.request.contextPath}/crud/product/export/camiseta">
+                        <a href="${pageContext.request.contextPath}/crud/produtos/export/camiseta">
                             <i class="fas fa-file-download fs-3"></i> EXPORTAR
                         </a>
                     </div>
@@ -127,16 +129,16 @@
                         <td><a href="${s:mvcUrl('HC#detalhe').arg(0, camiseta.id).build()}">${camiseta.nome}</a></td>
                         <td class="d-none d-sm-table-cell">${camiseta.banda.nome}</td>
                         <td class="d-none d-md-table-cell">${camiseta.descricao}</td>
-                        <td>${camiseta.size.toString()}</td>
+                        <td>${camiseta.tamanho.toString()}</td>
                         <td class="d-none d-sm-table-cell">R$${camiseta.preco}</td>
                         <td class="d-none d-lg-table-cell"><tags:localDate date="${camiseta.lancamento}"/></td>
                         <td class="text-center">
-                            <a class="btn" href="${pageContext.request.contextPath}/crud/product/update/camiseta/${camiseta.id}">
+                            <a class="btn" href="${pageContext.request.contextPath}/crud/produtos/update/camiseta/${camiseta.id}">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </td>
                         <td class="text-center">
-                            <form:form action="${s:mvcUrl('CPC#deleteProduct').arg(0, camiseta.id).build()}" method="POST" id="delete-product-${camiseta.id}">
+                            <form:form action="${s:mvcUrl('CPC#deleteProduto').arg(0, camiseta.id).build()}" method="POST" id="delete-product-${camiseta.id}">
                                 <input name="id"  type="hidden" alt="Excluir" title="Excluir" />
                                 <button class="btn" type="submit" onclick="confirmDeleteProduct(event, ${camiseta.id},
                                         '<s:message text="${camiseta.nome}" javaScriptEscape="true"/>')">
@@ -154,11 +156,12 @@
 
             <div class="row w-100 gap-3">
                 <div class="col-sm-12 col-md-6 mx-3">
-                    <input id="filtroPatchesInput" onkeyup="filtro('filtroPatchesInput', 'tabelaPatchesBody')" class="form-control me-2" type="search" placeholder="Filtrar..." aria-label="Search">
+                    <input id="filtroPatchesInput" onkeyup="filtro('filtroPatchesInput', 'tabelaPatchesBody')"
+                           class="form-control me-2" type="search" placeholder="Filtrar..." aria-label="Search">
                 </div>
                 <div class="col">
                     <div class="text-end mb-3 me-3">
-                        <a href="${pageContext.request.contextPath}/crud/product/export/patch">
+                        <a href="${pageContext.request.contextPath}/crud/produtos/export/patch">
                             <i class="fas fa-file-download fs-3"></i> EXPORTAR
                         </a>
                     </div>
@@ -186,12 +189,12 @@
                         <td class="d-none d-sm-table-cell">R$${patch.preco}</td>
                         <td class="d-none d-lg-table-cell"><tags:localDate date="${patch.lancamento}"/></td>
                         <td class="text-center">
-                            <a class="btn" href="${pageContext.request.contextPath}/crud/product/update/patch/${patch.id}">
+                            <a class="btn" href="${pageContext.request.contextPath}/crud/produtos/update/patch/${patch.id}">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </td>
                         <td class="text-center">
-                            <form:form action="${s:mvcUrl('CPC#deleteProduct').arg(0, patch.id).build()}" method="POST"
+                            <form:form action="${s:mvcUrl('CPC#deleteProduto').arg(0, patch.id).build()}" method="POST"
                                        id="delete-product-${patch.id}">
                                 <input name="id"  type="hidden" alt="Excluir" title="Excluir" />
                                 <button class="btn" type="submit" onclick="confirmDeleteProduct(event, ${patch.id},
@@ -210,11 +213,12 @@
 
             <div class="row w-100 gap-3">
                 <div class="col-sm-12 col-md-6 mx-3">
-                    <input id="filtroLivrosInput" onkeyup="filtro('filtroLivrosInput', 'tabelaLivrosBody')" class="form-control me-2" type="search" placeholder="Filtrar..." aria-label="Search">
+                    <input id="filtroLivrosInput" onkeyup="filtro('filtroLivrosInput', 'tabelaLivrosBody')"
+                           class="form-control me-2" type="search" placeholder="Filtrar..." aria-label="Search">
                 </div>
                 <div class="col">
                     <div class="text-end mb-3 me-3">
-                        <a href="${pageContext.request.contextPath}/crud/product/export/livro">
+                        <a href="${pageContext.request.contextPath}/crud/produtos/export/livro">
                             <i class="fas fa-file-download fs-3"></i> EXPORTAR
                         </a>
                     </div>
@@ -246,12 +250,12 @@
                         <td class="d-none d-sm-table-cell">R$${livro.preco}</td>
                         <td class="d-none d-lg-table-cell"><tags:localDate date="${livro.lancamento}"/></td>
                         <td class="text-center">
-                            <a class="btn" href="${pageContext.request.contextPath}/crud/product/update/livro/${livro.id}">
+                            <a class="btn" href="${pageContext.request.contextPath}/crud/produtos/update/livro/${livro.id}">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </td>
                         <td class="text-center">
-                            <form:form action="${s:mvcUrl('CPC#deleteProduct').arg(0, livro.id).build()}" method="POST"
+                            <form:form action="${s:mvcUrl('CPC#deleteProduto').arg(0, livro.id).build()}" method="POST"
                                        id="delete-product-${livro.id}">
                                 <input name="id"  type="hidden" alt="Excluir" title="Excluir" />
                                 <button class="btn" type="submit" onclick="confirmDeleteProduct(event, ${livro.id},

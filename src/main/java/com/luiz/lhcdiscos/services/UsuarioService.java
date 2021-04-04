@@ -2,7 +2,7 @@ package com.luiz.lhcdiscos.services;
 
 import com.luiz.lhcdiscos.models.entities.Usuario;
 import com.luiz.lhcdiscos.dto.NovoUsuarioLocalDto;
-import com.luiz.lhcdiscos.models.enums.AuthenticationProvider;
+import com.luiz.lhcdiscos.models.enums.ProvedorAutenticacao;
 import com.luiz.lhcdiscos.models.enums.Role;
 import com.luiz.lhcdiscos.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,31 +25,31 @@ public class UsuarioService {
         usuario.setEmail((novoUsuarioLocalDTO.getEmail()));
         usuario.addRoles(novoUsuarioLocalDTO.getRole());
         usuario.setSenha(passwordEncoder.encode(novoUsuarioLocalDTO.getSenha()));
-        usuario.setAuthenticationProvider(AuthenticationProvider.LOCAL);
-        save(usuario);
+        usuario.setProvedorAutenticacao(ProvedorAutenticacao.LOCAL);
+        salva(usuario);
     }
 
-    public void save(Usuario usuario) {
+    public void salva(Usuario usuario) {
         usuarioRepository.save(usuario);
     }
 
-    public Usuario findUsuarioByEmailIgnoreCase(String email){
+    public Usuario buscaPorEmail(String email){
         return usuarioRepository.findUsuarioByEmailIgnoreCase(email);
     }
 
-    public void createNewUserAfterOAuthLoginSuccess(String email, String name, AuthenticationProvider provider) {
+    public void criaNovoUsuarioAposAutenticacaoOAuth(String email, String name, ProvedorAutenticacao provider) {
         Usuario usuario = new Usuario();
         usuario.setEmail(email);
         usuario.setNome(name);
         usuario.setEnabled(true);
         usuario.addRoles(Role.ROLE_USER);
-        usuario.setAuthenticationProvider(provider);
-        save(usuario);
+        usuario.setProvedorAutenticacao(provider);
+        salva(usuario);
     }
 
-    public void updateCustomerAfterOAuthLoginSucces(Usuario usuario, String name, AuthenticationProvider provider) {
+    public void atualizaUsuarioAposAutenticacaoOAuth(Usuario usuario, String name, ProvedorAutenticacao provider) {
         usuario.setNome(name);
-        usuario.setAuthenticationProvider(provider);
-        save(usuario);
+        usuario.setProvedorAutenticacao(provider);
+        salva(usuario);
     }
 }

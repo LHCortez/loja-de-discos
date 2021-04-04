@@ -20,16 +20,16 @@ public class UniquePatchValidator implements ConstraintValidator<UniquePatch, Pa
     public boolean isValid(Patch patch, ConstraintValidatorContext constraintValidatorContext) {
 
         if (patch.getId() == null) {
-            return patchService.patchIsAvailableForSaving(patch);
+            return patchService.estaDisponivelParaPersistir(patch);
         }
 
-        Patch patchNoBd = patchService.searchPatchById(patch.getId());
+        Patch patchNoBd = patchService.buscaPorId(patch.getId());
 
         if (patchNoBd.getNome().equalsIgnoreCase(patch.getNome())
             && (patchNoBd.getBanda().equals(patch.getBanda()))) {
             return true;
         } else {
-            return patchService.patchIsAvailableForSaving(patch);
+            return patchService.estaDisponivelParaPersistir(patch);
         }
 
     }

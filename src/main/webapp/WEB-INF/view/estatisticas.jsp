@@ -32,15 +32,15 @@
         // instantiates the pie chart, passes in the data and
         // draws it.
         function drawChart() {
-            var itemPedidoCount = "${pageContext.request.contextPath}/chart/data/purchasedItemCount";
-            jQuery.getJSON(itemPedidoCount, {
+            var quantidadeItensComprados = "${pageContext.request.contextPath}/estatisticas/data/quantidadeItensComprados";
+            jQuery.getJSON(quantidadeItensComprados, {
                 format: "json"
-            }).done(function (itemPedidoCount) {
+            }).done(function (quantidadeItensComprados) {
                 // Create the data table.
                 var data = new google.visualization.DataTable();
                 data.addColumn('string', 'Tipo de Produto');
                 data.addColumn('number', 'Quantidade vendida total');
-                jQuery.each(itemPedidoCount, function (key, val) {
+                jQuery.each(quantidadeItensComprados, function (key, val) {
                     data.addRows([[key, val]]);
                 });
                 // Set chart options
@@ -51,7 +51,7 @@
                     'backgroundColor': '#f8f9fa'
                 };
                 // Instantiate and draw our chart, passing in some options.
-                var chart = new google.visualization.PieChart(document.getElementById('itemPedidoCount_div'));
+                var chart = new google.visualization.PieChart(document.getElementById('quantidadeItensComprados_div'));
                 chart.draw(data, options);
                 // Redesenha o gráfico, ajustando o tamanho, ao alterar o tamanho da janela
                 $(window).resize(function(){
@@ -59,14 +59,14 @@
                 });
             })
 
-            var purchasedItemBandStyle = "${pageContext.request.contextPath}/chart/data/purchasedItemBandStyle";
-            jQuery.getJSON(purchasedItemBandStyle, {
+            var generoBandaItensComprados = "${pageContext.request.contextPath}/estatisticas/data/generoBandaItensComprados";
+            jQuery.getJSON(generoBandaItensComprados, {
                 format: "json"
-            }).done(function (purchasedItemBandStyle) {
+            }).done(function (generoBandaItensComprados) {
                 var data = new google.visualization.DataTable();
                 data.addColumn('string', 'Tipo de Produto');
                 data.addColumn('number', 'Quantidade vendida total');
-                jQuery.each(purchasedItemBandStyle, function (key, val) {
+                jQuery.each(generoBandaItensComprados, function (key, val) {
                     data.addRows([[key, val]]);
                 });
                 var options = {
@@ -75,21 +75,21 @@
                     'chartArea': {'width': '80%', 'height': '70%'},
                     'backgroundColor': '#f8f9fa'
                 };
-                var chart = new google.visualization.PieChart(document.getElementById('purchasedItemBandStyle_div'));
+                var chart = new google.visualization.PieChart(document.getElementById('generoBandaItensComprados_div'));
                 chart.draw(data, options);
                 $(window).resize(function(){
                     chart.draw(data, options);
                 });
             });
 
-            var revenueByMonth = "${pageContext.request.contextPath}/chart/data/revenueByMonth";
-            jQuery.getJSON(revenueByMonth, {
+            var receitaPorMes = "${pageContext.request.contextPath}/estatisticas/data/receitaPorMes";
+            jQuery.getJSON(receitaPorMes, {
                 format: "json"
-            }).done(function (revenueByMonth) {
+            }).done(function (receitaPorMes) {
                 var data = new google.visualization.DataTable();
                 data.addColumn('string', 'Mês');
                 data.addColumn('number', 'Valor');
-                jQuery.each(revenueByMonth, function (key, val) {
+                jQuery.each(receitaPorMes, function (key, val) {
                     data.addRows([[key, val]]);
                 });
                 var options = {
@@ -100,7 +100,7 @@
                     'chartArea': {'width': '70%', 'height': '80%'},
                     'backgroundColor': '#f8f9fa'
                 };
-                var chart = new google.visualization.BarChart(document.getElementById('revenueByMonth_div'));
+                var chart = new google.visualization.BarChart(document.getElementById('receitaPorMes_div'));
                 chart.draw(data, options);
                 $(window).resize(function(){
                     chart.draw(data, options);
@@ -189,7 +189,7 @@
                     'metrics': 'ga:pageviews',
                     'dimensions': 'ga:pagePathLevel2',
                     'sort': '-ga:pageviews',
-                    'filters': 'ga:pagePath=~/product/*',
+                    'filters': 'ga:pagePath=@/produto/',
                     'max-results': 10
                 },
                 chart: {
@@ -226,15 +226,15 @@
         </div>
         <div class="col-md-6 p-lg-5">
             <h2 class="fs-5">Quantidade de itens vendidos por tipo</h2>
-            <div id="itemPedidoCount_div" class="chart"></div>
+            <div id="quantidadeItensComprados_div" class="chart"></div>
         </div>
         <div class="col-md-6 p-lg-5">
             <h2 class="fs-5">Quantidade de itens vendidos por gênero</h2>
-            <div id="purchasedItemBandStyle_div" class="chart"></div>
+            <div id="generoBandaItensComprados_div" class="chart"></div>
         </div>
         <div class="col-md-6 p-lg-5">
             <h2 class="fs-5">Pagamentos recebidos nos últimos 12 meses</h2>
-            <div id="revenueByMonth_div" class="chart"></div>
+            <div id="receitaPorMes_div" class="chart"></div>
         </div>
         <div class="col-md-6 p-lg-5 mt-5 mt-sm-0">
             <h2 class="fs-5">Tráfego no site</h2>
@@ -242,7 +242,7 @@
             <div id="sessions_date_range"></div>
         </div>
         <div class="col-md-6 p-lg-5 mt-5 mt-sm-0">
-            <h2 class="fs-5">Produtos mais visitados (/product/*)</h2>
+            <h2 class="fs-5">Produtos mais visitados (/produto/*)</h2>
             <div id="popular_pages_div" class="chart overflow-auto"></div>
             <div id="popular_pages_date_range"></div>
         </div>

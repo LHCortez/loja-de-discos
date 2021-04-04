@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class Pedido implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private DadosPagamento pagamento;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     @JsonIgnore
     private Usuario cliente;

@@ -13,7 +13,7 @@ public class ItemPedidoService {
     @Autowired
     ItemPedidoRepository itemPedidoRepository;
 
-    public List<ItemPedido> findAll() {
+    public List<ItemPedido> buscaTodos() {
         return itemPedidoRepository.findAll();
     }
 

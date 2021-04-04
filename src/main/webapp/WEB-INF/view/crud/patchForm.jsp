@@ -41,22 +41,22 @@
     <ul class="nav nav-tabs crud-tabs navbar-dark" id="myTab" role="tablist">
         <li class="nav-item" role="presentation" id="album">
             <a class="btn nav-link crud-tabs-link"
-               href="${pageContext.request.contextPath}/crud/product/create/album">Álbum</a>
+               href="${pageContext.request.contextPath}/crud/produtos/create/album">Álbum</a>
         </li>
         <li class="nav-item" role="presentation" id="camiseta">
             <a class="btn nav-link crud-tabs-link"
-               href="${pageContext.request.contextPath}/crud/product/create/camiseta">Camiseta</a>
+               href="${pageContext.request.contextPath}/crud/produtos/create/camiseta">Camiseta</a>
         </li>
         <li class="nav-item" role="presentation" id="patch">
             <a class="btn nav-link crud-tabs-link active" style="pointer-events: none;">Patch</a>
         </li>
         <li class="nav-item" role="presentation" id="livro">
             <a class="btn nav-link crud-tabs-link"
-               href="${pageContext.request.contextPath}/crud/product/create/livro">Livro</a>
+               href="${pageContext.request.contextPath}/crud/produtos/create/livro">Livro</a>
         </li>
     </ul>
 
-    <div class="tab-content crud-tab-content py-4 px-sm-4" id="myTabContent">
+    <div class="tab-content crud-tab-content py-4 px-3 px-sm-4" id="myTabContent">
 
         <c:choose>
             <c:when test="${patch.id != null}">
@@ -67,7 +67,7 @@
             </c:otherwise>
         </c:choose>
 
-        <form:form modelAttribute="patch" action="${s:mvcUrl('CPC#savePatch').build()}" method="POST"
+        <form:form modelAttribute="patch" action="${s:mvcUrl('CPC#createPatch').build()}" method="POST"
                    enctype="multipart/form-data">
             <form:errors cssClass="text-danger"/>
 

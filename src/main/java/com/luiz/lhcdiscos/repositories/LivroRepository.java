@@ -14,4 +14,7 @@ public interface LivroRepository extends ProdutoRepository<Livro> {
 
     boolean existsByNomeIgnoreCaseAndAutorIgnoreCase(String nome, String autor);
 
+    @Query("SELECT l FROM Livro l JOIN FETCH l.banda ORDER BY l.nome ASC")
+    List<Livro> findAllLivro();
+
 }

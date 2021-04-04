@@ -25,11 +25,12 @@
 
             <div class="row w-100 gap-3">
                 <div class="col-sm-12 col-md-6 mx-3">
-                    <input id="filtroBandaInput" onkeyup="filtro('filtroBandaInput', 'tabelaBandaBody')" class="form-control me-2" type="search" placeholder="Filtrar..." aria-label="Search">
+                    <input id="filtroBandaInput" onkeyup="filtro('filtroBandaInput', 'tabelaBandaBody')"
+                           class="form-control me-2" type="search" placeholder="Filtrar..." aria-label="Search">
                 </div>
                 <div class="col">
                     <div class="text-end mb-3 me-3">
-                        <a href="${pageContext.request.contextPath}/crud/band/export">
+                        <a href="${pageContext.request.contextPath}/crud/bandas/export">
                             <i class="fas fa-file-download fs-3"></i> EXPORTAR
                         </a>
                     </div>
@@ -54,12 +55,12 @@
                         </td>
                         <td>${banda.genero.descricao}</td>
                         <td class="text-center">
-                            <a class="btn" href="${pageContext.request.contextPath}/crud/band/update/${banda.id}">
+                            <a class="btn" href="${pageContext.request.contextPath}/crud/bandas/update/${banda.id}">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </td>
                         <td class="text-center">
-                            <form:form action="${s:mvcUrl('CBC#deleteBand').arg(0, banda.id).build()}" method="POST" id="delete-band-${banda.id}">
+                            <form:form action="${s:mvcUrl('CBC#delete').arg(0, banda.id).build()}" method="POST" id="delete-band-${banda.id}">
                                 <input name="id"  type="hidden" alt="Excluir" title="Excluir" />
                                 <button class="btn" type="submit" onclick="confirmDeleteBand(event, ${banda.id},
                                         '<s:message text="${banda.nome}" javaScriptEscape="true"/>')">

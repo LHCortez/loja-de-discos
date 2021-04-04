@@ -29,7 +29,13 @@
                                     <img src="${pageContext.request.contextPath}${produto.capa}" class="card-img-top"
                                          alt="...">
                                     <div class="card-body pb-1">
-                                        <h5 class="card-title">${produto.nome} - ${produto.tipo}</h5>
+                                        <h3 class="card-title fs-5">${produto.nome} - ${produto.tipo}
+                                            <c:choose>
+                                                <c:when test="${produto.tipo.equals('Camiseta')}">
+                                                    (${produto.tamanho})
+                                                </c:when>
+                                            </c:choose>
+                                        </h3>
                                         <c:choose>
                                             <c:when test="${produto.tipo.equals('Livro')}">
                                                 <p class="card-text">${produto.autor}</p>
@@ -112,7 +118,7 @@
                 <ul class="list-group list-group-flush mb-5">
                     <c:forEach items="${categorias}" var="categoria">
                         <li class="list-group-item">
-                            <a href="${s:mvcUrl('BC#buscarPorCategoriaOuGenero').arg(0, categoria).build()}">${categoria}</a>
+                            <a href="${s:mvcUrl('BC#buscaPorCategoriaOuGenero').arg(0, categoria).build()}">${categoria}</a>
                         </li>
                     </c:forEach>
                 </ul>
@@ -120,7 +126,7 @@
                 <ul class="list-group list-group-flush mb-5">
                     <c:forEach items="${generos}" var="genero">
                         <li class="list-group-item text-nowrap">
-                            <a href="${s:mvcUrl('BC#buscarPorCategoriaOuGenero').arg(0, genero).build()}">${genero}</a>
+                            <a href="${s:mvcUrl('BC#buscaPorCategoriaOuGenero').arg(0, genero).build()}">${genero}</a>
                         </li>
                     </c:forEach>
                 </ul>

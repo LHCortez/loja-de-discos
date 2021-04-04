@@ -13,7 +13,7 @@
             <p class="text-success">Mensagem enviada.</p>
         </c:if>
 
-        <form action="${pageContext.request.contextPath}/contact/send" method="POST" id="contato-form" class="px-md-5">
+        <form:form action="${pageContext.request.contextPath}/contato/envia" method="POST" id="contato-form" class="px-md-5">
             <fieldset class="row my-4">
                 <label for="nome" class="col-sm-4 col-form-label">Nome</label>
                 <div class="col-sm-8">
@@ -37,7 +37,7 @@
             </fieldset>
 
             <button type="submit" class="btn botao-destaque p-2 mt-4 mb-5">Enviar mensagem</button>
-        </form>
+        </form:form>
 
     </section>
 

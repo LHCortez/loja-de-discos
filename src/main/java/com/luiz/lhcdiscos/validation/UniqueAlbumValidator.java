@@ -21,10 +21,10 @@ public class UniqueAlbumValidator implements ConstraintValidator<UniqueAlbum, Al
 
 //        Checa se o álbum é novo ou é uma atualização de um já salvo no BD
         if (album.getId() == null) {
-            return albumService.albumIsAvailableForSaving(album);
+            return albumService.estaDisponivelParaPersistir(album);
         }
 
-        Album albumNoBd = albumService.searchAlbumById(album.getId());
+        Album albumNoBd = albumService.buscaPorId(album.getId());
 
 //        Checa se o ábum salvo no BD é o mesmo que se quer atualizar. Caso não seja, checa se há outro
 //        álbum similar, para evitar que sejam cadastrados álbuns duplicados
@@ -33,7 +33,7 @@ public class UniqueAlbumValidator implements ConstraintValidator<UniqueAlbum, Al
             && (albumNoBd.getBanda().equals(album.getBanda()))) {
             return true;
         } else {
-            return albumService.albumIsAvailableForSaving(album);
+            return albumService.estaDisponivelParaPersistir(album);
         }
 
     }

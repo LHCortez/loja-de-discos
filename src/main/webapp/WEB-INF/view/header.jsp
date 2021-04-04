@@ -1,5 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <jsp:useBean id="carrinhoCompras" scope="session" class="com.luiz.lhcdiscos.models.CarrinhoCompras"/>
 
 <header>
@@ -11,21 +12,21 @@
                     <img class="logo" src="${pageContext.request.contextPath}/img/logo-transparent.png" alt="">
                 </a>
             </div>
-            <form action="${pageContext.request.contextPath}/search" method="get" id="form-busca"
+            <form:form action="${pageContext.request.contextPath}/busca" method="get" id="form-busca"
                   class="d-flex mx-auto mt-3 mb-3">
                 <input name="s" class="form-control me-2" type="search" placeholder="Pesquisar..." aria-label="Search">
                 <button class="btn botao-busca" type="submit"><i class="fas fa-search"></i></button>
-            </form>
+            </form:form>
         </div>
 
         <ul class="list-inline list-group list-group-horizontal-md d-flex justify-content-end mb-2 text-end" id="entrar-e-carrinho-link">
             <sec:authorize access="isAuthenticated()">
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/user/logout">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/usuario/logout">
                         Olá, <sec:authentication property="principal.usuarioName" />  (sair)</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/user/orders">Meus Pedidos</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/usuario/pedidos">Meus Pedidos</a>
                 </li>
             </sec:authorize>
 
@@ -37,7 +38,7 @@
 
             <sec:authorize access="hasRole('ADMIN')">
                 <li class="nav-item">
-                    <a class="nav-link" href="${s:mvcUrl('CPC#productList').build()}">
+                    <a class="nav-link" href="${s:mvcUrl('CPC#read').build()}">
                         Área do Administrador
                     </a>
                 </li>
@@ -64,22 +65,22 @@
                     <a class="nav-link rounded-0" aria-current="page" href="${s:mvcUrl('HC#home').build()}">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link rounded-0" href="${s:mvcUrl('HC#lancamento').build()}">LANÇAMENTOS</a>
+                    <a class="nav-link rounded-0" href="${s:mvcUrl('HC#lancamentos').build()}">LANÇAMENTOS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link rounded-0" href="${s:mvcUrl('HC#disco').build()}">ÁLBUNS</a>
+                    <a class="nav-link rounded-0" href="${s:mvcUrl('HC#albuns').build()}">ÁLBUNS</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link rounded-0" href="${s:mvcUrl('HC#merchandise').build()}">MERCHANDISE</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link rounded-0" href="${s:mvcUrl('HC#livro').build()}">LIVROS</a>
+                    <a class="nav-link rounded-0" href="${s:mvcUrl('HC#livros').build()}">LIVROS</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link rounded-0" href="${s:mvcUrl('BC#busca').build()}">BUSCA</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link rounded-0" href="${pageContext.request.contextPath}/contact">CONTATO</a>
+                    <a class="nav-link rounded-0" href="${pageContext.request.contextPath}/contato">CONTATO</a>
                 </li>
             </ul>
         </nav>

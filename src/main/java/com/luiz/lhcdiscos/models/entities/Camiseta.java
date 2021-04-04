@@ -1,9 +1,10 @@
 package com.luiz.lhcdiscos.models.entities;
 
-import com.luiz.lhcdiscos.models.enums.CamisetaSize;
+import com.luiz.lhcdiscos.models.enums.CamisetaTamanho;
 import com.luiz.lhcdiscos.validation.UniqueCamiseta;
 import com.luiz.lhcdiscos.validation.ValueOfEnum;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -15,24 +16,25 @@ import java.time.LocalDate;
 @UniqueCamiseta
 public class Camiseta extends Produto {
 
-    @ValueOfEnum(enumClass = CamisetaSize.class, message = "Escolha o tamanho da camiseta")
-    private CamisetaSize size;
+    @ValueOfEnum(enumClass = CamisetaTamanho.class, message = "Escolha o tamanho da camiseta")
+    @Column(name = "size", nullable = false)
+    private CamisetaTamanho tamanho;
 
     public Camiseta() {
     }
 
     public Camiseta(String nome, String descricao, BigDecimal preco, String capa, Banda banda,
-                    CamisetaSize size, LocalDate lancamento) {
+                    CamisetaTamanho tamanho, LocalDate lancamento) {
         super(nome, descricao, preco, capa, banda, lancamento);
-        this.size = size;
+        this.tamanho = tamanho;
     }
 
-    public CamisetaSize getSize() {
-        return this.size;
+    public CamisetaTamanho getTamanho() {
+        return this.tamanho;
     }
 
-    public void setSize(CamisetaSize size) {
-        this.size = size;
+    public void setTamanho(CamisetaTamanho tamanho) {
+        this.tamanho = tamanho;
     }
 
     @Override

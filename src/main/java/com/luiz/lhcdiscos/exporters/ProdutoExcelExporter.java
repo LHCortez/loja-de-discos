@@ -113,7 +113,7 @@ public class ProdutoExcelExporter {
             createCell(row, columnCount++, produto.getLancamento(), styleData);
             if (produto instanceof Camiseta) {
                 Camiseta camiseta = (Camiseta) produto;
-                createCell(row, columnCount++, camiseta.getSize().toString(), style);
+                createCell(row, columnCount++, camiseta.getTamanho().toString(), style);
             } else if (produto instanceof Album) {
                 Album album = (Album) produto;
                 createCell(row, columnCount++, album.getFormato().toString(), style);

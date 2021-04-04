@@ -15,26 +15,27 @@ import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
 
-    @RequestMapping(value="/create", method = RequestMethod.GET)
-    public ModelAndView createUserForm(@ModelAttribute("usuario") NovoUsuarioLocalDto usuario) {
-        return new ModelAndView("createUser");
+    @GetMapping ("/create")
+    public ModelAndView usuarioForm(@ModelAttribute("usuario") NovoUsuarioLocalDto usuario) {
+        return new ModelAndView("usuarioForm");
     }
 
-    @RequestMapping(value="/create", method = RequestMethod.POST)
-    public ModelAndView doCreateUser(@ModelAttribute("usuario") @Valid NovoUsuarioLocalDto usuario, BindingResult result, RedirectAttributes model) {
+    @PostMapping("/create")
+    public ModelAndView createUsuario(@ModelAttribute("usuario") @Valid NovoUsuarioLocalDto usuario,
+                                      BindingResult result, RedirectAttributes model) {
         if (result.hasErrors()) {
-            return createUserForm(usuario);
+            return usuarioForm(usuario);
         }
 
         usuarioService.saveNovoUsuarioLocal(usuario);
         model.addFlashAttribute("novoUsuario", true);
-        return new ModelAndView("redirect:/user/login");
+        return new ModelAndView("redirect:/usuario/login");
     }
 
     @GetMapping("/login")

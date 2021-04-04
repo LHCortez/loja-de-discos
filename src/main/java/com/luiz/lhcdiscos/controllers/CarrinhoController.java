@@ -4,7 +4,6 @@ import com.luiz.lhcdiscos.models.CarrinhoCompras;
 import com.luiz.lhcdiscos.stripe.PagamentoRequest;
 import com.luiz.lhcdiscos.models.entities.Produto;
 import com.luiz.lhcdiscos.services.ProdutoService;
-import org.apache.jasper.tagplugins.jstl.core.Remove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -20,11 +19,11 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/cart")
+@RequestMapping("/carrinho")
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class CarrinhoController {
 
-    @Value("pk_test_51IRgVODOiVV9rMk6WidGEedd5qZC7MzZCiNCchx7t4G87BsqlfOXrWQvqt0LvW2QUO13swo8JCam82VZn8V6frPh007oZBzuX2")
+    @Value("${stripe.public.key}")
     private String stripePublicKey;
 
     @Autowired
@@ -36,14 +35,14 @@ public class CarrinhoController {
     @GetMapping
     public ModelAndView carrinho(){
         Map<Produto, Integer> produtosNoCarrinho = carrinho.getItens();
-        ModelAndView modelAndView = new ModelAndView("cart");
+        ModelAndView modelAndView = new ModelAndView("carrinho");
         modelAndView.addObject("produtosNoCarrinho", produtosNoCarrinho);
         modelAndView.addObject("amountInCents",
                 carrinho.getValorTotalDoCarrinho().movePointRight(2).intValueExact());
         modelAndView.addObject("stripePublicKey", stripePublicKey);
         modelAndView.addObject("currency", PagamentoRequest.Currency.BRL);
 
-        List<Produto> produtos = produtoService.findAllByOrderByDateAsc(PageRequest.of(0, 10));
+        List<Produto> produtos = produtoService.buscaTodosOrdenadosPorDataDeLancamento(PageRequest.of(0, 10));
 
 //        Remove das recomendações produtos que já estão no carrinho
         produtos.removeAll(carrinho.getItens().keySet());
@@ -54,22 +53,22 @@ public class CarrinhoController {
 
     @PostMapping("/add")
     public ModelAndView add(Integer id) {
-        Produto produto = produtoService.searchById(id);
+        Produto produto = produtoService.buscaPorId(id);
         carrinho.add(produto);
-        return new ModelAndView("redirect:/cart");
+        return new ModelAndView("redirect:/carrinho");
     }
 
     @PostMapping("/remove")
     public ModelAndView remove(Integer id) {
         carrinho.remover(id);
-        return new ModelAndView("redirect:/cart");
+        return new ModelAndView("redirect:/carrinho");
     }
 
     @PostMapping("/setquantidade")
     public ModelAndView setQuantidade(Integer id, Integer qnt) {
         if (qnt == null) throw new NullPointerException();
         carrinho.setQuantidade(id, qnt);
-        return new ModelAndView("redirect:/cart");
+        return new ModelAndView("redirect:/carrinho");
     }
 
 

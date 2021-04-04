@@ -17,17 +17,15 @@ public class UniqueBandValidator implements ConstraintValidator<UniqueBand, Band
     }
 
     @Override
-    public boolean isValid(Banda obj, ConstraintValidatorContext constraintValidatorContext) {
-        String name = obj.getNome();
-        Integer id = obj.getId();
-
+    public boolean isValid(Banda banda, ConstraintValidatorContext constraintValidatorContext) {
+        Integer id = banda.getId();
         if (id == null) {
-            return bandaService.BandNameIsAvailable(name);
+            return bandaService.estaDisponivelParaPersistir(banda);
         }
-        if (bandaService.searchById(id).getNome().equalsIgnoreCase(name)) {
+        if (bandaService.buscaPorId(id).getNome().equalsIgnoreCase(banda.getNome())) {
             return true;
         } else {
-            return bandaService.BandNameIsAvailable(name);
+            return bandaService.estaDisponivelParaPersistir(banda);
         }
 
     }

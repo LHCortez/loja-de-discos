@@ -14,8 +14,8 @@ public class DadosPagamentoService {
     @Autowired
     DadosPagamentoRepository dadosPagamentoRepository;
 
-    public List<DadosPagamento> findPagamentosByDataBetween(LocalDate start, LocalDate end) {
-        return dadosPagamentoRepository.findDadosPagamentoByDataBetween(start, end);
+    public List<DadosPagamento> buscaDadosPagamentoEntreDatas(LocalDate inicio, LocalDate fim) {
+        return dadosPagamentoRepository.findDadosPagamentoByDataBetween(inicio, fim);
     }
 
 }

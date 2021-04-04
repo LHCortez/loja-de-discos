@@ -20,13 +20,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class PedidoController {
@@ -46,8 +50,22 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 
+    @GetMapping("/charge/resultado")
+    public ModelAndView resultadoPagamento(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("resultadoPagamento");
+        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+        if ((boolean) inputFlashMap.get("error")) {
+            modelAndView.addObject("error", true);
+        } else {
+            modelAndView.addObject("pedidoId", inputFlashMap.get("pedidoId"));
+            modelAndView.addObject("valorPago", inputFlashMap.get("valorPago"));
+            modelAndView.addObject("error", false);
+        }
+        return modelAndView;
+    }
+
     @PostMapping("/charge")
-    public String charge(PagamentoRequest chargeRequest, Model model, Principal principal)
+    public String charge(PagamentoRequest chargeRequest, RedirectAttributes model, Principal principal)
             throws StripeException, PagamentoException {
         chargeRequest.setDescription("Example charge");
         chargeRequest.setCurrency(PagamentoRequest.Currency.BRL);
@@ -60,21 +78,28 @@ public class PedidoController {
 
         if (charge.getPaid() && valorPagoBigDecimal.equals(carrinho.getValorTotalDoCarrinho())) {
             Integer pedidoId = finalizaCompra(email, valorPagoBigDecimal, dataPedido, charge.getId(), charge.getStatus());
-            model.addAttribute("pedidoId", pedidoId);
-            model.addAttribute("valorPago", valorPagoBigDecimal);
-            model.addAttribute("error", null);
+            model.addFlashAttribute("pedidoId", pedidoId);
+            model.addFlashAttribute("valorPago", valorPagoBigDecimal);
+            model.addFlashAttribute("error", false);
         } else {
             throw new PagamentoException("Houve algum problema com o pagamento do cliente " + principal.getName());
         }
 
-        return "paymentResult";
+        return "redirect:/charge/resultado";
     }
 
     @ExceptionHandler({StripeException.class, PagamentoException.class})
-    public String handleError(Model model, Exception ex) {
-        model.addAttribute("error", "ocorreu erro");
+    public String handleError(RedirectAttributes model, Exception ex) {
+        model.addFlashAttribute("error", true);
         ex.printStackTrace();
-        return "paymentResult";
+        return "redirect:/charge/resultado";
+    }
+
+    @GetMapping("/usuario/pedidos")
+    public ModelAndView pedidos(Principal principal) {
+        ModelAndView modelAndView = new ModelAndView("pedidos");
+        modelAndView.addObject("pedidos", pedidoService.buscaPorEmailDoCliente(principal.getName()));
+        return modelAndView;
     }
 
     private Integer finalizaCompra(String email, BigDecimal valorPago, LocalDateTime dataPedido,
@@ -87,7 +112,7 @@ public class PedidoController {
             itemPedidos.add(itemPedido);
         });
 
-        Usuario cliente = usuarioService.findUsuarioByEmailIgnoreCase(email);
+        Usuario cliente = usuarioService.buscaPorEmail(email);
 
         DadosPagamento dadosPagamento = new DadosPagamento();
         dadosPagamento.setValorPago(valorPago);
@@ -104,10 +129,4 @@ public class PedidoController {
         return pedido.getId();
     }
 
-    @GetMapping("/user/orders")
-    public ModelAndView pedidos(Principal principal) {
-        ModelAndView modelAndView = new ModelAndView("orders");
-        modelAndView.addObject("pedidos", pedidoService.searchPedidosByClienteEmail(principal.getName()));
-        return modelAndView;
-    }
 }

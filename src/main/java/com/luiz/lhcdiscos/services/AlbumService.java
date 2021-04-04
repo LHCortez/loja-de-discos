@@ -1,9 +1,7 @@
 package com.luiz.lhcdiscos.services;
 
 import com.luiz.lhcdiscos.models.entities.Album;
-import com.luiz.lhcdiscos.models.entities.Camiseta;
 import com.luiz.lhcdiscos.models.entities.Produto;
-import com.luiz.lhcdiscos.models.enums.AlbumFormato;
 import com.luiz.lhcdiscos.repositories.AlbumRepository;
 import com.luiz.lhcdiscos.models.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,24 +21,24 @@ public class AlbumService {
     public AlbumService() {
     }
 
-    public Album searchAlbumById(Integer id) {
+    public Album buscaPorId(Integer id) {
         Optional<Album> optional = albumRepository.findById(id);
         return optional.orElseThrow(() -> new ObjectNotFoundException(
                 "Objeto não encontrado! Id: " + id + ", Tipo: " + Produto.class.getName()));
     }
 
-    public List<Album> searchAllAlbum() {
-        return albumRepository.findAll();
+    public List<Album> buscaTodos() {
+        return albumRepository.findAllAlbum();
     }
 
-    public List<Album> buscarLancamentosMaisRecente() {
-        return albumRepository.findTop20ByOrderByLancamentoDesc();
+    public Page<Album> buscaTodos(Pageable pageable) {
+        return albumRepository.findAll(pageable);
     }
 
-    public void save(Album album) {
+    public void salva(Album album) {
         Album albumAntigo;
         if (album.getId() != null) {
-            albumAntigo = searchAlbumById(album.getId());
+            albumAntigo = buscaPorId(album.getId());
             albumAntigo.setFormato(album.getFormato());
             albumAntigo.setBanda(album.getBanda());
             albumAntigo.setNome(album.getNome());
@@ -54,13 +52,11 @@ public class AlbumService {
         }
     }
 
-    public boolean albumIsAvailableForSaving(Album album) {
+    public boolean estaDisponivelParaPersistir(Album album) {
         return !albumRepository
                 .existsByBandaAndFormatoAndNomeIgnoreCase(album.getBanda(), album.getFormato(), album.getNome());
     }
 
-    public Page<Album> findAll(Pageable pageable) {
-        return albumRepository.findAll(pageable);
-    }
+
 
 }

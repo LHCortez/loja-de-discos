@@ -15,24 +15,20 @@ public class PatchService {
     @Autowired
     private PatchRepository patchRepository;
 
-    public List<Patch> findAll() {
-        return patchRepository.findAll();
+    public List<Patch> buscaTodos() {
+        return patchRepository.findAllPatch();
     }
 
-    public Patch searchPatchById(Integer id) {
+    public Patch buscaPorId(Integer id) {
         Optional<Patch> optional = patchRepository.findById(id);
         return optional.orElseThrow(() -> new ObjectNotFoundException(
                 "Patch não encontrado! Id: " + id));
     }
 
-    public List<Patch> searchAllPatches() {
-        return patchRepository.findAll();
-    }
-
-    public void save(Patch patch) {
+    public void salva(Patch patch) {
         Patch patchAntigo;
         if (patch.getId() != null) {
-            patchAntigo = searchPatchById(patch.getId());
+            patchAntigo = buscaPorId(patch.getId());
             patchAntigo.setNome(patch.getNome());
             patchAntigo.setBanda(patch.getBanda());
             patchAntigo.setDescricao(patch.getDescricao());
@@ -45,7 +41,7 @@ public class PatchService {
         }
     }
 
-    public boolean patchIsAvailableForSaving(Patch patch) {
+    public boolean estaDisponivelParaPersistir(Patch patch) {
         return !patchRepository
                 .existsByBandaAndNomeIgnoreCase(patch.getBanda(), patch.getNome());
     }

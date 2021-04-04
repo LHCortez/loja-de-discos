@@ -8,12 +8,12 @@
 
 <tags:pageTemplate paginatitulo="Meus pedidos -">
 
-    <section id="carrinho" class="container-xl bg-light p-3 mt-3 rounded">
+    <section id="pedidos" class="container-xl bg-light p-3 mt-3 rounded">
         <h2 class="titulo">Meus pedidos</h2>
         <c:choose>
             <c:when test="${pedidos.isEmpty()}">
-                <p>Você ainda não possui nenhum pedido.</p>
-                <p>Clique aqui e encontre diversos produtos de seu interesse!</p>
+                <p class="pt-5 mt-3">Você ainda não possui nenhum pedido.</p>
+                <p class="pb-5 mb-5"><a href="${s:mvcUrl('BC#busca').build()}" class="texto-cor-especial">Clique aqui</a> e encontre diversos produtos de seu interesse!</p>
             </c:when>
             <c:otherwise>
 

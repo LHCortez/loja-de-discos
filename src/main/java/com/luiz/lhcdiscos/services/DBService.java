@@ -2,7 +2,7 @@ package com.luiz.lhcdiscos.services;
 
 import com.luiz.lhcdiscos.models.entities.*;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
-import com.luiz.lhcdiscos.models.enums.CamisetaSize;
+import com.luiz.lhcdiscos.models.enums.CamisetaTamanho;
 import com.luiz.lhcdiscos.models.enums.Genero;
 import com.luiz.lhcdiscos.models.enums.Role;
 import com.luiz.lhcdiscos.repositories.BandaRepository;
@@ -32,7 +32,7 @@ public class DBService {
     @Autowired
     private PedidoRepository pedidoRepository;
 
-    public void instantiateTestDatabase() {
+    public void instanciaBancoDeDadosDeTeste() {
 
 //        BANDAS ----------------------------------------------------------------------------------------------------
 
@@ -128,7 +128,7 @@ public class DBService {
 
         Camiseta evangelicis = new Camiseta();
         evangelicis.setNome("Evangelicis");
-        evangelicis.setSize(CamisetaSize.M);
+        evangelicis.setTamanho(CamisetaTamanho.M);
         evangelicis.setCapa("https://behemoth-store.com/eng_pm_Evangelicis-Behemoth-all-over-print-t-shirt-785_1.jpg");
         evangelicis.setLancamento(LocalDate.of(2018, 10, 30));
         evangelicis.setPreco(BigDecimal.valueOf(60));
@@ -139,7 +139,7 @@ public class DBService {
 
         Camiseta demigod = new Camiseta();
         demigod.setNome("Demigod");
-        demigod.setSize(CamisetaSize.G);
+        demigod.setTamanho(CamisetaTamanho.G);
         demigod.setCapa("https://behemoth-store.com/eng_pm_Behemoth-Demigod-t-shirt-782_2.jpg");
         demigod.setLancamento(LocalDate.of(2018, 10, 30));
         demigod.setPreco(BigDecimal.valueOf(60));
@@ -319,7 +319,7 @@ public class DBService {
 
         Camiseta sisterRot = new Camiseta();
         sisterRot.setNome("Sister Rot");
-        sisterRot.setSize(CamisetaSize.P);
+        sisterRot.setTamanho(CamisetaTamanho.P);
         sisterRot.setCapa("https://proassets.monopile.cloud/94671/2c1ac8d6d1d64b05fc6a7a3466093396.jpg");
         sisterRot.setLancamento(LocalDate.of(2021, 2, 15));
         sisterRot.setPreco(BigDecimal.valueOf(79.99));

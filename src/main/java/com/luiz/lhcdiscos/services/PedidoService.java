@@ -17,19 +17,11 @@ public class PedidoService {
     @Autowired
     PedidoRepository pedidoRepository;
 
-    public void save(Pedido pedido) {
+    public void salva(Pedido pedido) {
         pedidoRepository.save(pedido);
     }
 
-    public List<Pedido> findAll() {
-        return pedidoRepository.findAll();
-    }
-
-    public void saveAll(List<Pedido> pedidos) {
-        pedidoRepository.saveAll(pedidos);
-    }
-
-    public List<Pedido> searchPedidosByClienteEmail(String email) {
+    public List<Pedido> buscaPorEmailDoCliente(String email) {
         return pedidoRepository.findPedidoByCliente_EmailIgnoreCase(email);
     }
 
@@ -42,10 +34,9 @@ public class PedidoService {
         pedido.setData(dataPedido);
         pedido.addItens(itens);
 
-        save(pedido);
+        salva(pedido);
 
         return pedido;
     }
-
 
 }

@@ -1,6 +1,8 @@
 body {
     background-color: black;
     overflow: auto!important;
+    padding: 0!important;
+
 }
 
 .modal-open {
@@ -482,7 +484,9 @@ a {
 #login .texto-cor-especial:hover,
 #login .texto-cor-especial:active,
 #carrinho .texto-cor-especial:hover,
-#carrinho .texto-cor-especial:active{
+#carrinho .texto-cor-especial:active,
+#pagamento-resultado .texto-cor-especial:hover,
+#pagamento-resultado .texto-cor-especial:active{
     color: unset!important;
     text-decoration: underline;
 }

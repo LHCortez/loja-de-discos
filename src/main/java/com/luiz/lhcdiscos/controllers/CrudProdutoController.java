@@ -4,7 +4,7 @@ import com.google.common.base.Strings;
 import com.luiz.lhcdiscos.exporters.ProdutoExcelExporter;
 import com.luiz.lhcdiscos.models.entities.*;
 import com.luiz.lhcdiscos.models.enums.AlbumFormato;
-import com.luiz.lhcdiscos.models.enums.CamisetaSize;
+import com.luiz.lhcdiscos.models.enums.CamisetaTamanho;
 import com.luiz.lhcdiscos.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/crud/product")
+@RequestMapping("/crud/produtos")
 public class CrudProdutoController {
 
     @Autowired
@@ -51,16 +51,17 @@ public class CrudProdutoController {
     private S3Service s3Service;
 
 
-    private void saveCapa (String capaTipo, MultipartFile capaUpload, String capaUrl, Produto produto) {
+    private void salvaCapa(String capaTipo, MultipartFile capaUpload, String capaUrl, Produto produto) {
+        capaTipo = capaTipo.replace("," , "");
         switch (capaTipo) {
-            case "capa-upload,":
+            case "capa-upload":
                 if (capaUpload == null) throw new NullPointerException();
-                s3Service.saveCapaS3(produto, capaUpload);
+                s3Service.salvaCapa(produto, capaUpload);
                 break;
-            case "capa-url,":
+            case "capa-url":
                 if (Strings.isNullOrEmpty(capaUrl.trim())) throw new NullPointerException();
                 if (produto.getCapa() != null && !produto.getCapa().trim().equalsIgnoreCase(capaUrl.trim())) {
-                    s3Service.deleteIfStoredInS3(produto.getCapa());
+                    s3Service.deletaCapa(produto.getCapa());
                 }
                 produto.setCapa(capaUrl);
                 break;
@@ -70,9 +71,9 @@ public class CrudProdutoController {
     }
 
 
-    @GetMapping("/list")
-    public ModelAndView productList(HttpServletRequest request) {
-        ModelAndView modelAndView = new ModelAndView("/crud/listProduct");
+    @GetMapping("/read")
+    public ModelAndView read(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("crud/listProdutos");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
         if (inputFlashMap != null) {
             modelAndView.addObject("produtoSalvo", inputFlashMap.get("salvo"));
@@ -81,165 +82,161 @@ public class CrudProdutoController {
             modelAndView.addObject("produtoSalvo", "");
             modelAndView.addObject("tipo-salvo", "");
         }
-        modelAndView.addObject("albuns", albumService.searchAllAlbum());
-        modelAndView.addObject("camisetas", camisetaService.findAll());
-        modelAndView.addObject("livros", livroService.findAll());
-        modelAndView.addObject("patches", patchService.searchAllPatches());
+        modelAndView.addObject("albuns", albumService.buscaTodos());
+        modelAndView.addObject("camisetas", camisetaService.buscaTodos());
+        modelAndView.addObject("livros", livroService.buscaTodos());
+        modelAndView.addObject("patches", patchService.buscaTodos());
         return modelAndView;
     }
 
     @GetMapping("/create/album")
     public ModelAndView albumForm(@ModelAttribute("album") Album album) {
         ModelAndView modelAndView = new ModelAndView("/crud/albumForm");
-        modelAndView.addObject("bandas", bandaService.findAll());
+        modelAndView.addObject("bandas", bandaService.buscaTodos());
         modelAndView.addObject("formatos", AlbumFormato.getFormatos());
         return modelAndView;
     }
 
     @PostMapping("/create/album")
-    public ModelAndView saveAlbum(@RequestParam(value = "file", required = false) MultipartFile capaUpload,
-                                  @ModelAttribute("album") @Valid Album album,
-                                  BindingResult result,
-                                  RedirectAttributes model,
-                                  @RequestParam(value = "capaTipo", required = true) String capaTipo,
-                                  @RequestParam(value = "capaUrl", required = false) String capaUrl) {
+    public ModelAndView createAlbum(@RequestParam(value = "file", required = false) MultipartFile capaUpload,
+                                    @ModelAttribute("album") @Valid Album album,
+                                    BindingResult result,
+                                    RedirectAttributes model,
+                                    @RequestParam(value = "capaTipo", required = true) String capaTipo,
+                                    @RequestParam(value = "capaUrl", required = false) String capaUrl) {
 
         if (result.hasErrors()) {
             return albumForm(album);
         }
 
-        saveCapa(capaTipo, capaUpload, capaUrl, album);
+        salvaCapa(capaTipo, capaUpload, capaUrl, album);
 
-        albumService.save(album);
+        albumService.salva(album);
         model.addFlashAttribute("salvo", album.getNome());
         model.addFlashAttribute("tipoSalvo", "Álbum");
-        return new ModelAndView("redirect:/crud/product/list");
+        return new ModelAndView("redirect:/crud/produtos/read");
     }
 
     @GetMapping("/create/camiseta")
     public ModelAndView camisetaForm(@ModelAttribute("camiseta") Camiseta camiseta) {
         ModelAndView modelAndView = new ModelAndView("/crud/camisetaForm");
-        modelAndView.addObject("bandas", bandaService.findAll());
-        modelAndView.addObject("tamanhos", CamisetaSize.getSizes());
+        modelAndView.addObject("bandas", bandaService.buscaTodos());
+        modelAndView.addObject("tamanhos", CamisetaTamanho.getSizes());
         return modelAndView;
     }
 
     @PostMapping("/create/camiseta")
-    public ModelAndView saveCamiseta(@RequestParam(value = "file", required = false) MultipartFile capaUpload,
-                                     @ModelAttribute("camiseta") @Valid Camiseta camiseta,
-                                     BindingResult result,
-                                     RedirectAttributes model,
-                                     @RequestParam(value = "capaTipo", required = true) String capaTipo,
-                                     @RequestParam(value = "capaUrl", required = false) String capaUrl) {
+    public ModelAndView createCamiseta(@RequestParam(value = "file", required = false) MultipartFile capaUpload,
+                                       @ModelAttribute("camiseta") @Valid Camiseta camiseta,
+                                       BindingResult result,
+                                       RedirectAttributes model,
+                                       @RequestParam(value = "capaTipo", required = true) String capaTipo,
+                                       @RequestParam(value = "capaUrl", required = false) String capaUrl) {
 
         if (result.hasErrors()) {
             return camisetaForm(camiseta);
         }
 
-        saveCapa(capaTipo, capaUpload, capaUrl, camiseta);
+        salvaCapa(capaTipo, capaUpload, capaUrl, camiseta);
 
-        camisetaService.save(camiseta);
+        camisetaService.salva(camiseta);
         model.addFlashAttribute("salvo", camiseta.getNome());
         model.addFlashAttribute("tipoSalvo", "Camiseta");
-        return new ModelAndView("redirect:/crud/product/list");
+        return new ModelAndView("redirect:/crud/produtos/read");
     }
 
     @GetMapping("/create/patch")
     public ModelAndView patchForm(@ModelAttribute("patch") Patch patch) {
         ModelAndView modelAndView = new ModelAndView("/crud/patchForm");
-        modelAndView.addObject("bandas", bandaService.findAll());
+        modelAndView.addObject("bandas", bandaService.buscaTodos());
         return modelAndView;
     }
 
     @PostMapping("/create/patch")
-    public ModelAndView savePatch(@RequestParam(value = "file", required = false) MultipartFile capaUpload,
-                                  @ModelAttribute("patch") @Valid Patch patch,
-                                  BindingResult result,
-                                  RedirectAttributes model,
-                                  @RequestParam(value = "capaTipo", required = true) String capaTipo,
-                                  @RequestParam(value = "capaUrl", required = false) String capaUrl) {
+    public ModelAndView createPatch(@RequestParam(value = "file", required = false) MultipartFile capaUpload,
+                                    @ModelAttribute("patch") @Valid Patch patch,
+                                    BindingResult result,
+                                    RedirectAttributes model,
+                                    @RequestParam(value = "capaTipo", required = true) String capaTipo,
+                                    @RequestParam(value = "capaUrl", required = false) String capaUrl) {
 
         if (result.hasErrors()) {
             return patchForm(patch);
         }
 
-        saveCapa(capaTipo, capaUpload, capaUrl, patch);
+        salvaCapa(capaTipo, capaUpload, capaUrl, patch);
 
-        patchService.save(patch);
+        patchService.salva(patch);
         model.addFlashAttribute("salvo", patch.getNome());
         model.addFlashAttribute("tipoSalvo", "Patch");
-        return new ModelAndView("redirect:/crud/product/list");
+        return new ModelAndView("redirect:/crud/produtos/read");
     }
 
     @GetMapping("/create/livro")
     public ModelAndView livroForm(@ModelAttribute("livro") Livro livro) {
         ModelAndView modelAndView = new ModelAndView("/crud/livroForm");
-        modelAndView.addObject("bandas", bandaService.findAll());
+        modelAndView.addObject("bandas", bandaService.buscaTodos());
         return modelAndView;
     }
 
     @PostMapping("/create/livro")
-    public ModelAndView saveLivro(@RequestParam(value = "file", required = false) MultipartFile capaUpload,
-                                  @ModelAttribute("livro") @Valid Livro livro,
-                                  BindingResult result,
-                                  RedirectAttributes model,
-                                  @RequestParam(value = "capaTipo", required = true) String capaTipo,
-                                  @RequestParam(value = "capaUrl", required = false) String capaUrl) {
+    public ModelAndView createLivro(@RequestParam(value = "file", required = false) MultipartFile capaUpload,
+                                    @ModelAttribute("livro") @Valid Livro livro,
+                                    BindingResult result,
+                                    RedirectAttributes model,
+                                    @RequestParam(value = "capaTipo", required = true) String capaTipo,
+                                    @RequestParam(value = "capaUrl", required = false) String capaUrl) {
 
         if (result.hasErrors()) {
             return livroForm(livro);
         }
 
-        saveCapa(capaTipo, capaUpload, capaUrl, livro);
+        salvaCapa(capaTipo, capaUpload, capaUrl, livro);
 
-        livroService.save(livro);
+        livroService.salva(livro);
         model.addFlashAttribute("salvo", livro.getNome());
         model.addFlashAttribute("tipoSalvo", "Livro");
-        return new ModelAndView("redirect:/crud/product/list");
+        return new ModelAndView("redirect:/crud/produtos/read");
     }
 
     @GetMapping("/update/album/{id}")
     public ModelAndView updateAlbum(@PathVariable Integer id, Model model) {
-        Album album = albumService.searchAlbumById(id);
+        Album album = albumService.buscaPorId(id);
         model.addAttribute("album", album);
         return albumForm(album);
     }
 
     @GetMapping("/update/camiseta/{id}")
     public ModelAndView updateCamiseta(@PathVariable Integer id, Model model) {
-        Camiseta camiseta = camisetaService.searchCamisetaById(id);
+        Camiseta camiseta = camisetaService.buscaPorId(id);
         model.addAttribute("camiseta", camiseta);
         return camisetaForm(camiseta);
     }
 
     @GetMapping("/update/patch/{id}")
     public ModelAndView updatePatch(@PathVariable Integer id, Model model) {
-        Patch patch = patchService.searchPatchById(id);
+        Patch patch = patchService.buscaPorId(id);
         model.addAttribute("patch", patch);
         return patchForm(patch);
     }
 
     @GetMapping("/update/livro/{id}")
     public ModelAndView updateLivro(@PathVariable Integer id, Model model) {
-        Livro livro = livroService.searchLivroById(id);
+        Livro livro = livroService.buscaPorId(id);
         model.addAttribute("livro", livro);
         return livroForm(livro);
     }
 
     @PostMapping("/delete")
-    public ModelAndView deleteProduct(@RequestParam Integer id) {
-        Produto produto = produtoService.searchById(id);
-
-        String[] url = produto.getCapa().split("/");
-        String fileKey = url[url.length-1];
-        s3Service.delete(fileKey);
-
-        produtoService.deleteById(id);
-        return new ModelAndView("redirect:/crud/product/list");
+    public ModelAndView deleteProduto(@RequestParam Integer id) {
+        Produto produto = produtoService.buscaPorId(id);
+        s3Service.deletaCapa(produto.getCapa());
+        produtoService.deletaPorId(id);
+        return new ModelAndView("redirect:/crud/produtos/read");
     }
 
     @GetMapping("/export/camiseta")
-    public void exportCamisetaToExcel(HttpServletResponse response) throws IOException {
+    public void exportaCamisetaParaExcel(HttpServletResponse response) throws IOException {
 
         response.setContentType("application/octet-stream");
 
@@ -250,7 +247,7 @@ public class CrudProdutoController {
                         + ".xlsx";
         response.setHeader(headerKey, headerValue);
 
-        List<Camiseta> listaCamiseta = camisetaService.findAll();
+        List<Camiseta> listaCamiseta = camisetaService.buscaTodos();
 
         ProdutoExcelExporter excelExporter = new ProdutoExcelExporter(listaCamiseta);
 
@@ -258,7 +255,7 @@ public class CrudProdutoController {
     }
 
     @GetMapping("/export/album")
-    public void exportAlbumToExcel(HttpServletResponse response) throws IOException {
+    public void exportaAlbumParaExcel(HttpServletResponse response) throws IOException {
 
         response.setContentType("application/octet-stream");
 
@@ -269,7 +266,7 @@ public class CrudProdutoController {
                         + ".xlsx";
         response.setHeader(headerKey, headerValue);
 
-        List<Album> listaAlbum = albumService.searchAllAlbum();
+        List<Album> listaAlbum = albumService.buscaTodos();
 
         ProdutoExcelExporter excelExporter = new ProdutoExcelExporter(listaAlbum);
 
@@ -277,7 +274,7 @@ public class CrudProdutoController {
     }
 
     @GetMapping("/export/patch")
-    public void exportPatchToExcel(HttpServletResponse response) throws IOException {
+    public void exportaPatchParaExcel(HttpServletResponse response) throws IOException {
 
         response.setContentType("application/octet-stream");
 
@@ -288,7 +285,7 @@ public class CrudProdutoController {
                         + ".xlsx";
         response.setHeader(headerKey, headerValue);
 
-        List<Patch> listaPatch = patchService.searchAllPatches();
+        List<Patch> listaPatch = patchService.buscaTodos();
 
         ProdutoExcelExporter excelExporter = new ProdutoExcelExporter(listaPatch);
 
@@ -296,7 +293,7 @@ public class CrudProdutoController {
     }
 
     @GetMapping("/export/livro")
-    public void exportLivroToExcel(HttpServletResponse response) throws IOException {
+    public void exportaLivroParaExcel(HttpServletResponse response) throws IOException {
 
         response.setContentType("application/octet-stream");
 
@@ -307,7 +304,7 @@ public class CrudProdutoController {
                         + ".xlsx";
         response.setHeader(headerKey, headerValue);
 
-        List<Livro> listaLivro = livroService.findAll();
+        List<Livro> listaLivro = livroService.buscaTodos();
 
         ProdutoExcelExporter excelExporter = new ProdutoExcelExporter(listaLivro);
 

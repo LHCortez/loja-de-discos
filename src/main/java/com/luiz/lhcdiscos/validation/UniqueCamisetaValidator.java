@@ -21,19 +21,19 @@ public class UniqueCamisetaValidator implements ConstraintValidator<UniqueCamise
 
 //        Checa se a camiseta é nova ou é uma atualização de uma já existente
         if (camiseta.getId() == null) {
-            return camisetaService.camisetaIsAvailableForSaving(camiseta);
+            return camisetaService.estaDisponivelParaPersistir(camiseta);
         }
 
-        Camiseta camisetaNoBd = camisetaService.searchCamisetaById(camiseta.getId());
+        Camiseta camisetaNoBd = camisetaService.buscaPorId(camiseta.getId());
 
 //        Checa se a camiseta salva no BD é a mesma que se quer atualizar. Caso não seja a mesma, checa se há outra
 //        camiseta similar, para evitar que seja cadastrada camisetas duplicadas
         if (camisetaNoBd.getNome().equalsIgnoreCase(camiseta.getNome())
-            && (camisetaNoBd.getSize().equals(camiseta.getSize()))
+            && (camisetaNoBd.getTamanho().equals(camiseta.getTamanho()))
             && (camisetaNoBd.getBanda().equals(camiseta.getBanda()))) {
             return true;
         } else {
-            return camisetaService.camisetaIsAvailableForSaving(camiseta);
+            return camisetaService.estaDisponivelParaPersistir(camiseta);
         }
 
     }
