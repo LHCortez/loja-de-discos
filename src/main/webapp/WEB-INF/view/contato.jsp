@@ -17,14 +17,14 @@
             <fieldset class="row my-4">
                 <label for="nome" class="col-sm-4 col-form-label">Nome</label>
                 <div class="col-sm-8">
-                    <input name="nome" size="30" type="text" class="form-control" id="nome" placeholder="Nome" />
+                    <input name="nome" size="30" type="text" class="form-control" id="nome" placeholder="Nome" required/>
                 </div>
             </fieldset>
 
             <fieldset class="row my-4">
                 <label for="email" class="col-sm-4 col-form-label">E-mail</label>
                 <div class="col-sm-8">
-                    <input name ="email" type="email" class="form-control" id="email" placeholder="E-mail"/>
+                    <input name ="email" type="email" class="form-control" id="email" placeholder="E-mail" required/>
                 </div>
             </fieldset>
 
@@ -32,7 +32,7 @@
                 <label for="mensagem" class="col-sm-4 col-form-label">Mensagem</label>
                 <div class="col-sm-8">
                     <textarea name="mensagem" type="text" class="form-control" id="mensagem" placeholder="Mensagem"
-                              rows="8"></textarea>
+                              rows="8" required></textarea>
                 </div>
             </fieldset>
 

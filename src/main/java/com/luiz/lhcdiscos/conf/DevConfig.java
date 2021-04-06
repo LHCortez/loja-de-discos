@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.conf;
 
-import com.luiz.lhcdiscos.services.DBService;
+import com.luiz.lhcdiscos.service.DBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

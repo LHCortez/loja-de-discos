@@ -1,17 +1,17 @@
 function confirmDeleteBand(event, id, nome) {
     event.preventDefault();
     Swal.fire({
-        title: ("Deletar " + nome + "?"),
-        text: "Isto fará com que todos os produtos relacionados à banda também sejam deletados.",
+        title: ("Excluir " + nome + "?"),
+        text: "Isto fará com que todos os produtos relacionados à banda também sejam excluídos.",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#499927',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#499927',
         cancelButtonText: 'Não, cancelar',
-        confirmButtonText: 'Sim, deletar'
+        confirmButtonText: 'Sim, excluir'
     }).then((result) => {
         if (result.isConfirmed) {
-            jQuery("#delete-band-" + id).submit();
+            $("#delete-band-" + id).submit();
         }
     });
 }
@@ -19,17 +19,17 @@ function confirmDeleteBand(event, id, nome) {
 function confirmDeleteProduct(event, id, nome) {
     event.preventDefault();
     Swal.fire({
-        title: "Deletar produto?",
-        text: ("Tem certeza que deseja deletar o produto " + nome + "?"),
+        title: "Excluir produto?",
+        text: ("Tem certeza que deseja excluir o produto " + nome + "?"),
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#499927',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#499927',
         cancelButtonText: 'Não, cancelar',
-        confirmButtonText: 'Sim, deletar'
+        confirmButtonText: 'Sim, excluir'
     }).then((result) => {
         if (result.isConfirmed) {
-            jQuery("#delete-product-" + id).submit();
+            $("#delete-product-" + id).submit();
         }
     });
 }

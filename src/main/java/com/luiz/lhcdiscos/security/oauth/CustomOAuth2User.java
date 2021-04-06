@@ -1,6 +1,6 @@
 package com.luiz.lhcdiscos.security.oauth;
 
-import com.luiz.lhcdiscos.models.enums.ProvedorAutenticacao;
+import com.luiz.lhcdiscos.model.enums.ProvedorAutenticacao;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 

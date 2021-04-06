@@ -1,7 +1,7 @@
 package com.luiz.lhcdiscos.security.oauth;
 
-import com.luiz.lhcdiscos.models.entities.Usuario;
-import com.luiz.lhcdiscos.services.UsuarioService;
+import com.luiz.lhcdiscos.model.entity.Usuario;
+import com.luiz.lhcdiscos.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;

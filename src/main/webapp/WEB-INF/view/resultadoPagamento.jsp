@@ -17,7 +17,7 @@
             <h3 class="text-success mb-4">Parabéns!</h3>
             <p>O pagamento do seu pedido nº ${pedidoId}, foi realizado com sucesso!</p>
             <p>Valor pago: R$ ${valorPago}</p>
-            <p>Enviamos um e-mail com os detalhes do seu pedido.</p>
+            <p>Enviamos um e-mail com os detalhes do seu pedido e informações sobre a entrega.</p>
             <p>Visualize seus pedidos <a href='${pageContext.request.contextPath}/usuario/pedidos' class="texto-cor-especial">clicando aqui</a>.</p>
         </c:otherwise>
     </c:choose>

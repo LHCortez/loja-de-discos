@@ -1,7 +1,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<jsp:useBean id="carrinhoCompras" scope="session" class="com.luiz.lhcdiscos.models.CarrinhoCompras"/>
+<jsp:useBean id="carrinhoCompras" scope="session" class="com.luiz.lhcdiscos.model.CarrinhoCompras"/>
 
 <header>
     <section id="banner container-xl">
